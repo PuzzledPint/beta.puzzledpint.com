@@ -1,0 +1,158 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=edge"
+    title Puzzled Pint - Game Control
+    / Tell the browser to be responsive to screen width
+    meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"
+    / Font Awesome --
+    link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+    / Ionicons --
+    link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+    = stylesheet_link_tag "game_control"
+    /!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+    /!-- WARNING: Respond.js doesn't work if you view the page via file://
+    /!--[if lt IE 9]
+    script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"
+    script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"
+    /![endif]
+
+
+  / BODY TAG OPTIONS:
+    =================
+   Apply one or more of the following classes to get the
+   desired effect
+   |---------------------------------------------------------|
+   | SKINS         | skin-blue                               |
+   |               | skin-black                              |
+   |               | skin-purple                             |
+   |               | skin-yellow                             |
+   |               | skin-red                                |
+   |               | skin-green                              |
+   |---------------------------------------------------------|
+   |LAYOUT OPTIONS | fixed                                   |
+   |               | layout-boxed                            |
+   |               | layout-top-nav                          |
+   |               | sidebar-collapse                        |
+   |               | sidebar-mini                            |
+   |---------------------------------------------------------|
+
+  body.hold-transition.skin-yellow.sidebar-mini
+    .wrapper
+
+      / -- Main Header -->
+      header.main-header
+        /! Logo
+        = link_to :game_control_root, class: :logo
+          /! mini logo for sidebar mini 50x50 pixels
+          span.logo-mini
+            b PP
+            |GC
+          /! logo for regular state and mobile devices
+          span.logo-lg
+            b PuzzledPint
+            |GC
+        /! Header Navbar
+        nav.navbar.navbar-static-top role="navigation" 
+          /! Sidebar toggle button
+          a.sidebar-toggle data-toggle="offcanvas" href="#" role="button" 
+            span.sr-only Toggle navigation
+          /! Navbar Right Menu
+          .navbar-custom-menu
+            ul.nav.navbar-nav
+              /! User Account Menu
+              li.dropdown.user.user-menu
+                /! Menu Toggle Button
+                a.dropdown-toggle data-toggle="dropdown" href="#" 
+                  /! The user image in the navbar
+                  = image_tag "AdminLTE/dist/img/user2-160x160.jpg", class: "user-image", alt: "User _Image"
+                  /! hidden-xs hides the username on small devices so only the image appears.
+                  span.hidden-xs< Alexander Pierce
+                ul.dropdown-menu
+                  /! The user image in the menu
+                  li.user-header
+                    = image_tag "AdminLTE/dist/img/user2-160x160.jpg", class: "img-circle", alt: "User _Image"
+                    p
+                      | Alexander Pierce - Web Developer
+                      small Member since Nov. 2012
+                  /! Menu Body
+                  li.user-body
+                    .row
+                      .col-xs-4.text-center
+                        a href="#"  Followers
+                      .col-xs-4.text-center
+                        a href="#"  Sales
+                      .col-xs-4.text-center
+                        a href="#"  Friends
+                    /! /.row
+                  /! Menu Footer
+                  li.user-footer
+                    .pull-left
+                      a.btn.btn-default.btn-flat href="#"  Profile
+                    .pull-right
+                      a.btn.btn-default.btn-flat href="#"  Sign out
+      /! Left side column. contains the logo and sidebar
+      aside.main-sidebar
+        /! sidebar: style can be found in sidebar.less
+        section.sidebar
+          /! Sidebar Menu
+          ul.sidebar-menu
+            li.header HEADER
+            /! Optionally, you can add icons to the links
+            li.active
+              a href="#" 
+                i.fa.fa-link
+                span Link
+            li
+              a href="#" 
+                i.fa.fa-link
+                span Another Link
+            li.treeview
+              a href="#" 
+                i.fa.fa-link
+                span Multilevel
+                i.fa.fa-angle-left.pull-right
+              ul.treeview-menu
+                li
+                  a href="#"  Link in level 2
+                li
+                  a href="#"  Link in level 2
+          /! /.sidebar-menu
+        /! /.sidebar
+      /! Content Wrapper. Contains page content
+      .content-wrapper
+        /! Content Header (Page header)
+        section.content-header
+          - if content_for? :page_header
+            h1 == yield :page_header
+            -if content_for? :page_description
+              small == yield :page_description
+        /! Main content
+        section.content
+          == yield
+        /! /.content
+      /! /.content-wrapper
+      /! Main Footer
+      footer.main-footer
+        /! To the right
+        .pull-right.hidden-xs
+          | Anything you want
+        /! Default to the left
+        strong
+          | Copyright &copy; 2015
+          a<> href="#" Company
+        | All rights reserved.
+      / ./wrapper
+      / REQUIRED JS SCRIPTS
+      / jQuery 2.1.4
+      = javascript_include_tag "AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js"
+      / Bootstrap 3.3.5
+      = javascript_include_tag "AdminLTE/bootstrap/js/bootstrap.min.js"
+      / AdminLTE App
+      = javascript_include_tag "AdminLTE/dist/js/app.min.js"
+      /
+        | Optionally, you can add Slimscroll and FastClick plugins.
+        | Both of these plugins are recommended to enhance the
+        | user experience. Slimscroll is required when using the
+        | fixed layout.

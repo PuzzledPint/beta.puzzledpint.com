@@ -1,0 +1,2 @@
+module GameControl::DashboardHelper
+end

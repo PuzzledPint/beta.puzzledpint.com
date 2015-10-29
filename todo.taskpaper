@@ -1,0 +1,8 @@
+PuzzlePint:
+- review logic less slim for the header
+- remove temp precompiled user image
+- look into robot images for missing pics
+	Maybes:
+	- implement search
+	- implement breadcrumbs
+	see if there is a breadcrumb gem
