@@ -3,4 +3,5 @@
  *= require AdminLTE/bootstrap/css/bootstrap.min.css
  *= require AdminLTE/dist/css/AdminLTE.min.css
  *= require AdminLTE/dist/css/skins/skin-yellow.min.css
+ *= require AdminLTE/plugins/iCheck/all.css
  */

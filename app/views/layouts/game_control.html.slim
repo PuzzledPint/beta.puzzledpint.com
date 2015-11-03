@@ -10,7 +10,10 @@ html
     link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
     / Ionicons --
     link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
-    = stylesheet_link_tag "game_control"
+
+    = stylesheet_link_tag "game_control", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+
     /!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
     /!-- WARNING: Respond.js doesn't work if you view the page via file://
     /!--[if lt IE 9]
@@ -40,7 +43,6 @@ html
 
   body.hold-transition.skin-yellow.sidebar-mini
     .wrapper
-
       / -- Main Header -->
       header.main-header
         /! Logo
@@ -68,7 +70,7 @@ html
                   /! The user image in the navbar
                   = image_tag "AdminLTE/dist/img/user2-160x160.jpg", class: "user-image", alt: "User _Image"
                   /! hidden-xs hides the username on small devices so only the image appears.
-                  span.hidden-xs< Alexander Pierce
+                  span.hidden-xs< = current_admin.email
                 ul.dropdown-menu
                   /! The user image in the menu
                   li.user-header
@@ -91,7 +93,8 @@ html
                     .pull-left
                       a.btn.btn-default.btn-flat href="#"  Profile
                     .pull-right
-                      a.btn.btn-default.btn-flat href="#"  Sign out
+                      = link_to "Sign Out", destroy_admin_session_path,
+                        method: :delete, class: "btn btn-default btn-flat"
       /! Left side column. contains the logo and sidebar
       aside.main-sidebar
         /! sidebar: style can be found in sidebar.less
@@ -130,6 +133,24 @@ html
               small == yield :page_description
         /! Main content
         section.content
+          /! Alert flash
+          - if alert
+            .alert.alert-danger.alert-dismissible
+              button type="button" class="close" data-dismiss="alert" aria-hidden="true" &times;
+              h4
+                i class="icon fa fa-ban"
+                | Alert
+              = alert
+          /! /.alert-danger
+          /! Info flash
+          - if notice
+            .alert.alert-info.alert-dismissible
+              button type="button" class="close" data-dismiss="alert" aria-hidden="true" &times;
+              h4
+                i class="icon fa fa-info"
+                | Info
+              = notice
+          /! /.alert-info
           == yield
         /! /.content
       /! /.content-wrapper

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admins, path: :game_control
   namespace :game_control do
     root to: 'dashboard#index'
   end
@@ -7,7 +8,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

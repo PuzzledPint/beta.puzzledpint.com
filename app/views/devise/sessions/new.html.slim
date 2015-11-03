@@ -1,0 +1,49 @@
+- content_for :body_class, 'login-page'
+.login-box
+  .login-logo
+    a href="#{game_control_root_path}"
+      b PuzzledPint
+      | GC
+  /! /.login-logo
+  .login-box-body
+    - if alert
+      p.login-box-msg.text-red = alert
+    - if notice
+      p.login-box-msg.text-yellow = noitce
+    p.login-box-msg Sign in to start your session
+    = form_tag admin_session_path, method: :post
+    = form_for resource, as: resource_name, url: session_path(resource_name) do |f|
+      .form-group.has-feedback
+        = f.email_field :email, placeholder: "Email",
+          class: "form-control", autofocus: true
+        span.glyphicon.glyphicon-envelope.form-control-feedback
+      .form-group.has-feedback
+        = f.password_field :password, placeholder: "Password",
+          class: "form-control"
+        span.glyphicon.glyphicon-lock.form-control-feedback
+      .row
+        .col-xs-8
+          .checkbox.icheck
+            label
+              = f.check_box :remember_me
+              |  Remember Me
+        /! /.col
+        .col-xs-4
+          button.btn.btn-primary.btn-block.btn-flat type="submit"  Sign In
+        /! /.col
+    a href="#"  I forgot my password
+/ jQuery 2.1.4
+= javascript_include_tag "AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js"
+/ Bootstrap 3.3.5
+= javascript_include_tag "AdminLTE/bootstrap/js/bootstrap.min.js"
+/ AdminLTE App
+/! iCheck
+= javascript_include_tag "AdminLTE/plugins/iCheck/icheck.min.js"
+javascript:
+   $(function () {
+     $('input').iCheck({
+       checkboxClass: 'icheckbox_square-yellow',
+       radioClass: 'iradio_square-yellow',
+       increaseArea: '20%' // optional
+     });
+  });

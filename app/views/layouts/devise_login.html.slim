@@ -1,0 +1,16 @@
+- content_for :
+= render "/layouts/devise_header"
+.login-box
+  .login-logo
+    a href="#{game_control_root_path}"
+      b PuzzledPint
+      | GC
+  /! /.login-logo
+  .login-box-body
+    - if alert
+      p.login-box-msg.text-red = alert
+    - if notice
+      p.login-box-msg.text-yellow = noitce
+
+    == yield
+  /! /.login-box-body
