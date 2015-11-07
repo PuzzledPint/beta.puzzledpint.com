@@ -1,3 +1,2 @@
 FactoryGirl.define do
-
 end
