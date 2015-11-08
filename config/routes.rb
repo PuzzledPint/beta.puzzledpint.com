@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   namespace :game_control do
     get '/', to: 'dashboard#index'
 
-    resources 'admins'
+    get 'profile', to: 'profile#edit'
+
+    resources 'admins', only: [:index, :edit, :update]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

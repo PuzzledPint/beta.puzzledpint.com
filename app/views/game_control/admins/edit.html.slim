@@ -1,0 +1,16 @@
+- content_for :page_header, "Edit #{@admin.full_name}"
+- content_for :page_description, 'edit user information'
+
+.row-col-sm12
+  .box.box-primary
+    .box-header.with-border
+      .box-title
+        i.fa.fa-user>
+        |  User Info
+    .box-body
+      .form-group
+        = simple_form_for @admin, url: game_control_admin_path do |f|
+          = f.input :full_name
+          = f.input :email
+          = f.submit 'Save', class: 'btn btn-primary'
+
