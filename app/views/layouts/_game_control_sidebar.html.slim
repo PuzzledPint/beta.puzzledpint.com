@@ -1,0 +1,23 @@
+/! Left side column. contains the logo and sidebar
+aside.main-sidebar
+  /! sidebar: style can be found in sidebar.less
+  section.sidebar
+    /! Sidebar Menu
+    ul.sidebar-menu
+      li
+        = link_to game_control_path
+          i.fa.fa-dashboard
+          span Dashboard
+      li.treeview
+        a href="#"
+          i.fa.fa-users
+          span Users
+          i.fa.fa-angle-left.pull-right
+        ul.treeview-menu
+          li
+            = link_to game_control_admins_path
+              i.fa.fa-users
+              span Manage Users
+    /! /.sidebar-menu
+  /! /.sidebar
+/! /.main-sidebar

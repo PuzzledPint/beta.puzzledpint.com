@@ -85,34 +85,7 @@ html
                       = link_to 'Sign Out',
                         destroy_admin_session_path(:authenticity_token => form_authenticity_token()),
                         method: :delete, class: 'btn btn-default btn-flat'
-      /! Left side column. contains the logo and sidebar
-      aside.main-sidebar
-        /! sidebar: style can be found in sidebar.less
-        section.sidebar
-          /! Sidebar Menu
-          ul.sidebar-menu
-            li.header HEADER
-            /! Optionally, you can add icons to the links
-            li.active
-              a href='#' 
-                i.fa.fa-link
-                span Link
-            li
-              a href='#' 
-                i.fa.fa-link
-                span Another Link
-            li.treeview
-              a href='#' 
-                i.fa.fa-link
-                span Multilevel
-                i.fa.fa-angle-left.pull-right
-              ul.treeview-menu
-                li
-                  a href='#'  Link in level 2
-                li
-                  a href='#'  Link in level 2
-          /! /.sidebar-menu
-        /! /.sidebar
+      = render 'layouts/game_control_sidebar'
       /! Content Wrapper. Contains page content
       .content-wrapper
         /! Content Header (Page header)
