@@ -1,24 +1,24 @@
 doctype html
 html
   head
-    meta charset="utf-8"
-    meta http-equiv="X-UA-Compatible" content="IE=edge"
+    meta charset='utf-8'
+    meta http-equiv='X-UA-Compatible' content='IE=edge'
     title Puzzled Pint - Game Control
     / Tell the browser to be responsive to screen width
-    meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"
+    meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'
     / Font Awesome --
-    link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+    link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'
     / Ionicons --
-    link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+    link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'
 
-    = stylesheet_link_tag "game_control", "data-turbolinks-track" => true
-    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = stylesheet_link_tag 'game_control', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
 
     /!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
     /!-- WARNING: Respond.js doesn't work if you view the page via file://
     /!--[if lt IE 9]
-    script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"
-    script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"
+    script src='https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js'
+    script src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js'
     /![endif]
 
 
@@ -56,9 +56,9 @@ html
             b PuzzledPint
             |GC
         /! Header Navbar
-        nav.navbar.navbar-static-top role="navigation" 
+        nav.navbar.navbar-static-top role='navigation' 
           /! Sidebar toggle button
-          a.sidebar-toggle data-toggle="offcanvas" href="#" role="button" 
+          a.sidebar-toggle data-toggle='offcanvas' href='#' role='button' 
             span.sr-only Toggle navigation
           /! Navbar Right Menu
           .navbar-custom-menu
@@ -66,35 +66,24 @@ html
               /! User Account Menu
               li.dropdown.user.user-menu
                 /! Menu Toggle Button
-                a.dropdown-toggle data-toggle="dropdown" href="#" 
+                a.dropdown-toggle data-toggle='dropdown' href='#' 
                   /! The user image in the navbar
-                  = image_tag "AdminLTE/dist/img/user2-160x160.jpg", class: "user-image", alt: "User _Image"
+                  = image_tag current_admin.avatar, class: 'user-image', alt: 'User _Image'
                   /! hidden-xs hides the username on small devices so only the image appears.
-                  span.hidden-xs< = current_admin.email
+                  span.hidden-xs< = current_admin.display_name
                 ul.dropdown-menu
                   /! The user image in the menu
                   li.user-header
-                    = image_tag "AdminLTE/dist/img/user2-160x160.jpg", class: "img-circle", alt: "User _Image"
+                    = image_tag current_admin.avatar, class: 'img-circle', alt: 'User _Image'
                     p
-                      | Alexander Pierce - Web Developer
-                      small Member since Nov. 2012
-                  /! Menu Body
-                  li.user-body
-                    .row
-                      .col-xs-4.text-center
-                        a href="#"  Followers
-                      .col-xs-4.text-center
-                        a href="#"  Sales
-                      .col-xs-4.text-center
-                        a href="#"  Friends
-                    /! /.row
-                  /! Menu Footer
+                      = current_admin.display_name
+                      small Member since #{current_admin.created_at.strftime('%B %Y')}
                   li.user-footer
                     .pull-left
-                      a.btn.btn-default.btn-flat href="#"  Profile
+                      a.btn.btn-default.btn-flat href='#'  Profile
                     .pull-right
-                      = link_to "Sign Out", destroy_admin_session_path(:authenticity_token => form_authenticity_token()),
-                        method: :delete, class: "btn btn-default btn-flat"
+                      = link_to 'Sign Out', destroy_admin_session_path(:authenticity_token => form_authenticity_token()),
+                        method: :delete, class: 'btn btn-default btn-flat'
       /! Left side column. contains the logo and sidebar
       aside.main-sidebar
         /! sidebar: style can be found in sidebar.less
@@ -104,23 +93,23 @@ html
             li.header HEADER
             /! Optionally, you can add icons to the links
             li.active
-              a href="#" 
+              a href='#' 
                 i.fa.fa-link
                 span Link
             li
-              a href="#" 
+              a href='#' 
                 i.fa.fa-link
                 span Another Link
             li.treeview
-              a href="#" 
+              a href='#' 
                 i.fa.fa-link
                 span Multilevel
                 i.fa.fa-angle-left.pull-right
               ul.treeview-menu
                 li
-                  a href="#"  Link in level 2
+                  a href='#'  Link in level 2
                 li
-                  a href="#"  Link in level 2
+                  a href='#'  Link in level 2
           /! /.sidebar-menu
         /! /.sidebar
       /! Content Wrapper. Contains page content
@@ -136,18 +125,18 @@ html
           /! Alert flash
           - if alert
             .alert.alert-danger.alert-dismissible
-              button type="button" class="close" data-dismiss="alert" aria-hidden="true" &times;
+              button type='button' class='close' data-dismiss='alert' aria-hidden='true' &times;
               h4
-                i class="icon fa fa-ban"
+                i class='icon fa fa-ban'
                 | Alert
               = alert
           /! /.alert-danger
           /! Info flash
           - if notice
             .alert.alert-info.alert-dismissible
-              button type="button" class="close" data-dismiss="alert" aria-hidden="true" &times;
+              button type='button' class='close' data-dismiss='alert' aria-hidden='true' &times;
               h4
-                i class="icon fa fa-info"
+                i class='icon fa fa-info'
                 | Info
               = notice
           /! /.alert-info
@@ -162,16 +151,16 @@ html
         /! Default to the left
         strong
           | Copyright &copy; 2015
-          a<> href="#" Company
+          a<> href='#' Company
         | All rights reserved.
       / ./wrapper
       / REQUIRED JS SCRIPTS
       / jQuery 2.1.4
-      = javascript_include_tag "AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js"
+      = javascript_include_tag 'AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js'
       / Bootstrap 3.3.5
-      = javascript_include_tag "AdminLTE/bootstrap/js/bootstrap.min.js"
+      = javascript_include_tag 'AdminLTE/bootstrap/js/bootstrap.min.js'
       / AdminLTE App
-      = javascript_include_tag "AdminLTE/dist/js/app.min.js"
+      = javascript_include_tag 'AdminLTE/dist/js/app.min.js'
       /
         | Optionally, you can add Slimscroll and FastClick plugins.
         | Both of these plugins are recommended to enhance the
