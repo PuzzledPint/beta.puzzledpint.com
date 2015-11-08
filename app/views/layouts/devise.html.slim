@@ -1,3 +1,4 @@
 = render "/layouts/devise_header"
 body.hold-transition.yellow-blue.sidebar-mini class="#{content_for :body_class}"
 == yield
+= javascript_include_tag 'game_control_footer.js'
