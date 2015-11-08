@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :admins, path: :game_control
   namespace :game_control do
     get '/', to: 'dashboard#index'
+
+    resources 'admins'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
