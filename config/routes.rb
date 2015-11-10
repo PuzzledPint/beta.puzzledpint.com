@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     get '/', to: 'dashboard#index'
 
     get 'profile', to: 'profile#edit'
+    patch 'profile', to: 'profile#update'
+    patch 'profile/password', to: 'profile#update_password'
 
     resources 'admins', only: [:index, :edit, :update]
   end
