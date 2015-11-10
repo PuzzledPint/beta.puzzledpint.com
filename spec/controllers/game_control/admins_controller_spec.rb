@@ -25,18 +25,19 @@ RSpec.describe GameControl::AdminsController, type: :controller do
 
   describe 'PATCH update' do
     context 'successful' do
+      before { @admin = create(:admin) }
+
       it 'updates the admin' do
-        admin = create(:admin)
-        post_data = { email: 'e@e.com', full_name: 'name' }
+        post_data = { email: 'e@e.com', full_name: 'name', password: '' }
 
-        patch :update, id: admin.id, admin: post_data
+        patch :update, id: @admin.id, admin: post_data
 
-        expect(response).to redirect_to edit_game_control_admin_path(admin)
+        expect(response).to redirect_to edit_game_control_admin_path(@admin)
         expect(flash[:notice]).to match(/successful/i)
 
-        admin.reload
-        expect(admin.email).to eq('e@e.com')
-        expect(admin.full_name).to eq('name')
+        @admin.reload
+        expect(@admin.email).to eq('e@e.com')
+        expect(@admin.full_name).to eq('name')
       end
     end
 

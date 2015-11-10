@@ -20,6 +20,7 @@ class GameControl::AdminsController < GameControlController
   private
 
   def update_params
-    params.required(:admin).permit(:full_name, :email)
+    params[:admin].delete_if { |k, v| k == 'password' && v.empty? }
+    params.required(:admin).permit(:full_name, :email, :password)
   end
 end

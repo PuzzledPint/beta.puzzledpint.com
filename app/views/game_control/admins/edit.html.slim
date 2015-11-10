@@ -12,5 +12,8 @@
         = simple_form_for @admin, url: game_control_admin_path do |f|
           = f.input :full_name
           = f.input :email
-          = f.submit 'Save', class: 'btn btn-primary'
+          = f.input :password, as: :string
+          => f.submit 'Save', class: 'btn btn-primary'
+          =< link_to 'Cancel', game_control_admins_path,
+            html_options = { class: 'btn btn-default' }
 
