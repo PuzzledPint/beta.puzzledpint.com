@@ -13,6 +13,10 @@
     h3 Forgot your passowrd?
     = form_for resource, as: resource_name, url: admin_password_path(resource),
       html: { method: :post } do |f| %
+
+      - if resource.errors.present?
+        p.login-box-msg.text-red = resource.errors.full_messages.first
+
       .form-group.has-feedback
         = f.email_field :email, placeholder: "Email",
           class: "form-control", autofocus: true
