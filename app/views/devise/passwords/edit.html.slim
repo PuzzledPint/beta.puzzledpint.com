@@ -1,0 +1,32 @@
+- content_for :body_class, 'login-page'
+.login-box
+  .login-logo
+    a href="#{game_control_path}"
+      b PuzzledPint
+      | GC
+  /! /.login-logo
+  .login-box-body
+    - if alert
+      p.login-box-msg.text-red = alert
+    - if notice
+      p.login-box-msg.text-yellow = noitce
+    h3 Change your password
+
+    = form_for(resource, as: resource_name, url: password_path(resource_name),
+      html: { method: :put }) do |f|
+
+      - if resource.errors.present?
+        p.login-box-msg.text-red = resource.errors.full_messages.first
+
+      = f.hidden_field :reset_password_token
+
+      .form-group.has-feedback
+        = f.password_field :password, placeholder: "Password",
+          class: "form-control", autofocus: true, autocomplete: "off"
+        span.glyphicon.glyphicon-envelope.form-control-feedback
+      .form-group.has-feedback
+        = f.password_field :password_confirmation, placeholder: "Password Confirmation",
+          class: "form-control", autofocus: true, autocomplete: "off"
+        span.glyphicon.glyphicon-envelope.form-control-feedback
+      .form-group.has-feedback
+        button.btn.btn-primary.btn-block.btn-flat type="submit" Change my password

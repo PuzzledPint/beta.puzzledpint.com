@@ -1,0 +1,21 @@
+- content_for :body_class, 'login-page'
+.login-box
+  .login-logo
+    a href="#{game_control_path}"
+      b PuzzledPint
+      | GC
+  /! /.login-logo
+  .login-box-body
+    - if alert
+      p.login-box-msg.text-red = alert
+    - if notice
+      p.login-box-msg.text-yellow = noitce
+    h3 Forgot your passowrd?
+    = form_for resource, as: resource_name, url: admin_password_path(resource),
+      html: { method: :post } do |f| %
+      .form-group.has-feedback
+        = f.email_field :email, placeholder: "Email",
+          class: "form-control", autofocus: true
+        span.glyphicon.glyphicon-envelope.form-control-feedback
+      .form-group.has-feedback
+        button.btn.btn-primary.btn-block.btn-flat type="submit" Send me password instructions
