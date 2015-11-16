@@ -26,9 +26,14 @@
               tr
                 td = admin.full_name
                 td = admin.email
-                td = link_to edit_game_control_admin_path(admin)
-                  i.fa.fa-pencil
-                  span< edit
+                td
+                  = link_to edit_game_control_admin_path(admin)
+                    i.fa.fa-pencil
+                    span<> edit
+                  = link_to game_control_admin_path(admin, :authenticity_token => form_authenticity_token()),
+                    method: :delete, data: { confirm: 'Are you sure?'}
+                    i.fa.fa-trash<
+                    span< delete
 
 coffee:
   $ ->

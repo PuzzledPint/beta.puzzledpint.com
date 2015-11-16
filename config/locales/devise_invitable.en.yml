@@ -17,8 +17,8 @@ en:
         submit_button: "Set my password"
     mailer:
       invitation_instructions:
-        subject: "Invitation instructions"
-        hello: "Hello %{email}"
-        someone_invited_you: "Someone has invited you to %{url}, you can accept it through the link below."
+        subject: "[Puzzled Pint GC] You are invited!"
+        hello: "Hello %{full_name}"
+        someone_invited_you: "You have been invited to join the Puzzled Pint GC App."
         accept: "Accept invitation"
         ignore: "If you don't want to accept the invitation, please ignore this email.<br />Your account won't be created until you access the link above and set your password."

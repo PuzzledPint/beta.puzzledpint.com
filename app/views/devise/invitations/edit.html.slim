@@ -1,19 +1,31 @@
-h2
-  = t 'devise.invitations.edit.header'
+- content_for :body_class, 'login-page'
+.login-box
+  .login-logo
+    a href="#{game_control_path}"
+      b PuzzledPint
+      | GC
+  /! /.login-logo
+  .login-box-body
+    - if alert
+      p.login-box-msg.text-red = alert
+    - if notice
+      p.login-box-msg.text-yellow = noitce
+    h3
+      = t 'devise.invitations.edit.header'
 
-= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f|
-  = devise_error_messages!
-  = f.hidden_field :invitation_token
+    = form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f|
+      - if resource.errors.present?
+        p.login-box-msg.text-red = resource.errors.full_messages.first
 
-  p
-    = f.label :password
-    br
-    = f.password_field :password
+      = f.hidden_field :invitation_token
 
-  p
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation
-
-  p
-    = f.submit t("devise.invitations.edit.submit_button")
+      .form-group.has-feedback
+        = f.password_field :password, placeholder: "Password",
+          class: "form-control", autofocus: true, autocomplete: "off"
+        span.fa.fa-lock.form-control-feedback
+      .form-group.has-feedback
+        = f.password_field :password_confirmation, placeholder: "Password Confirmation",
+          class: "form-control", autofocus: true, autocomplete: "off"
+        span.fa.fa-lock.form-control-feedback
+      .form-group.has-feedback
+        button.btn.btn-primary.btn-block.btn-flat type="submit" Change my password

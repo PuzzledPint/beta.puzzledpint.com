@@ -12,6 +12,25 @@ RSpec.describe GameControl::AdminsController, type: :controller do
     end
   end
 
+  describe 'GET new' do
+    it 'renders' do
+      get :new
+
+      expect(assigns(:admins))
+      expect(response).to render_template(:new)
+    end
+  end
+
+  describe 'POST create' do
+    it 'adds a new user and sends an invite' do
+      allow_any_instance_of(Admin).to receive(:invite!)
+      expect {
+        post_data = { email: 'e@e.com', full_name: 'name' }
+        post :create, admin: post_data
+      }.to change(Admin, :count).by(1)
+    end
+  end
+
   describe 'GET edit' do
     it 'renders' do
       admin = create(:admin)
@@ -32,7 +51,7 @@ RSpec.describe GameControl::AdminsController, type: :controller do
 
         patch :update, id: @admin.id, admin: post_data
 
-        expect(response).to redirect_to edit_game_control_admin_path(@admin)
+        expect(response).to redirect_to game_control_admins_path
         expect(flash[:notice]).to match(/successful/i)
 
         @admin.reload

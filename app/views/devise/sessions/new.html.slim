@@ -33,11 +33,8 @@
         /! /.col
     = link_to "I forgot my password", new_admin_password_path
 
-javascript:
-   $(function () {
-     $('input').iCheck({
-       checkboxClass: 'icheckbox_square-yellow',
-       radioClass: 'iradio_square-yellow',
-       increaseArea: '20%' // optional
-     });
-  });
+coffee:
+  $ ->
+    $('input').iCheck
+       checkboxClass: 'icheckbox_square-yellow'
+       radioClass: 'iradio_square-yellow'

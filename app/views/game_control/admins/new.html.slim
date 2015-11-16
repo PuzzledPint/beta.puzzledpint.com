@@ -1,0 +1,26 @@
+- content_for :page_header, "New User"
+- content_for :page_description, 'create a new user'
+
+.row
+  .col-sm-12
+    .box.box-primary
+      .box-header.with-border
+        .box-title
+          i.fa.fa-user-plus>
+          | User Info
+      = simple_form_for @admin, url: game_control_admins_path do |f|
+        .box-body
+          .form-group
+              = f.input :full_name
+              = f.input :email
+              = f.input :send_invite, label: 'Invite User?', as: :boolean
+        .box-footer
+            = f.submit 'Create', class: 'btn btn-primary'
+            = link_to 'Cancel', game_control_admins_path,
+              html_options = { class: 'btn btn-default pull-right' }
+
+coffee:
+  $ ->
+    $('input').iCheck
+       checkboxClass: 'icheckbox_square-yellow'
+       radioClass: 'iradio_square-yellow'

@@ -2,6 +2,8 @@ class Admin < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :lockable, :timeoutable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  attr_accessor :send_invite
+
   validates :email, :full_name, presence: true
 
   def display_name

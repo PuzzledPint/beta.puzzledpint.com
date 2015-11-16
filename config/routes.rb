@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     patch 'profile', to: 'profile#update'
     patch 'profile/password', to: 'profile#update_password'
 
-    resources 'admins', only: [:index, :edit, :update]
+    resources 'admins'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
