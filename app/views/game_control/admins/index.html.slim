@@ -1,33 +1,40 @@
 - content_for :page_header, 'Manage Users'
 - content_for :page_description, 'invite and update users'
 
-.row-col-sm-12
-  .box.box-primary
-    .box-header.with-border
-      .box-title
-        i.fa.fa-users>
-        |  Users
-    .box-body
-      table#user_table.table.table-bordered.table-hover
-        thead
-          tr
-            th Email
-            th Name
-            th
-              i.fa.fa-gear
-        tbody
-          - @admins.each do |admin|
-            td = admin.email
-            td = admin.full_name
-            td = link_to edit_game_control_admin_path(admin)
-              i.fa.fa-pencil
-              span< edit
+.row
+  .col-sm-12
+    .box.box-primary
+      .box-header.with-border
+        .box-title
+          i.fa.fa-users>
+          |  Users
+        .box-tools.pull-left
+          = link_to new_game_control_admin_path, class: 'btn btn-default'
+            i.fa.fa-user-plus>
+            | Add New User
+
+      .box-body
+        table#user_table.table.table-bordered.table-hover
+          thead
+            tr
+              th Name
+              th Email
+              th
+                i.fa.fa-gear
+          tbody
+            - @admins.each do |admin|
+              tr
+                td = admin.full_name
+                td = admin.email
+                td = link_to edit_game_control_admin_path(admin)
+                  i.fa.fa-pencil
+                  span< edit
 
 coffee:
   $ ->
     $('#user_table').DataTable
       autoWidth : true
-      order: [[1, 'desc' ] ]
+      order: [[0, 'asc' ] ]
       columns: [
         null
         null

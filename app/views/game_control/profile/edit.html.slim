@@ -1,29 +1,34 @@
 - content_for :page_header, 'Edit Profile'
 - content_for :page_description, 'edit your user information'
 
-.row.col-md-12
+.row
+  .col-sm-12
     .box.box-primary
       .box-header.with-border
         .box-title
           i.fa.fa-user>
           | User Info
-      .box-body
-        = simple_form_for @admin, url: game_control_profile_path do |f|
-          .form-group
-            = f.input :full_name
-            = f.input :email
+      = simple_form_for @admin, url: game_control_profile_path do |f|
+        .box-body
+            .form-group
+              = f.input :full_name
+              = f.input :email
+        .box-footer
             = f.submit 'Save', class: 'btn btn-primary'
 
+.row
+  .col-sm-12
     .box.box-primary
       .box-header.with-border
         .box-title
           i.fa.fa-key>
           | Password
-      .box-body
-        = simple_form_for @admin, url: game_control_profile_password_path do |f|
-          .form-group
-            = f.input :current_password, autocomplete: 'off'
-            = f.input :password, autocomplete: 'off'
-            = f.input :password_confirmation
+      = simple_form_for @admin, url: game_control_profile_password_path do |f|
+        .box-body
+            .form-group
+              = f.input :current_password, autocomplete: 'off'
+              = f.input :password, autocomplete: 'off'
+              = f.input :password_confirmation
+        .box-footer
             = f.submit 'Update Password', class: 'btn btn-primary'
 

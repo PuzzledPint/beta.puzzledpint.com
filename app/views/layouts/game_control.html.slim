@@ -104,7 +104,7 @@ html
               h4
                 i class='icon fa fa-ban'
                 | Alert
-              = alert
+              = alert.html_safe
           /! /.alert-danger
           /! Info flash
           - if notice
@@ -113,7 +113,7 @@ html
               h4
                 i class='icon fa fa-info'
                 | Info
-              = notice
+              = notice.html_safe
           /! /.alert-info
           == yield
         /! /.content
