@@ -11,4 +11,4 @@ Rails.application.config.assets.paths << Rails.root.join('vendor')
 Rails.application.config.assets.precompile += %w( game_control.css
                                                   game_control.js
                                                   game_control_footer.js
-                                                )
+                                              )

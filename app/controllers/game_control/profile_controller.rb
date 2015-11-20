@@ -8,7 +8,7 @@ class GameControl::ProfileController < GameControlController
     if @admin.update(update_params)
       sign_in @admin, bypass: true
       redirect_to game_control_profile_path,
-        notice: 'Your profile as been update successfully'
+                  notice: 'Your profile as been update successfully'
     else
       render :edit
     end
@@ -19,7 +19,7 @@ class GameControl::ProfileController < GameControlController
     if @admin.update_with_password(password_params)
       sign_in @admin, bypass: true
       redirect_to game_control_profile_path,
-        notice: 'Your password as been update successfully'
+                  notice: 'Your password as been update successfully'
     else
       render :edit
     end
