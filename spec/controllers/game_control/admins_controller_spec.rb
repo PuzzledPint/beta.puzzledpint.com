@@ -24,7 +24,7 @@ RSpec.describe GameControl::AdminsController, type: :controller do
   describe 'POST create' do
     it 'adds a new user and sends an invite' do
       allow_any_instance_of(Admin).to receive(:invite!)
-      expect begin
+      expect do
         post_data = { email: 'e@e.com', full_name: 'name' }
         post :create, admin: post_data
       end.to change(Admin, :count).by(1)
