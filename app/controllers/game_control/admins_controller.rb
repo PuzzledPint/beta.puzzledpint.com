@@ -48,7 +48,7 @@ class GameControl::AdminsController < GameControlController
 
   private
 
-  def  temp_password
+  def temp_password
     Devise.friendly_token
   end
 

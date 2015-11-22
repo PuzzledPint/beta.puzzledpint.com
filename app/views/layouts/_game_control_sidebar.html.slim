@@ -4,26 +4,29 @@ aside.main-sidebar
   section.sidebar
     /! Sidebar Menu
     ul.sidebar-menu
-      li
+      li#dashboard
         = link_to game_control_path
           i.fa.fa-dashboard
           span Dashboard
 
       - if current_admin.can_manage?(Admin)
-        li.treeview
+        li#admins.treeview
           a href="#"
             i.fa.fa-users
             span Users
             i.fa.fa-angle-left.pull-right
           ul.treeview-menu
-            li
+            li#admins-index
               = link_to game_control_admins_path
-                i.fa.fa-users
+                i.fa.fa-list
                 span Manage Users
-            li
+            li#admins-new
               = link_to new_game_control_admin_path
-                i.fa.fa-user-plus
+                i.fa.fa-plus
                 span New User
     /! /.sidebar-menu
   /! /.sidebar
 /! /.main-sidebar
+
+javascript:
+  gamecontrol.sidebar.init('#{controller_name}', '#{action_name}');
