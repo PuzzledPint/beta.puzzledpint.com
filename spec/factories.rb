@@ -1,10 +1,4 @@
 FactoryGirl.define do
-  factory :role do
-    sequence :name do |n|
-      "role#{n}"
-    end
-  end
-
   factory :admin_role, class: Role do
     name 'admin'
   end
@@ -25,6 +19,19 @@ FactoryGirl.define do
       before(:create) do |admin, _|
         admin.roles = [create(:admin_role)]
       end
+    end
+  end
+
+  factory :city do
+    name "Shaolin"
+    city "Staten Island"
+    state "New York"
+    country "United States"
+  end
+
+  factory :role do
+    sequence :name do |n|
+      "role#{n}"
     end
   end
 end
