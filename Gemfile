@@ -33,6 +33,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
 gem 'devise_invitable'
+gem 'authority'
+gem 'rolify'
 
 gem 'pry-rails'
 gem 'pry-stack_explorer'

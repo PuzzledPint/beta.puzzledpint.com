@@ -8,20 +8,22 @@ aside.main-sidebar
         = link_to game_control_path
           i.fa.fa-dashboard
           span Dashboard
-      li.treeview
-        a href="#"
-          i.fa.fa-users
-          span Users
-          i.fa.fa-angle-left.pull-right
-        ul.treeview-menu
-          li
-            = link_to game_control_admins_path
-              i.fa.fa-users
-              span Manage Users
-          li
-            = link_to new_game_control_admin_path
-              i.fa.fa-user-plus
-              span New User
+
+      - if current_admin.can_manage?(Admin)
+        li.treeview
+          a href="#"
+            i.fa.fa-users
+            span Users
+            i.fa.fa-angle-left.pull-right
+          ul.treeview-menu
+            li
+              = link_to game_control_admins_path
+                i.fa.fa-users
+                span Manage Users
+            li
+              = link_to new_game_control_admin_path
+                i.fa.fa-user-plus
+                span New User
     /! /.sidebar-menu
   /! /.sidebar
 /! /.main-sidebar

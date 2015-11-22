@@ -15,6 +15,7 @@
 //= require AdminLTE/plugins/iCheck/icheck.min.js
 //= require AdminLTE/plugins/datatables/jquery.dataTables.min.js
 //= require AdminLTE/plugins/datatables/dataTables.bootstrap.min.js
+//= require AdminLTE/plugins/select2/select2.min.js
 
 // Must be the last script required
 //= require AdminLTE/dist/js/app.min.js

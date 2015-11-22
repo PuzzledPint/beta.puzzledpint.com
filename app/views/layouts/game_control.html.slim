@@ -70,13 +70,13 @@ html
                   /! The user image in the navbar
                   = image_tag current_admin.avatar, class: 'user-image', alt: 'User _Image'
                   /! hidden-xs hides the username on small devices so only the image appears.
-                  span.hidden-xs< = current_admin.display_name
+                  span.hidden-xs< = current_admin.full_name
                 ul.dropdown-menu
                   /! The user image in the menu
                   li.user-header
                     = image_tag current_admin.avatar, class: 'img-circle', alt: 'User _Image'
                     p
-                      = current_admin.display_name
+                      = current_admin.full_name
                       small Member since #{current_admin.created_at.strftime('%B %Y')}
                   li.user-footer
                     .pull-left

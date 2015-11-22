@@ -1,4 +1,6 @@
 class GameControl::AdminsController < GameControlController
+  authorize_actions_for Admin
+
   def index
     @admins = Admin.all
   end
@@ -52,11 +54,11 @@ class GameControl::AdminsController < GameControlController
 
   def create_params
     params[:admin].delete_if { |k, v| k == 'password' && v.empty? }
-    params.required(:admin).permit(:full_name, :email, :send_invite)
+    params.required(:admin).permit(:full_name, :email, :send_invite, role_ids: [])
   end
 
   def update_params
     params[:admin].delete_if { |k, v| k == 'password' && v.empty? }
-    params.required(:admin).permit(:full_name, :email, :password)
+    params.required(:admin).permit(:full_name, :email, :password, role_ids: [])
   end
 end
