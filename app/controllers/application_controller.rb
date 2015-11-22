@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   private
 
   def after_sign_out_path_for(_)
-    game_control_path
+    game_control_root_path
   end
 end

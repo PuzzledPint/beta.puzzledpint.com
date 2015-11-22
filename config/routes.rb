@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admins, path: :game_control
   namespace :game_control do
-    get '/', to: 'dashboard#index'
+    root 'dashboard#index'
 
     get 'profile', to: 'profile#edit'
     patch 'profile', to: 'profile#update'
