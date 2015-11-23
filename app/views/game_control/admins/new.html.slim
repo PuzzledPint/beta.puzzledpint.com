@@ -11,7 +11,7 @@
             | User Info
           .box-body
             .form-group
-                = f.input :full_name
+                = f.input :full_name, autofocus: true
                 = f.input :email
                 = f.input :send_invite, label: 'Invite User?', as: :boolean
   .row
@@ -29,9 +29,11 @@
               = link_to 'Cancel', game_control_admins_path,
                 html_options = { class: 'btn btn-default pull-right' }
 
-coffee:
-  $ ->
-    $('select').select2()
-    $('input').iCheck
-       checkboxClass: 'icheckbox_square-yellow'
+javascript:
+  $(function() {
+    $('select').select2();
+    $('input').iCheck({
+       checkboxClass: 'icheckbox_square-yellow',
        radioClass: 'iradio_square-yellow'
+     });
+  });
