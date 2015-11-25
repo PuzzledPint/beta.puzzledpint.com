@@ -88,5 +88,16 @@ RSpec.describe GameControl::AdminsController, type: :controller do
         end
       end
     end
+
+    describe 'DELETE destroy' do
+      it 'deletes admin' do
+        admin = create(:admin)
+
+        expect do
+          delete :destroy, id: admin.id
+          expect(flash[:notice]).to match(/successful/i)
+        end.to change(Admin, :count).by(-1)
+      end
+    end
   end
 end

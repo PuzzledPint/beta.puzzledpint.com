@@ -38,12 +38,9 @@ class GameControl::AdminsController < GameControlController
   end
 
   def destroy
-    @admin = Admin.find params[:id]
-    if @admin.destroy
-      redirect_to game_control_admins_path, notice: 'User successfully deleted.'
-    else
-      redirect_to game_control_admins_path, alert: 'Could not delete the user.'
-    end
+    admin = Admin.find params[:id]
+    admin.destroy
+    redirect_to game_control_admins_path, notice: 'User successfully deleted.'
   end
 
   private
