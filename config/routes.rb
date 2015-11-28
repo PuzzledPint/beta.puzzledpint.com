@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     patch 'profile', to: 'profile#update'
     patch 'profile/password', to: 'profile#update_password'
 
+    resources 'cities'
     resources 'admins'
   end
 end

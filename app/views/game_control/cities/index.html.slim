@@ -1,0 +1,55 @@
+- content_for :page_header, 'Manage Cities'
+- content_for :page_description, 'update city info'
+
+.row
+  .col-sm-12
+    .box.box-primary
+      .box-header.with-border
+        .box-title
+          i.fa.fa-users>
+          |  Cities
+        .box-tools.pull-left
+          = link_to :new_game_control_city, class: 'btn btn-default'
+            i.fa.fa-user-plus>
+            | Add City
+
+      .box-body
+        table#city_table.table.table-bordered.table-hover
+          thead
+            tr
+              th Display Name
+              th City
+              th State
+              th Country
+              th Parent
+              th
+                i.fa.fa-gear
+          tbody
+            - @cities.each do |city|
+              tr
+                td = city.display_name
+                td = city.city
+                td = city.state
+                td = city.country
+                td = city.parent
+                td
+                  = link_to edit_game_control_city_path(city)
+                    i.fa.fa-pencil
+                    span<> edit
+                  = link_to game_control_city_path(city, :authenticity_token => form_authenticity_token()),
+                    method: :delete, data: { confirm: 'Are you sure?'}
+                    i.fa.fa-trash<
+                    span< delete
+
+javascript:
+  $(function() {
+    return $('#city_table').DataTable({
+      autoWidth: true,
+      order: [[0, 'asc']],
+      columns: [
+        null, null, {
+          orderable: false
+        }
+      ]
+    });
+  });

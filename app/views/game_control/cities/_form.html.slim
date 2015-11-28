@@ -1,0 +1,23 @@
+= simple_form_for [:game_control, city] do |f|
+  .row
+    .col-sm-12
+      .box.box-primary
+        .box-header.with-border
+          .box-title
+            i.fa.fa-building>
+            | City Info
+          .box-body
+            .form-group
+                = f.input :display_name, autofocus: true
+                = f.input :city
+                = f.input :country
+                = f.input :state, collection: states, label_method: :name, value_method: :code,
+                  input_html: { class: :state }, disabled: true
+          .box-footer
+            = f.submit 'Save', class: 'btn btn-primary'
+
+javascript:
+  $(function() {
+    $('select').select2();
+    $('select.country').countryStateSelect();
+  });

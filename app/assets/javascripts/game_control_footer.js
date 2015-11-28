@@ -4,5 +4,6 @@
 //= require AdminLTE/plugins/datatables/jquery.dataTables.min.js
 //= require AdminLTE/plugins/datatables/dataTables.bootstrap.min.js
 //= require AdminLTE/plugins/select2/select2.min.js
+//= require country_state_select
 
 //= require AdminLTE/dist/js/app.min.js

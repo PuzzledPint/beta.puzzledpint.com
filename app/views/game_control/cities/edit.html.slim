@@ -1,0 +1,4 @@
+- content_for :page_header, 'Edit City'
+- content_for :page_description, 'update city information'
+
+= render partial: "form", locals: { city: @city, states: @states }

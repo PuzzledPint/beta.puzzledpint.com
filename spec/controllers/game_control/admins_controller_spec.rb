@@ -59,33 +59,27 @@ RSpec.describe GameControl::AdminsController, type: :controller do
     end
 
     describe 'PATCH update' do
-      context 'successful' do
-        before { @admin = create(:admin) }
+      before { @admin = create(:admin) }
 
-        it 'updates the admin' do
-          post_data = { email: 'e@e.com', full_name: 'name', password: '' }
+      it 'updates the admin' do
+        post_data = { email: 'e@e.com', full_name: 'name', password: '' }
 
-          patch :update, id: @admin.id, admin: post_data
+        patch :update, id: @admin.id, admin: post_data
 
-          expect(response).to redirect_to game_control_admins_path
-          expect(flash[:notice]).to match(/successful/i)
+        expect(response).to redirect_to game_control_admins_path
+        expect(flash[:notice]).to match(/successful/i)
 
-          @admin.reload
-          expect(@admin.email).to eq('e@e.com')
-          expect(@admin.full_name).to eq('name')
-        end
+        @admin.reload
+        expect(@admin.email).to eq('e@e.com')
+        expect(@admin.full_name).to eq('name')
       end
 
-      context 'validation errors' do
-        it 'displays messages' do
-          admin = create(:admin)
+      it 'displays messages' do
+        patch :update, id: @admin.id, admin: { full_name: '' }
 
-          patch :update, id: admin.id, admin: { full_name: '' }
-
-          expect(response).to be_successful
-          expect(response).to render_template(:edit)
-          expect(assigns(:admin).errors).not_to be_empty
-        end
+        expect(response).to be_successful
+        expect(response).to render_template(:edit)
+        expect(assigns(:admin).errors).not_to be_empty
       end
     end
 

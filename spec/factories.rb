@@ -23,7 +23,7 @@ FactoryGirl.define do
   end
 
   factory :city do
-    name "Shaolin"
+    display_name "Shaolin"
     city "Staten Island"
     state "New York"
     country "United States"
