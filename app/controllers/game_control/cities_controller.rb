@@ -2,11 +2,12 @@ class GameControl::CitiesController < GameControlController
   authorize_actions_for Admin
 
   def index
-    @cities = City.order(:city)
+    @cities = City.parent_cities.order(:city)
   end
 
   def new
     @city = City.new
+    generate_parents
     @states = []
   end
 
@@ -16,15 +17,15 @@ class GameControl::CitiesController < GameControlController
     if @city.save
       redirect_to :game_control_cities, notice: 'City successfully created.'
     else
+      generate_parents
       render :new
     end
   end
 
   def edit
     @city = City.find params[:id]
-    @states = Country.new.states(@city.country).map do |s|
-      OpenStruct.new(s)
-    end
+    generate_states
+    generate_parents
   end
 
   def update
@@ -34,9 +35,8 @@ class GameControl::CitiesController < GameControlController
       redirect_to :game_control_cities,
                   notice: "City <strong>#{@city.display_name}</strong> was successfully updated"
     else
-      @states = Country.new.states(@city.country).map do |s|
-        OpenStruct.new(s)
-      end
+      generate_states
+      generate_parents
       render :edit
     end
   end
@@ -49,7 +49,17 @@ class GameControl::CitiesController < GameControlController
 
   private
 
+  def generate_states
+    @states = Country.new.states(@city.country).map do |s|
+      OpenStruct.new(s)
+    end
+  end
+
+  def generate_parents
+    @parents = City.parent_cities.order(:city)
+  end
+
   def city_params
-    params.require(:city).permit(:display_name, :city, :state, :country)
+    params.require(:city).permit(:display_name, :city, :state, :country, :parent_id)
   end
 end

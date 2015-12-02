@@ -40,6 +40,24 @@
                     method: :delete, data: { confirm: 'Are you sure?'}
                     i.fa.fa-trash<
                     span< delete
+              - city.children.each do |child|
+                tr
+                  td
+                    i.fa.fa-long-arrow-right>
+                    i.fa.fa-child
+                    = child.display_name
+                  td = child.city
+                  td = child.state
+                  td = child.country
+                  td
+                  td
+                    = link_to edit_game_control_city_path(child)
+                      i.fa.fa-pencil
+                      span<> edit
+                    = link_to game_control_city_path(child, :authenticity_token => form_authenticity_token()),
+                      method: :delete, data: { confirm: 'Are you sure?'}
+                      i.fa.fa-trash<
+                      span< delete
 
 javascript:
   $(function() {
