@@ -21,7 +21,6 @@
               th City
               th State
               th Country
-              th Parent
               th
                 i.fa.fa-gear
           tbody
@@ -31,7 +30,6 @@
                 td = city.city
                 td = city.state
                 td = city.country
-                td = city.parent
                 td
                   = link_to edit_game_control_city_path(city)
                     i.fa.fa-pencil
@@ -49,7 +47,6 @@
                   td = child.city
                   td = child.state
                   td = child.country
-                  td
                   td
                     = link_to edit_game_control_city_path(child)
                       i.fa.fa-pencil
