@@ -40,7 +40,7 @@ RSpec.describe GameControl::CitiesController, type: :controller do
       it 'adds a new city' do
         expect do
           post_data = { display_name: 'city name',
-                        city: 'city',
+                        name: 'city',
                         state: 'state',
                         country: 'country' }
           post :create, city: post_data
@@ -48,7 +48,7 @@ RSpec.describe GameControl::CitiesController, type: :controller do
       end
 
       it 'displays errors' do
-        post :create, city: { city: 'blah' }
+        post :create, city: { name: 'blah' }
         expect(response).to be_successful
         expect(response).to render_template(:new)
         expect(assigns(:city).errors).not_to be_empty
@@ -71,7 +71,7 @@ RSpec.describe GameControl::CitiesController, type: :controller do
       before { @city = create(:city) }
 
       it 'updates the city' do
-        post_data = { display_name: 'name', city: 'city', country: 'EEUU' }
+        post_data = { display_name: 'name', name: 'city', country: 'EEUU' }
 
         patch :update, id: @city.id, city: post_data
 
@@ -80,7 +80,7 @@ RSpec.describe GameControl::CitiesController, type: :controller do
 
         @city.reload
         expect(@city.display_name).to eq('name')
-        expect(@city.city).to eq('city')
+        expect(@city.name).to eq('city')
         expect(@city.country).to eq('EEUU')
       end
 

@@ -18,7 +18,7 @@
           thead
             tr
               th Display Name
-              th City
+              th Name
               th State
               th Country
               th
@@ -27,7 +27,7 @@
             - @cities.each do |city|
               tr
                 td = city.display_name
-                td = city.city
+                td = city.name
                 td = city.state
                 td = city.country
                 td
@@ -41,10 +41,11 @@
               - city.children.each do |child|
                 tr
                   td
-                    i.fa.fa-long-arrow-right>
-                    i.fa.fa-child
-                    = child.display_name
-                  td = child.city
+                    span data-toggle='tooltip' title="Child of #{city.display_name}"
+                      i.fa.fa-long-arrow-right>
+                      i.fa.fa-child
+                      = child.display_name
+                  td = child.name
                   td = child.state
                   td = child.country
                   td

@@ -2,7 +2,7 @@ class GameControl::CitiesController < GameControlController
   authorize_actions_for Admin
 
   def index
-    @cities = City.parent_cities.order(:city)
+    @cities = City.parent_cities.order(:name)
   end
 
   def new
@@ -56,10 +56,10 @@ class GameControl::CitiesController < GameControlController
   end
 
   def generate_parents
-    @parents = City.parent_cities.order(:city)
+    @parents = City.parent_cities.order(:name)
   end
 
   def city_params
-    params.require(:city).permit(:display_name, :city, :state, :country, :parent_id)
+    params.require(:city).permit(:display_name, :name, :state, :country, :parent_id)
   end
 end

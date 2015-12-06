@@ -8,15 +8,17 @@
             | City Info
           .box-body
             .form-group
-                = f.input :display_name, autofocus: true
-                = f.input :city
+                = f.input :display_name, autofocus: true, placeholder: 'Stumptown'
+                = f.input :parent_id, collection: parents,
+                  label_method: :display_name,
+                  value_method: :id
+                p.help-block
+                  | Either a parent or name is required.
+                = f.input :name
                 = f.input :country
                 = f.input :state, collection: states,
                                   label_method: :name, value_method: :code,
                                   input_html: { class: :state }, disabled: true
-                = f.input :parent_id, collection: parents,
-                  label_method: :display_name,
-                  value_method: :id
           .box-footer
             = f.submit 'Save', class: 'btn btn-primary'
             = link_to 'Cancel', game_control_cities_path,
