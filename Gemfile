@@ -30,6 +30,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# For running on Heroku
+gem 'rails_12factor', group: :production
+
 gem 'devise'
 gem 'devise_invitable'
 gem 'authority'
@@ -62,3 +65,5 @@ group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
 end
+
+ruby "2.2.3"
