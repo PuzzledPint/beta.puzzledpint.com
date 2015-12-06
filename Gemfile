@@ -66,3 +66,5 @@ group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
 end
+
+ruby "2.2.3"
