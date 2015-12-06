@@ -40,8 +40,10 @@ RSpec.describe GameControl::AdminsController, type: :controller do
       it 'adds a new user and sends an invite' do
         allow_any_instance_of(Admin).to receive(:invite!)
         expect do
-          post_data = { email: 'e@e.com', full_name: 'name', role_ids: [1] }
+          role = create(:admin_role)
+          post_data = { email: 'e@e.com', full_name: 'name', role_ids: [role.id] }
           post :create, admin: post_data
+          expect(response).to redirect_to(:game_control_admins)
         end.to change(Admin, :count).by(1)
       end
     end
