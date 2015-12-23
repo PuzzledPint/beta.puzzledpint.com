@@ -1,8 +1,4 @@
 FactoryGirl.define do
-  factory :admin_role, class: Role do
-    name 'admin'
-  end
-
   factory :admin, class: Admin do
     sequence :email do |n|
       "admin#{n}@admin.com"
@@ -22,11 +18,26 @@ FactoryGirl.define do
     end
   end
 
+  factory :admin_role, class: Role do
+    name 'admin'
+  end
+
   factory :city do
-    display_name "Shaolin"
-    name "Staten Island"
-    state "New York"
-    country "United States"
+    display_name 'Shaolin'
+    name 'Staten Island'
+    state 'New York'
+    country 'United States'
+  end
+
+  factory :event do
+    event_at Time.zone.today
+    theme "MyString"
+  end
+
+  factory :event_location do
+    bar_name 'Foo'
+    event
+    city
   end
 
   factory :role do

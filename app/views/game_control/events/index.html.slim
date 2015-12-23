@@ -1,0 +1,37 @@
+- content_for :page_header, 'Manage Events'
+- content_for :page_description, 'update event info'
+
+.row
+  .col-sm-12
+    .box.box-primary
+      .box-header.with-border
+        .box-title
+          i.fa.fa-users>
+          |  Events
+        .box-tools.pull-left
+          = link_to :new_game_control_event, class: 'btn btn-default'
+            i.fa.fa-user-plus>
+            | Add New Event
+
+      .box-body
+        table#event_table.table.table-bordered.table-hover
+          thead
+            tr
+              th Event Date
+              th Theme
+              th
+                i.fa.fa-gear
+          tbody
+            - @events.each do |event|
+              tr
+                td = event.event_at
+                td = event.theme
+                td
+                  = link_to edit_game_control_event_path(event)
+                    i.fa.fa-pencil
+                    span<> edit
+                  = link_to game_control_event_path(event, :authenticity_token => form_authenticity_token()),
+                    method: :delete, data: { confirm: 'Are you sure?'}
+                    i.fa.fa-trash<
+                    span< delete
+

@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151122223739) do
+ActiveRecord::Schema.define(version: 20151221041930) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -40,18 +43,18 @@ ActiveRecord::Schema.define(version: 20151122223739) do
     t.string   "full_name"
   end
 
-  add_index "admins", ["email"], name: "index_admins_on_email", unique: true
-  add_index "admins", ["invitation_token"], name: "index_admins_on_invitation_token", unique: true
-  add_index "admins", ["invitations_count"], name: "index_admins_on_invitations_count"
-  add_index "admins", ["invited_by_id"], name: "index_admins_on_invited_by_id"
-  add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
+  add_index "admins", ["invitation_token"], name: "index_admins_on_invitation_token", unique: true, using: :btree
+  add_index "admins", ["invitations_count"], name: "index_admins_on_invitations_count", using: :btree
+  add_index "admins", ["invited_by_id"], name: "index_admins_on_invited_by_id", using: :btree
+  add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
   create_table "admins_roles", id: false, force: :cascade do |t|
     t.integer "admin_id"
     t.integer "role_id"
   end
 
-  add_index "admins_roles", ["admin_id", "role_id"], name: "index_admins_roles_on_admin_id_and_role_id"
+  add_index "admins_roles", ["admin_id", "role_id"], name: "index_admins_roles_on_admin_id_and_role_id", using: :btree
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
@@ -63,7 +66,32 @@ ActiveRecord::Schema.define(version: 20151122223739) do
     t.datetime "updated_at",   null: false
   end
 
-  add_index "cities", ["parent_id"], name: "index_cities_on_parent_id"
+  add_index "cities", ["parent_id"], name: "index_cities_on_parent_id", using: :btree
+
+  create_table "event_locations", force: :cascade do |t|
+    t.string   "bar_name"
+    t.string   "start_time",    default: "6:00"
+    t.text     "notes"
+    t.string   "addr_street_1"
+    t.string   "addr_street_2"
+    t.string   "addr_city"
+    t.string   "addr_state"
+    t.string   "addr_country"
+    t.integer  "city_id",                        null: false
+    t.integer  "event_id",                       null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "event_locations", ["city_id"], name: "index_event_locations_on_city_id", using: :btree
+  add_index "event_locations", ["event_id"], name: "index_event_locations_on_event_id", using: :btree
+
+  create_table "events", force: :cascade do |t|
+    t.date     "event_at",   null: false
+    t.string   "theme",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -73,7 +101,7 @@ ActiveRecord::Schema.define(version: 20151122223739) do
     t.datetime "updated_at"
   end
 
-  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
-  add_index "roles", ["name"], name: "index_roles_on_name"
+  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
 end

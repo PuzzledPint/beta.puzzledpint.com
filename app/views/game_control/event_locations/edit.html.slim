@@ -1,0 +1,28 @@
+- content_for :page_header, "Edit Location"
+- content_for :page_description, 'edit location'
+
+= simple_form_for @location, url: game_control_event_event_location_path  do |f|
+  .row
+    .col-sm-12
+      .box.box-primary
+        .box-header.with-border
+          .box-title
+            i.fa.fa-calendar>
+            | Edit
+            = @location.city.full_name
+          .box-body
+            = f.input :bar_name
+            = f.input :start_time
+            = f.input :notes
+            = f.input :addr_street_1
+            = f.input :addr_street_2
+            = f.input :addr_city
+            = f.input :addr_state
+            = f.input :addr_country
+
+          .box-footer
+            = f.submit 'Save', class: 'btn btn-primary'
+            = link_to 'Cancel', game_control_cities_path,
+              html_options = { class: 'btn btn-default pull-right' }
+
+

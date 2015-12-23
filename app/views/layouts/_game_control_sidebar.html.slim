@@ -9,6 +9,25 @@ aside.main-sidebar
           i.fa.fa-dashboard
           span Dashboard
 
+      // Event Management
+      // ===============
+      - if current_admin.can_manage?(Event)
+        li#events.treeview
+          a href="#"
+            i.fa.fa-calendar
+            span Events
+            i.fa.fa-angle-left.pull-right
+          ul.treeview-menu
+            li#events-index
+              = link_to :game_control_events
+                i.fa.fa-list
+                span List
+            li#events-new
+              = link_to :new_game_control_event
+                i.fa.fa-plus
+                span Add
+
+
       // City Management
       // ===============
       - if current_admin.can_manage?(City)
