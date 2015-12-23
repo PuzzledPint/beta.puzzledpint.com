@@ -11,6 +11,11 @@ class City < ActiveRecord::Base
     where(parent: nil)
   end
 
+  def full_name
+    return "#{parent.display_name} - #{display_name}" if parent
+    display_name
+  end
+
   private
 
   def validate_name_and_parent

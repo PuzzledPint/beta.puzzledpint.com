@@ -22,4 +22,22 @@ RSpec.describe City, type: :model do
       expect(city).to be_valid
     end
   end
+
+  describe '#full_name' do
+    context 'has no parent' do
+      it 'returns city display_name' do
+        city = build(:city)
+        expect(city.full_name).to eq city.display_name
+      end
+    end
+
+    context 'has parent' do
+      it 'returns city display_name with parent' do
+        parent = build(:city)
+        city = build(:city, parent: parent)
+        expected_str = "#{parent.display_name} - #{city.display_name}"
+        expect(city.full_name).to eq expected_str
+      end
+    end
+  end
 end
