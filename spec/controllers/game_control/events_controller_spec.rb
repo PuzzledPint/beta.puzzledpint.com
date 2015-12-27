@@ -37,10 +37,9 @@ RSpec.describe GameControl::EventsController, type: :controller do
       it 'adds a new event and event_locations' do
         expect do
           expect(EventLocation.count).to eq(0)
-          event = create(:event)
           post_data = { event_at: Time.zone.today,
                         theme: 'theme' }
-          post :create, event: post_data, city_ids: [event.id]
+          post :create, event: post_data, city_ids: [create(:city).id]
           expect(EventLocation.count).to eq(1)
         end.to change(City, :count).by(1)
       end
