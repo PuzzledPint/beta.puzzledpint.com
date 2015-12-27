@@ -15,32 +15,33 @@ RSpec.describe GameControl::EventLocationsController, type: :controller do
   context 'with admin role' do
     login_admin
 
-    xdescribe 'GET new' do
+    describe 'GET new' do
       it 'renders' do
-        get :new, event_id: 1
+        get :new, event_id: create(:event).id
 
         expect(response).to be_successful
         expect(response).to render_template(:new)
       end
     end
 
-    xdescribe 'POST create' do
+    describe 'POST create' do
       it 'adds a new event and event_locations' do
         expect do
-          expect(EventLocation.count).to eq(0)
           event = create(:event)
           post_data = { event_at: Time.zone.today,
-                        theme: 'theme' }
-          post :create, event: post_data, city_ids: [event.id]
-          expect(EventLocation.count).to eq(1)
-        end.to change(City, :count).by(1)
+                        theme: 'theme',
+                        event_id: event.id,
+                        city_id: create(:city).id }
+          post :create, event_id: event.id, event_location: post_data
+          expect(response).to redirect_to(edit_game_control_event_path(event))
+        end.to change(EventLocation, :count).by(1)
       end
 
       it 'displays errors' do
-        post :create, event: { name: 'blah' }
+        post :create, event_id: create(:event).id, event_location: { name: 'blah' }
         expect(response).to be_successful
         expect(response).to render_template(:new)
-        expect(assigns(:event).errors).not_to be_empty
+        expect(assigns(:location).errors).not_to be_empty
       end
     end
 
@@ -84,5 +85,4 @@ RSpec.describe GameControl::EventLocationsController, type: :controller do
       end
     end
   end
-
 end

@@ -1,0 +1,18 @@
+= simple_form_for [:game_control, @event, @location]  do |f|
+  .box-body
+    = f.input :event_id, as: :hidden
+    - unless @location.persisted?
+      = f.input :city_id, collection: @cities, label_method: :full_name
+    = f.input :bar_name
+    = f.input :start_time
+    = f.input :notes
+    = f.input :addr_street_1
+    = f.input :addr_street_2
+    = f.input :addr_city
+    = f.input :addr_state
+    = f.input :addr_country
+
+  .box-footer
+    = f.submit 'Save', class: 'btn btn-primary'
+    = link_to 'Cancel', edit_game_control_event_path(@event),
+      html_options = { class: 'btn btn-default pull-right' }

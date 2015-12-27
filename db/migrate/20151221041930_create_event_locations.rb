@@ -2,7 +2,7 @@ class CreateEventLocations < ActiveRecord::Migration
   def change
     create_table :event_locations do |t|
       t.string :bar_name, null: true
-      t.string :start_time, null: true, default: '6:00'
+      t.string :start_time, length: 8, null: true, default: '6:00'
       t.text :notes, null: true
       t.string :addr_street_1, null: true
       t.string :addr_street_2, null: true

@@ -1,32 +1,34 @@
 class GameControl::EventLocationsController < GameControlController
   authorize_actions_for Admin
 
-  #def new
-    #@location = EventLocation.new
-    #@cities = City.parent_cities.order(:name)
-  #end
+  before_action :load_event
 
-  #def create
-    #@location = Event.new(location_params)
-    #if @location.save
-      #redirect_to edit_game_control_event_path @location.event,
-                                               #notice: 'Location successfully created.'
-    #else
-      #@cities = City.parent_cities.order(:name)
-      #render :new
-    #end
-  #end
+  def new
+    @location = @event.event_locations.build
+    @cities = available_cities
+  end
+
+  def create
+    @location = EventLocation.new(create_params)
+    if @location.save
+      redirect_to edit_game_control_event_path(@event),
+                  notice: 'Location successfully created.'
+    else
+      @cities = available_cities
+      render :new
+    end
+  end
 
   def edit
-    @location = EventLocation.find(params[:id])
+    @location = EventLocation.find params[:id]
   end
 
   def update
     @location = EventLocation.find params[:id]
 
-    if @location.update_attributes(location_params)
-      redirect_to edit_game_control_event_path(@location.event),
-                                          notice: "Location was successfully updated"
+    if @location.update_attributes(update_params)
+      redirect_to edit_game_control_event_path(@event),
+                  notice: "Location was successfully updated"
     else
       render :edit
     end
@@ -35,12 +37,29 @@ class GameControl::EventLocationsController < GameControlController
   def destroy
     location = EventLocation.find params[:id]
     location.destroy
-    redirect_to game_control_events_path, notice: 'Location successfully deleted.'
+    redirect_to edit_game_control_event_path(@event),
+                notice: 'Location successfully deleted.'
   end
 
   private
 
-  def location_params
+  def available_cities
+    all_cities = City.all.sort { |x, y| x.full_name <=> y.full_name }
+    event_cities = @event.event_locations.map(&:city)
+    all_cities - event_cities
+  end
+
+  def load_event
+    @event = Event.find(params[:event_id])
+  end
+
+  def create_params
+    params.require(:event_location).permit(:city_id, :event_id, :bar_name, :start_time, :notes,
+                                           :addr_street_1, :addr_street_2,
+                                           :addr_city, :addr_state, :addr_country)
+  end
+
+  def update_params
     params.require(:event_location).permit(:bar_name, :start_time, :notes,
                                            :addr_street_1, :addr_street_2,
                                            :addr_city, :addr_state, :addr_country)

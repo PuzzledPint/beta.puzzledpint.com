@@ -1,9 +1,9 @@
 - content_for :page_header, "Edit Event"
 - content_for :page_description, 'update Event details'
 
-= simple_form_for [:game_control, @event]  do |f|
-  .row
-    .col-sm-12
+.row
+  .col-sm-12
+    = simple_form_for [:game_control, @event]  do |f|
       .box.box-primary
         .box-header.with-border
           .box-title
@@ -17,46 +17,57 @@
             = link_to 'Cancel', game_control_cities_path,
               html_options = { class: 'btn btn-default pull-right' }
 
-  .row
-    .col-sm-12
-      .box.box-primary
-        .box-header.with-border
-          .box-title
-            i.fa.fa-building>
-            | Locations
-          .box-body
-            table#location_table.table.table-bordered.table-hover
-              thead
+.row
+  .col-sm-12
+    .box.box-primary
+      .box-header.with-border
+        .box-title
+          i.fa.fa-building>
+          | Locations
+        .box-tools.pull-right
+          = link_to new_game_control_event_event_location_path(@event),
+            class: 'btn btn-default'
+            i.fa.fa-plus>
+            | Add New Location
+        .box-body
+          table#location_table.table.table-bordered.table-hover
+            thead
+              tr
+                th Location
+                th Bar
+                th Notes
+                th
+                  i.fa.fa-gear
+            tbody
+              - @event.event_locations.each do |location|
                 tr
-                  th Location
-                  th
-                    i.fa.fa-gear
-              tbody
-                - @event.event_locations.each do |location|
-                  tr
-                    td
-                      dl
-                        dt
-                        dd = location.city.full_name
-                        dt Bar
-                        dd = location.bar_name
-                        dt Start Time
-                        dd = location.start_time
-                        dt Address
-                        dd
-                          div = location.addr_street_1
-                          div = location.addr_street_2
-                          div #{location.addr_city}, #{location.addr_state}
-                          div = location.addr_country
-                        dt Notes
-                        dd = location.notes
-                    td
-                      = link_to edit_game_control_event_event_location_path(@event, location)
-                        i.fa.fa-pencil
-                        span<> edit
-                      = link_to game_control_event_event_location_path(@event, location, :authenticity_token => form_authenticity_token()),
-                        method: :delete, data: { confirm: 'Are you sure?'}
-                        i.fa.fa-trash<
-                        span< delete
+                  td
+                    strong = location.city.full_name
+                  td
+                    address
+                      = location.bar_name
+                      br
+                      = location.addr_street_1
+                      br
+                      - if location.addr_street_2.present?
+                        = location.addr_street_2
+                        br
+                      = [location.addr_city, location.addr_state].compact.join(',')
+                      br
+                      = location.addr_country
+                  td
+                    dl
+                      dt Start Time
+                      dd = location.start_time
+                      dt Notes
+                      dd = location.notes
+                  td
+                    = link_to edit_game_control_event_event_location_path(@event, location)
+                      i.fa.fa-pencil
+                      span<> edit
+                    = link_to game_control_event_event_location_path(@event, location, :authenticity_token => form_authenticity_token()),
+                      method: :delete, data: { confirm: 'Are you sure?'}
+                      i.fa.fa-trash<
+                      span< delete
 
 
