@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
+  get '/events/:event_id/locations', controller: :event_locations,
+                                     action: :index, defaults: { format: :json }
+
   scope :countries, controller: :countries do
     get "/", action: :index
     get "/:country/subdivisions", action: :subdivisions
