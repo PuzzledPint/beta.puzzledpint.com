@@ -2,8 +2,7 @@ class City < ActiveRecord::Base
   belongs_to :parent, class_name: "City"
   has_many :children, class_name: "City", foreign_key: :parent_id
 
-  validates :display_name, :country, presence: true
-  validate :validate_name_and_parent
+  validates :name, :country, presence: true
 
   include Authority::Abilities
 
@@ -11,16 +10,8 @@ class City < ActiveRecord::Base
     where(parent: nil)
   end
 
-  def full_name
-    return "#{parent.display_name} - #{display_name}" if parent
-    display_name
-  end
-
-  private
-
-  def validate_name_and_parent
-    unless name.present? ^ parent.present?
-      errors[:base] << 'either name or parent are requited, but not both'
-    end
+  def display_name
+    return "#{parent.name} - #{name}" if parent
+    name
   end
 end

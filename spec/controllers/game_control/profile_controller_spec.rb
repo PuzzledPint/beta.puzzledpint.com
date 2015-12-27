@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe GameControl::ProfileController, type: :controller do
   login_admin
+  render_views
 
   describe 'GET edit' do
     it 'renders' do

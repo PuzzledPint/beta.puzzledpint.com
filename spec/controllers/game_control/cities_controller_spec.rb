@@ -14,9 +14,11 @@ RSpec.describe GameControl::CitiesController, type: :controller do
 
   context 'with admin role' do
     login_admin
+    render_views
 
     describe 'GET index' do
       it 'renders' do
+        create(:city)
         get :index
 
         expect(assigns(:cities))
@@ -39,8 +41,7 @@ RSpec.describe GameControl::CitiesController, type: :controller do
     describe 'POST create' do
       it 'adds a new city' do
         expect do
-          post_data = { display_name: 'city name',
-                        name: 'city',
+          post_data = { name: 'city name',
                         state: 'state',
                         country: 'country' }
           post :create, city: post_data
@@ -71,7 +72,7 @@ RSpec.describe GameControl::CitiesController, type: :controller do
       before { @city = create(:city) }
 
       it 'updates the city' do
-        post_data = { display_name: 'name', name: 'city', country: 'EEUU' }
+        post_data = { name: 'name', country: 'EEUU' }
 
         patch :update, id: @city.id, city: post_data
 
@@ -79,13 +80,12 @@ RSpec.describe GameControl::CitiesController, type: :controller do
         expect(flash[:notice]).to match(/successful/i)
 
         @city.reload
-        expect(@city.display_name).to eq('name')
-        expect(@city.name).to eq('city')
+        expect(@city.name).to eq('name')
         expect(@city.country).to eq('EEUU')
       end
 
       it 'displays messages' do
-        patch :update, id: @city.id, city: { display_name: '' }
+        patch :update, id: @city.id, city: { name: '' }
 
         expect(response).to be_successful
         expect(response).to render_template(:edit)

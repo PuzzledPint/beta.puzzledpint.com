@@ -42,7 +42,7 @@
               - @event.event_locations.each do |location|
                 tr
                   td
-                    strong = location.city.full_name
+                    strong = location.city.display_name
                   td
                     address
                       = location.bar_name

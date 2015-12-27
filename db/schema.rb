@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20151221041930) do
     t.integer  "invitations_count",      default: 0
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "full_name"
+    t.string   "full_name",                           null: false
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
@@ -57,13 +57,12 @@ ActiveRecord::Schema.define(version: 20151221041930) do
   add_index "admins_roles", ["admin_id", "role_id"], name: "index_admins_roles_on_admin_id_and_role_id", using: :btree
 
   create_table "cities", force: :cascade do |t|
-    t.string   "name"
-    t.string   "display_name", null: false
+    t.string   "name",       null: false
     t.string   "state"
-    t.string   "country",      null: false
+    t.string   "country",    null: false
     t.integer  "parent_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "cities", ["parent_id"], name: "index_cities_on_parent_id", using: :btree

@@ -14,6 +14,7 @@ RSpec.describe GameControl::AdminsController, type: :controller do
 
   context 'with admin role' do
     login_admin
+    render_views
 
     describe 'GET index' do
       it 'renders' do

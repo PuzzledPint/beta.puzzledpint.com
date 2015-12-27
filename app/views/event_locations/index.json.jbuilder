@@ -1,5 +1,5 @@
 json.locations @locations do |location|
-  json.location_name location.city.full_name
+  json.location_name location.city.display_name
   json.bar_name location.bar_name
   json.start_time location.start_time
   json.address do

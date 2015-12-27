@@ -14,9 +14,12 @@ RSpec.describe GameControl::EventsController, type: :controller do
 
   context 'with admin role' do
     login_admin
+    render_views
+    let!(:city) { create(:city, parent: create(:city)) }
 
     describe 'GET index' do
       it 'renders' do
+        create(:event)
         get :index
 
         expect(response).to be_successful
@@ -39,9 +42,9 @@ RSpec.describe GameControl::EventsController, type: :controller do
           expect(EventLocation.count).to eq(0)
           post_data = { event_at: Time.zone.today,
                         theme: 'theme' }
-          post :create, event: post_data, city_ids: [create(:city).id]
+          post :create, event: post_data, city_ids: [city.id]
           expect(EventLocation.count).to eq(1)
-        end.to change(City, :count).by(1)
+        end.to change(Event, :count).by(1)
       end
 
       it 'displays errors' do

@@ -7,13 +7,12 @@
             i.fa.fa-building>
             | City Info
           .box-body
-            = f.input :display_name, autofocus: true, placeholder: 'Stumptown'
+            = f.input :name, autofocus: true, placeholder: 'Stumptown'
             = f.input :parent_id, collection: parents,
               label_method: :display_name,
               value_method: :id
             p.help-block
               | Either a parent or name is required.
-            = f.input :name
             = f.input :country
             = f.input :state, collection: states,
                               label_method: :name, value_method: :code,

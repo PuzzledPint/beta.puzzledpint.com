@@ -14,6 +14,7 @@ RSpec.describe GameControl::EventLocationsController, type: :controller do
 
   context 'with admin role' do
     login_admin
+    render_views
 
     describe 'GET new' do
       it 'renders' do

@@ -25,12 +25,12 @@
               - @cities.each do |city|
                 li
                   => check_box_tag 'city_ids[]', city.id, city.children.empty?, id: "city-#{city.id}"
-                  =< label_tag "city-#{city.id}", city.full_name
+                  =< label_tag "city-#{city.id}", city.display_name
                   - city.children.each do |child|
                     ul
                       li
                         => check_box_tag 'city_ids[]', child.id, true, id: "city-#{child.id}"
-                        =< label_tag "city-#{child.id}", child.full_name
+                        =< label_tag "city-#{child.id}", child.display_name
           .box-footer
             = f.submit 'Save', class: 'btn btn-primary'
             = link_to 'Cancel', game_control_cities_path,
