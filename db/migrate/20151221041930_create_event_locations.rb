@@ -8,6 +8,7 @@ class CreateEventLocations < ActiveRecord::Migration
       t.string :addr_street_2, null: true
       t.string :addr_city, null: true
       t.string :addr_state, null: true
+      t.string :addr_postal_code, null: true
       t.string :addr_country, null: true
       t.references :city, null: false
       t.references :event, null: false

@@ -38,6 +38,13 @@ FactoryGirl.define do
     bar_name 'Foo'
     event
     city
+    notes 'Some random notes'
+    addr_street_1 '123 Some St'
+    addr_street_2 'Apt 105'
+    addr_city 'Portlad'
+    addr_state 'OR'
+    addr_postal_code '97232'
+    addr_country 'US'
   end
 
   factory :role do

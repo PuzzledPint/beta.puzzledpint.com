@@ -17,11 +17,12 @@ RSpec.describe EventLocationsController, type: :controller do
       expect(l["notes"]).to eq(location.notes)
 
       a = l["address"]
-      expect(a["addr_street_1"]).to eq(location.addr_street_1)
-      expect(a["addr_street_2"]).to eq(location.addr_street_2)
-      expect(a["addr_city"]).to eq(location.addr_city)
-      expect(a["addr_state"]).to eq(location.addr_state)
-      expect(a["addr_country"]).to eq(location.addr_country)
+      expect(a["street_1"]).to eq(location.addr_street_1)
+      expect(a["street_2"]).to eq(location.addr_street_2)
+      expect(a["city"]).to eq(location.addr_city)
+      expect(a["state"]).to eq(location.addr_state)
+      expect(a["postal_code"]).to eq(location.addr_postal_code)
+      expect(a["country"]).to eq(location.addr_country)
     end
   end
 end
