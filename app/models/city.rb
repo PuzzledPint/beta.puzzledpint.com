@@ -10,6 +10,14 @@ class City < ActiveRecord::Base
     where(parent: nil)
   end
 
+  def child?
+    parent.present?
+  end
+
+  def parent?
+    not child?
+  end
+
   def display_name
     return "#{parent.name} - #{name}" if parent
     name
