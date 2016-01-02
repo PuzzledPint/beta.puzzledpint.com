@@ -24,7 +24,7 @@
           tbody
             - @events.each do |event|
               tr
-                td = event.event_at
+                td = event.event_at.to_s(:date)
                 td = event.theme
                 td
                   = link_to edit_game_control_event_path(event)
