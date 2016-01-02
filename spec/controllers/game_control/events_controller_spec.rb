@@ -102,5 +102,4 @@ RSpec.describe GameControl::EventsController, type: :controller do
       end
     end
   end
-
 end

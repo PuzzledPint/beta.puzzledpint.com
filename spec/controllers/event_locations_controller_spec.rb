@@ -4,25 +4,37 @@ RSpec.describe EventLocationsController, type: :controller do
   render_views
 
   describe 'GET index' do
+    let(:event) { create(:event) }
+    let(:city_1) { create(:city, name: 'City 1') }
+    let(:city_2) { create(:city, name: 'City 2') }
+    let(:city_3) { create(:city, name: 'City 3') }
+    let(:city_3_1) { create(:city, name: 'City 3.1', parent: city_3) }
+    let(:city_3_2) { create(:city, name: 'City 3.2', parent: city_3) }
+
+    let!(:loc_1) { create(:event_location, event: event, city: city_1) }
+    let!(:loc_2) { create(:event_location, event: event, city: city_2) }
+    let!(:loc_3_1) { create(:event_location, event: event, city: city_3_1) }
+    let!(:loc_3_2) { create(:event_location, event: event, city: city_3_2) }
+    let!(:loc_4) { create(:event_location, event: event, city: create(:city)) }
+
     it 'returns a JSON message' do
-      location = create(:event_location)
-      get :index, event_id: location.event.id, format: :json
+      get :index, event_id: event.id, format: :json
 
       expect(response).to be_successful
 
       j = JSON.parse(response.body)
       l = j["locations"].first
-      expect(l["bar_name"]).to eq(location.bar_name)
-      expect(l["start_time"]).to eq(location.start_time)
-      expect(l["notes"]).to eq(location.notes)
+      expect(l["bar"]).to eq(loc_1.bar_name)
+      expect(l["start_time"]).to eq(loc_1.start_time)
+      expect(l["notes"]).to eq(loc_1.notes)
 
       a = l["address"]
-      expect(a["street_1"]).to eq(location.addr_street_1)
-      expect(a["street_2"]).to eq(location.addr_street_2)
-      expect(a["city"]).to eq(location.addr_city)
-      expect(a["state"]).to eq(location.addr_state)
-      expect(a["postal_code"]).to eq(location.addr_postal_code)
-      expect(a["country"]).to eq(location.addr_country)
+      expect(a["street_1"]).to eq(loc_1.addr_street_1)
+      expect(a["street_2"]).to eq(loc_1.addr_street_2)
+      expect(a["city"]).to eq(loc_1.addr_city)
+      expect(a["state"]).to eq(loc_1.addr_state)
+      expect(a["postal_code"]).to eq(loc_1.addr_postal_code)
+      expect(a["country"]).to eq(loc_1.addr_country)
     end
   end
 end

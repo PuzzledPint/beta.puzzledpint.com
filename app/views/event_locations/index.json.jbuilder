@@ -1,14 +1,8 @@
-json.locations @locations do |location|
-  json.location_name location.city.display_name
-  json.bar_name location.bar_name
-  json.start_time location.start_time
-  json.address do
-    json.street_1 location.addr_street_1
-    json.street_2 location.addr_street_2 if location.addr_street_2.present?
-    json.city location.addr_city
-    json.state location.addr_state
-    json.postal_code location.addr_postal_code
-    json.country location.addr_country
+json.locations @locations do |l|
+  if l.respond_to?(:bar_name)
+    json.partial! 'location', location: l
+  else
+    json.city l[:city]
+    json.locations l[:locations], partial: 'location', as: :location
   end
-  json.notes location.notes
 end

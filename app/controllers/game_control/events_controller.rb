@@ -26,6 +26,7 @@ class GameControl::EventsController < GameControlController
 
   def edit
     @event = Event.find(params[:id])
+    @locations = @event.event_locations.sort { |x, y| x.city.display_name <=> y.city.display_name }
   end
 
   def update
@@ -35,6 +36,7 @@ class GameControl::EventsController < GameControlController
       redirect_to game_control_events_path,
                   notice: "Event was successfully updated"
     else
+      @locations = @event.event_locations.sort { |x, y| x.city.display_name <=> y.city.display_name }
       render :edit
     end
   end

@@ -10,7 +10,7 @@ class Event < ActiveRecord::Base
 
   def locations_tree
     locations = event_locations.includes(:city)
-    locations.to_a.sort! { |x, y| x.city.name <=> y.city.name }
+    locations.to_a.sort! { |x, y| x.city.display_name <=> y.city.display_name }
 
     # TODO clean this up some
     last_parent = ''
