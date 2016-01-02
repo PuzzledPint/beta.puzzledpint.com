@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
     resources 'cities'
     resources 'admins'
-    resources 'events', except: :show do
+    resources 'events' do
       resources 'event_locations'
     end
   end

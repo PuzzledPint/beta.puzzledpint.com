@@ -1,8 +1,13 @@
 class GameControl::EventsController < GameControlController
-  authorize_actions_for Admin
+  authorize_actions_for Event
 
   def index
     @events = Event.all
+  end
+
+  def show
+    @event = Event.find(params[:id])
+    @locations = @event.event_locations.sort { |x, y| x.city.display_name <=> y.city.display_name }
   end
 
   def new

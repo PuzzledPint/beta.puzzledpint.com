@@ -11,7 +11,7 @@ aside.main-sidebar
 
       // Event Management
       // ===============
-      - if current_admin.can_manage?(Event)
+      - if current_admin.can_read?(Event)
         li#events.treeview
           a href="#"
             i.fa.fa-calendar
@@ -22,10 +22,11 @@ aside.main-sidebar
               = link_to :game_control_events
                 i.fa.fa-list
                 span List
-            li#events-new
-              = link_to :new_game_control_event
-                i.fa.fa-plus
-                span Add
+            - if current_admin.can_create?(Event)
+              li#events-new
+                = link_to :new_game_control_event
+                  i.fa.fa-plus
+                  span Add
 
 
       // City Management

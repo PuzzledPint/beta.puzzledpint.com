@@ -6,12 +6,13 @@
     .box.box-primary
       .box-header.with-border
         .box-title
-          i.fa.fa-users>
+          i.fa.fa-calendar>
           |  Events
-        .box-tools.pull-left
-          = link_to :new_game_control_event, class: 'btn btn-default'
-            i.fa.fa-user-plus>
-            | Add New Event
+        - if current_admin.can_create?(Event)
+          .box-tools.pull-left
+            = link_to :new_game_control_event, class: 'btn btn-default'
+              i.fa.fa-user-plus>
+              | Add New Event
 
       .box-body
         table#event_table.table.table-bordered.table-hover
@@ -27,11 +28,16 @@
                 td = event.event_at.to_s(:date)
                 td = event.theme
                 td
-                  = link_to edit_game_control_event_path(event)
-                    i.fa.fa-pencil
-                    span<> edit
-                  = link_to game_control_event_path(event, :authenticity_token => form_authenticity_token()),
-                    method: :delete, data: { confirm: 'Are you sure?'}
-                    i.fa.fa-trash<
-                    span< delete
+                  - if current_admin.can_manage?(Event)
+                    = link_to edit_game_control_event_path(event)
+                      i.fa.fa-pencil
+                      span<> edit
+                    = link_to game_control_event_path(event, :authenticity_token => form_authenticity_token()),
+                      method: :delete, data: { confirm: 'Are you sure?'}
+                      i.fa.fa-trash<
+                      span< delete
+                  - elsif current_admin.can_read?(Event)
+                    = link_to game_control_event_path(event)
+                      i.fa.fa-eye
+                      span<> view
 

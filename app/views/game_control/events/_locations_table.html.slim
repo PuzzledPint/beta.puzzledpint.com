@@ -1,0 +1,56 @@
+.row
+  .col-sm-12
+    .box.box-primary
+      .box-header.with-border
+        .box-title
+          i.fa.fa-building>
+          | Locations
+        - if current_admin.can_create?(EventLocation)
+          .box-tools.pull-right
+            = link_to new_game_control_event_event_location_path(@event),
+              class: 'btn btn-default'
+              i.fa.fa-plus>
+              | Add New Location
+        .box-body
+          table#location_table.table.table-bordered.table-hover
+            thead
+              tr
+                th Location
+                th Bar
+                th Notes
+                th
+                  i.fa.fa-gear
+            tbody
+              - @locations.each do |location|
+                tr
+                  td
+                    strong = location.city.display_name
+                  td
+                    address
+                      = location.bar_name
+                      br
+                      = location.addr_street_1
+                      br
+                      - if location.addr_street_2.present?
+                        = location.addr_street_2
+                        br
+                      = [location.addr_city, location.addr_state].compact.join(',')
+                      =< location.addr_postal_code
+                      br
+                      = location.addr_country
+                  td
+                    dl
+                      dt Start Time
+                      dd = location.start_time.to_s(:time)
+                      dt Notes
+                      dd = location.notes
+                  td
+                    - if current_admin.can_update?(location)
+                      = link_to edit_game_control_event_event_location_path(@event, location)
+                        i.fa.fa-pencil
+                        span<> edit
+                    - if current_admin.can_delete?(location)
+                      = link_to game_control_event_event_location_path(@event, location, :authenticity_token => form_authenticity_token()),
+                        method: :delete, data: { confirm: 'Are you sure?'}
+                        i.fa.fa-trash<
+                        span< delete

@@ -1,5 +1,5 @@
 class GameControl::CitiesController < GameControlController
-  authorize_actions_for Admin
+  authorize_actions_for City
 
   def index
     @cities = City.parent_cities.order(:name)

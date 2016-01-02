@@ -1,5 +1,5 @@
 class GameControl::EventLocationsController < GameControlController
-  authorize_actions_for Admin
+  authorize_actions_for EventLocation
 
   before_action :load_event
 

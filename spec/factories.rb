@@ -16,6 +16,16 @@ FactoryGirl.define do
         admin.roles = [create(:admin_role)]
       end
     end
+
+    factory :location_gc_user do
+      before(:create) do |admin, _|
+        admin.roles = [create(:location_gc_role)]
+      end
+    end
+  end
+
+  factory :location_gc_role, class: Role do
+    name 'location_gc'
   end
 
   factory :admin_role, class: Role do

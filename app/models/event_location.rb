@@ -1,4 +1,6 @@
 class EventLocation < ActiveRecord::Base
+  include Authority::Abilities
+
   belongs_to :city
   belongs_to :event
 
