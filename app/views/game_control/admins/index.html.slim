@@ -19,6 +19,7 @@
             tr
               th Name
               th Email
+              th Cities
               th Roles
               th
                 i.fa.fa-gear
@@ -27,6 +28,7 @@
               tr
                 td = admin.full_name
                 td = admin.email
+                td = admin.cities.map(&:name).join(',')
                 td = admin.roles.map(&:name).join(',')
                 td
                   = link_to edit_game_control_admin_path(admin)

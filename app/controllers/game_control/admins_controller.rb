@@ -51,11 +51,13 @@ class GameControl::AdminsController < GameControlController
 
   def create_params
     params[:admin].delete_if { |k, v| k == 'password' && v.empty? }
-    params.required(:admin).permit(:full_name, :email, :send_invite, role_ids: [])
+    params.required(:admin).permit(:full_name, :email, :send_invite,
+                                   role_ids: [], city_ids: [])
   end
 
   def update_params
     params[:admin].delete_if { |k, v| k == 'password' && v.empty? }
-    params.required(:admin).permit(:full_name, :email, :password, role_ids: [])
+    params.required(:admin).permit(:full_name, :email, :password,
+                                   role_ids: [], city_ids: [])
   end
 end

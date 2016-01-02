@@ -1,0 +1,44 @@
+= simple_form_for [:game_control, @admin] do |f|
+  .row
+    .col-sm-12
+      .box.box-primary
+        .box-header.with-border
+          .box-title
+            i.fa.fa-user>
+            |  User Info
+          .box-body
+            .form-group
+                = f.input :full_name
+                = f.input :email
+                - if @admin.persisted?
+                  = f.input :password, as: :string
+                - else
+                  = f.input :send_invite, label: 'Invite User?', as: :boolean
+
+  .row
+    .col-sm-12
+      .box.box-primary
+        .box-header.with-border
+          .box-title
+            i.fa.fa-lock>
+            |  Access
+          .box-body
+            .row
+              .col-sm-12.col-md-6
+                .form-group
+                    = f.association :roles
+              .col-sm-12.col-md-6
+                .form-group
+                    = f.association :cities, collection: City.parent_cities.order(:name)
+          .box-footer
+            = f.submit 'Save', class: 'btn btn-primary'
+            = link_to 'Cancel', game_control_admins_path,
+              html_options = { class: 'btn btn-default pull-right' }
+javascript:
+  $(function() {
+    $('select').select2();
+    $('input').iCheck({
+       checkboxClass: 'icheckbox_square-yellow',
+       radioClass: 'iradio_square-yellow'
+     });
+  });

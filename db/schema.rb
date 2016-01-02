@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160102043019) do
+ActiveRecord::Schema.define(version: 20160102231307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,13 @@ ActiveRecord::Schema.define(version: 20160102043019) do
   add_index "admins", ["invitations_count"], name: "index_admins_on_invitations_count", using: :btree
   add_index "admins", ["invited_by_id"], name: "index_admins_on_invited_by_id", using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
+
+  create_table "admins_cities", force: :cascade do |t|
+    t.integer "admin_id"
+    t.integer "city_id"
+  end
+
+  add_index "admins_cities", ["admin_id", "city_id"], name: "index_admins_cities_on_admin_id_and_city_id", using: :btree
 
   create_table "admins_roles", id: false, force: :cascade do |t|
     t.integer "admin_id"

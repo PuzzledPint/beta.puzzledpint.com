@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe City, type: :model do
   it { should belong_to(:parent) }
+  it { should have_and_belong_to_many(:admins) }
 
   context 'validations' do
     it { should validate_presence_of(:name) }

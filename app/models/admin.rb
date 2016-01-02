@@ -8,6 +8,8 @@ class Admin < ActiveRecord::Base
 
   attr_accessor :send_invite
 
+  has_and_belongs_to_many :cities
+
   validates :email, :full_name, :roles, presence: true
 
   def avatar
