@@ -35,6 +35,7 @@ FactoryGirl.define do
 
   factory :event_location do
     bar_name 'Foo'
+    bar_url 'http://somedomain.com'
     event
     city
     notes 'Some random notes'

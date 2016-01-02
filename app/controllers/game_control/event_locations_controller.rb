@@ -54,13 +54,14 @@ class GameControl::EventLocationsController < GameControlController
   end
 
   def create_params
-    params.require(:event_location).permit(:city_id, :event_id, :bar_name, :start_time, :notes,
+    params.require(:event_location).permit(:city_id, :event_id, :bar_name,
+                                           :bar_url, :start_time, :notes,
                                            :addr_street_1, :addr_street_2, :addr_postal_code,
                                            :addr_city, :addr_state, :addr_country)
   end
 
   def update_params
-    params.require(:event_location).permit(:bar_name, :start_time, :notes,
+    params.require(:event_location).permit(:bar_name, :bar_url, :start_time, :notes,
                                            :addr_street_1, :addr_street_2, :addr_postal_code,
                                            :addr_city, :addr_state, :addr_country)
   end

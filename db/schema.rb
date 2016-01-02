@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151221041930) do
+ActiveRecord::Schema.define(version: 20160102043019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,7 +69,6 @@ ActiveRecord::Schema.define(version: 20151221041930) do
 
   create_table "event_locations", force: :cascade do |t|
     t.string   "bar_name"
-    t.string   "start_time",       default: "6:00"
     t.text     "notes"
     t.string   "addr_street_1"
     t.string   "addr_street_2"
@@ -77,10 +76,12 @@ ActiveRecord::Schema.define(version: 20151221041930) do
     t.string   "addr_state"
     t.string   "addr_postal_code"
     t.string   "addr_country"
-    t.integer  "city_id",                           null: false
-    t.integer  "event_id",                          null: false
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.integer  "city_id",                                          null: false
+    t.integer  "event_id",                                         null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.string   "bar_url"
+    t.time     "start_time",       default: '2000-01-01 18:00:00'
   end
 
   add_index "event_locations", ["city_id"], name: "index_event_locations_on_city_id", using: :btree

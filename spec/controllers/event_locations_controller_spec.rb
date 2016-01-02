@@ -25,8 +25,10 @@ RSpec.describe EventLocationsController, type: :controller do
       j = JSON.parse(response.body)
       l = j["locations"].first
       expect(l["bar"]).to eq(loc_1.bar_name)
-      expect(l["start_time"]).to eq(loc_1.start_time)
+      expect(l["start_time"]).to eq(loc_1.start_time.to_s(:time))
+      expect(l["stop_time"]).to eq((loc_1.start_time + 3.hours).to_s(:time))
       expect(l["notes"]).to eq(loc_1.notes)
+      expect(l["bar_url"]).to eq(loc_1.bar_url)
 
       a = l["address"]
       expect(a["street_1"]).to eq(loc_1.addr_street_1)
