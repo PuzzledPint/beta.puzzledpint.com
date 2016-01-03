@@ -34,6 +34,7 @@ gem 'puma'
 
 # For running on Heroku
 gem 'rails_12factor', group: :production
+gem 'raygun4ruby'
 
 gem 'devise'
 gem 'devise_invitable'
