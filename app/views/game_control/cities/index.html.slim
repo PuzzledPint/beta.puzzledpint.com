@@ -40,8 +40,6 @@
                 tr
                   td
                     span data-toggle='tooltip' title="Child of #{city.display_name}"
-                      i.fa.fa-long-arrow-right>
-                      i.fa.fa-child
                       = child.display_name
                   td = child.state
                   td = child.country
@@ -55,14 +53,12 @@
                       span< delete
 
 javascript:
-  $(function() {
-    return $('#city_table').DataTable({
-      autoWidth: true,
-      order: [[0, 'asc']],
-      columns: [
-        null, null, {
-          orderable: false
-        }
-      ]
+  $(document).ready(function() {
+    $('#city_table').DataTable({
+      "columns": [{"orderable": true},
+                  {"orderable": true},
+                  {"orderable": true},
+                  {"orderable": false}
+                 ]
     });
   });

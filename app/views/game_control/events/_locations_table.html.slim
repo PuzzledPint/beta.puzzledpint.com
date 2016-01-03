@@ -6,51 +6,65 @@
           i.fa.fa-building>
           | Locations
         - if current_admin.can_create?(EventLocation)
-          .box-tools.pull-right
+          .box-tools.pull-left
             = link_to new_game_control_event_event_location_path(@event),
               class: 'btn btn-default'
               i.fa.fa-plus>
               | Add New Location
-        .box-body
-          table#location_table.table.table-bordered.table-hover
-            thead
-              tr
-                th Location
-                th Bar
-                th Notes
-                th
-                  i.fa.fa-gear
-            tbody
-              - @locations.each do |location|
+      .box-body
+        .row
+          .col-sm-12
+            table#location_table.table.table-bordered.table-hover
+              thead
                 tr
-                  td
-                    strong = location.city.display_name
-                  td
-                    address
-                      = location.bar_name
-                      br
-                      = location.addr_street_1
-                      br
-                      - if location.addr_street_2.present?
-                        = location.addr_street_2
+                  th Location
+                  th Bar
+                  th Notes
+                  th
+                    i.fa.fa-gear
+              tbody
+                - @locations.each do |location|
+                  tr
+                    td
+                      strong = location.city.display_name
+                    td
+                      address
+                        = location.bar_name
                         br
-                      = [location.addr_city, location.addr_state].compact.join(',')
-                      =< location.addr_postal_code
-                      br
-                      = location.addr_country
-                      br
-                      strong Start Time
-                      =< location.start_time.to_s(:time)
-                  td
-                    dl
-                      = location.notes.html_safe if location.notes
-                  td
-                    - if current_admin.can_update?(location)
-                      = link_to edit_game_control_event_event_location_path(@event, location)
-                        i.fa.fa-pencil
-                        span<> edit
-                    - if current_admin.can_delete?(location)
-                      = link_to game_control_event_event_location_path(@event, location, :authenticity_token => form_authenticity_token()),
-                        method: :delete, data: { confirm: 'Are you sure?'}
-                        i.fa.fa-trash<
-                        span< delete
+                        = location.addr_street_1
+                        br
+                        - if location.addr_street_2.present?
+                          = location.addr_street_2
+                          br
+                        = [location.addr_city, location.addr_state].compact.join(',')
+                        =< location.addr_postal_code
+                        br
+                        = location.addr_country
+                        br
+                        strong Start Time
+                        =< location.start_time.to_s(:time)
+                    td
+                      dl
+                        = location.notes.html_safe if location.notes
+                    td
+                      - if current_admin.can_update?(location)
+                        = link_to edit_game_control_event_event_location_path(@event, location)
+                          i.fa.fa-pencil
+                          span<> edit
+                      - if current_admin.can_delete?(location)
+                        = link_to game_control_event_event_location_path(@event, location, :authenticity_token => form_authenticity_token()),
+                          method: :delete, data: { confirm: 'Are you sure?'}
+                          i.fa.fa-trash<
+                          span< delete
+
+javascript:
+  $(document).ready(function() {
+    $('#location_table').DataTable({
+      "order": [[ 0, "asc" ]],
+      "columns": [{"orderable": true},
+                  {"orderable": true},
+                  {"orderable": false},
+                  {"orderable": false}
+                 ]
+    });
+  });

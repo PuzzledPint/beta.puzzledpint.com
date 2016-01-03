@@ -15,7 +15,7 @@
               | Add New Event
 
       .box-body
-        table#event_table.table.table-bordered.table-hover
+        table#event_table.table.table-bordered.table-hover.table-striped
           thead
             tr
               th Event Date
@@ -41,3 +41,12 @@
                       i.fa.fa-eye
                       span<> view
 
+javascript:
+  $(document).ready(function() {
+    $('#event_table').DataTable({
+      "columns": [{"orderable": true},
+                  {"orderable": false},
+                  {"orderable": false}
+                 ]
+    });
+  });

@@ -14,11 +14,11 @@
             | Add New User
 
       .box-body
-        table#user_table.table.table-bordered.table-hover
+        table#admin_table.table.table-bordered.table-hover
           thead
             tr
-              th Name
               th Email
+              th Name
               th Cities
               th Roles
               th
@@ -26,8 +26,8 @@
           tbody
             - @admins.each do |admin|
               tr
-                td = admin.full_name
                 td = admin.email
+                td = admin.full_name
                 td = admin.cities.map(&:name).join(',')
                 td = admin.roles.map(&:name).join(',')
                 td
@@ -39,13 +39,14 @@
                     i.fa.fa-trash<
                     span< delete
 
-coffee:
-  $ ->
-    $('#user_table').DataTable
-      autoWidth : true
-      order: [[0, 'asc' ] ]
-      columns: [
-        null
-        null
-        { orderable: false }
-      ]
+javascript:
+  $(document).ready(function() {
+    $('#admin_table').DataTable({
+      "columns": [{"orderable": true},
+                  {"orderable": true},
+                  {"orderable": true},
+                  {"orderable": true},
+                  {"orderable": false}
+                 ]
+    });
+  });
