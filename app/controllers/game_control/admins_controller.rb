@@ -15,7 +15,7 @@ class GameControl::AdminsController < GameControlController
     @admin.password = temp_password
 
     if @admin.save
-      @admin.invite!
+      @admin.invite! if create_params[:send_invite] == '1'
       redirect_to game_control_admins_path, notice: 'User successfully created.'
     else
       render :new
