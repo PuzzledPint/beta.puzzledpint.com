@@ -26,7 +26,7 @@
             - @cities.each do |city|
               tr
                 td = city.display_name
-                td = city.state
+                td = display_state(city.country, city.state)
                 td = city.country
                 td
                   = link_to edit_game_control_city_path(city)
