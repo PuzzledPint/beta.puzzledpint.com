@@ -1,7 +1,6 @@
 class EventLocationAuthorizer < ApplicationAuthorizer
   def updatable_by?(user)
-      user.has_role?(:admin) ||
-        user.has_role?(:location_gc) &&  has_city_access?(user)
+    user.has_role?(:admin) || (user.has_role?(:location_gc) && has_city_access?(user))
   end
 
   private
