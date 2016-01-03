@@ -43,7 +43,7 @@
                       =< location.start_time.to_s(:time)
                   td
                     dl
-                      = location.notes.html_safe
+                      = location.notes.html_safe if location.notes
                   td
                     - if current_admin.can_update?(location)
                       = link_to edit_game_control_event_event_location_path(@event, location)

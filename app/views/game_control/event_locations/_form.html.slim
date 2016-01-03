@@ -8,10 +8,12 @@
     = f.input :start_time, as: :time
     = f.input :addr_street_1
     = f.input :addr_street_2
-    = f.input :addr_city
-    = f.input :addr_state
-    = f.input :addr_postal_code
     = f.input :addr_country
+    = f.input :addr_state, collection: @states, class: 'state',
+                      label_method: :name, value_method: :code,
+                      input_html: { class: :state }, disabled: true
+    = f.input :addr_city
+    = f.input :addr_postal_code
     = f.input :notes
 
   .box-footer
@@ -21,6 +23,9 @@
 
 javascript:
   $(document).ready(function() {
+    $('select.state').select2();
+    $('select.country').select2();
+    $('select.country').countryStateSelect();
     $('#event_location_notes').wysihtml5({
       toolbar: {
         "fa": true,

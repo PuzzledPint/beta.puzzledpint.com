@@ -6,6 +6,7 @@ class GameControl::EventLocationsController < GameControlController
   def new
     @location = @event.event_locations.build
     @cities = available_cities
+    @states = []
   end
 
   def create
@@ -22,6 +23,7 @@ class GameControl::EventLocationsController < GameControlController
   def edit
     @location = EventLocation.find params[:id]
     authorize_action_for(@location)
+    generate_states
   end
 
   def update
@@ -32,6 +34,7 @@ class GameControl::EventLocationsController < GameControlController
       redirect_to edit_game_control_event_path(@event),
                   notice: "Location was successfully updated"
     else
+      generate_states
       render :edit
     end
   end
@@ -44,6 +47,12 @@ class GameControl::EventLocationsController < GameControlController
   end
 
   private
+
+  def generate_states
+    @states = Country.new.states(@location.addr_country).map do |s|
+      OpenStruct.new(s)
+    end
+  end
 
   def available_cities
     all_cities = City.all.sort { |x, y| x.display_name <=> y.display_name }
