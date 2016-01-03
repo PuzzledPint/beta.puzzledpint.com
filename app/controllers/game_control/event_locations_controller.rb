@@ -1,5 +1,5 @@
 class GameControl::EventLocationsController < GameControlController
-  authorize_actions_for EventLocation
+  authorize_actions_for EventLocation, except: [:edit, :update]
 
   before_action :load_event
 
@@ -21,10 +21,12 @@ class GameControl::EventLocationsController < GameControlController
 
   def edit
     @location = EventLocation.find params[:id]
+    authorize_action_for(@location)
   end
 
   def update
     @location = EventLocation.find params[:id]
+    authorize_action_for(@location)
 
     if @location.update_attributes(update_params)
       redirect_to edit_game_control_event_path(@event),

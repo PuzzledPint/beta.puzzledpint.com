@@ -6,7 +6,7 @@ RSpec.describe GameControl::EventLocationsController, type: :controller do
       it 'responds with a 403' do
         request.env['devise.mapping'] = Devise.mappings[:admin]
         sign_in create(:admin)
-        get :edit, event_id: 1, id: 1
+        get :new, event_id: 1
         expect(response).to be_forbidden
       end
     end

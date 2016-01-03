@@ -2,7 +2,7 @@ class GameControl::EventsController < GameControlController
   authorize_actions_for Event
 
   def index
-    @events = Event.all
+    @events = Event.all.order(event_at: :desc)
   end
 
   def show
