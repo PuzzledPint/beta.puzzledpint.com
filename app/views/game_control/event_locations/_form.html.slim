@@ -6,15 +6,32 @@
     = f.input :bar_name
     = f.input :bar_url, as: :url
     = f.input :start_time, as: :time
-    = f.input :notes
     = f.input :addr_street_1
     = f.input :addr_street_2
     = f.input :addr_city
     = f.input :addr_state
     = f.input :addr_postal_code
     = f.input :addr_country
+    = f.input :notes
 
   .box-footer
     = f.submit 'Save', class: 'btn btn-primary'
     = link_to 'Cancel', edit_game_control_event_path(@event),
       html_options = { class: 'btn btn-default pull-right' }
+
+javascript:
+  $(document).ready(function() {
+    $('#event_location_notes').wysihtml5({
+      toolbar: {
+        "font-styles": false, //Font styling, e.g. h1, h2, etc. Default true
+        "emphasis": true, //Italics, bold, etc. Default true
+        "lists": false, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
+        "html": false, //Button which allows you to edit the generated HTML. Default false
+        "link": true, //Button to insert a link. Default true
+        "image": false, //Button to insert an image. Default true,
+        "color": false, //Button to change color of font
+        "blockquote": false, //Blockquote
+        "size": "none" //default: none, other options are xs, sm, lg
+      }
+    });
+  });

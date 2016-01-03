@@ -12,5 +12,5 @@ if location.complete?
     json.postal_code location.addr_postal_code
     json.country location.addr_country
   end
-  json.notes location.notes
+  json.notes location.notes.html_safe
 end

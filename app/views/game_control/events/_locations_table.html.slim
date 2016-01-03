@@ -38,12 +38,12 @@
                       =< location.addr_postal_code
                       br
                       = location.addr_country
+                      br
+                      strong Start Time
+                      =< location.start_time.to_s(:time)
                   td
                     dl
-                      dt Start Time
-                      dd = location.start_time.to_s(:time)
-                      dt Notes
-                      dd = location.notes
+                      = location.notes.html_safe
                   td
                     - if current_admin.can_update?(location)
                       = link_to edit_game_control_event_event_location_path(@event, location)
