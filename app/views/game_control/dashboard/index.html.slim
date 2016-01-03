@@ -9,4 +9,17 @@
           i.fa.fa-dashboard>
           |  Welcome
       .box-body
-        p In the near future, more information will show up here. For now manage your city through the menu options.
+        p
+          | In the near future, more information will show up here.
+          |  For now you can manage your city details through
+          =< link_to "Manage Events", game_control_events_path
+          | .
+
+        p
+          | Please provide any feedback that you may have at the
+          =<> link_to "#web-site", "https://puzzledpint.slack.com/messages/web-site/"
+          | slack channel. Any and all feedback is greatly appreciated, we want to make this site as useable
+          | as possible.
+
+        p
+          | - Thanks for your continued support.
