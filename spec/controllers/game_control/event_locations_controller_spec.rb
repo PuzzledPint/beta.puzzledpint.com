@@ -58,20 +58,43 @@ RSpec.describe GameControl::EventLocationsController, type: :controller do
     end
 
     describe 'PATCH update' do
-      before { @location = create(:event_location) }
+      let!(:location) { create(:event_location) }
 
       it 'updates the location' do
         post_data = { bar_name: 'bar name' }
 
-        patch :update, event_id: @location.event.id,
-                       id: @location.id,
+        patch :update, event_id: location.event.id,
+                       id: location.id,
                        event_location: post_data
 
-        expect(response).to redirect_to edit_game_control_event_path @location.event
+        expect(response).to redirect_to edit_game_control_event_path location.event
         expect(flash[:notice]).to match(/successful/i)
 
-        @location.reload
-        expect(@location.bar_name).to eq('bar name')
+        location.reload
+        expect(location.bar_name).to eq('bar name')
+      end
+
+      context 'location_gc' do
+        login_location_gc
+
+        before do
+          controller.current_admin.cities << location.city
+          controller.current_admin.save
+        end
+
+        it 'updates the location' do
+          post_data = { bar_name: 'bar name' }
+
+          patch :update, event_id: location.event.id,
+            id: location.id,
+            event_location: post_data
+
+          expect(response).to redirect_to game_control_event_path location.event
+          expect(flash[:notice]).to match(/successful/i)
+
+          location.reload
+          expect(location.bar_name).to eq('bar name')
+        end
       end
     end
 

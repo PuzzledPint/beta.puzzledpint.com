@@ -31,8 +31,7 @@ class GameControl::EventLocationsController < GameControlController
     authorize_action_for(@location)
 
     if @location.update_attributes(update_params)
-      redirect_to edit_game_control_event_path(@event),
-                  notice: "Location was successfully updated"
+      update_redirect
     else
       generate_states
       render :edit
@@ -47,6 +46,16 @@ class GameControl::EventLocationsController < GameControlController
   end
 
   private
+
+  def update_redirect
+    if current_admin.can_update?(@event)
+      redirect_to edit_game_control_event_path(@event),
+                  notice: "Location was successfully updated"
+    else
+      redirect_to game_control_event_path(@event),
+                  notice: "Location was successfully updated"
+    end
+  end
 
   def generate_states
     @states = Country.new.states(@location.addr_country).map do |s|
