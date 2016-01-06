@@ -11,7 +11,7 @@
     = f.input :addr_country
     = f.input :addr_state, collection: @states, class: 'state',
                       label_method: :name, value_method: :code,
-                      input_html: { class: :state }, disabled: true
+                      input_html: { class: :state }
     = f.input :addr_city
     = f.input :addr_postal_code
     = f.input :notes

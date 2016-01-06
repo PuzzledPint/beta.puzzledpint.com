@@ -21,10 +21,8 @@
     //Initialize state
     var country = this[0];
 
-    if (country.value !== "") {
-      var state = $("select.state", $(country).parents().next())[0];
-      populateStateSelect(country, state);
-    }
+    var state = $("select.state", $(country).parents().next())[0];
+    state.disabled = country.value == "";
 
     this.change( function(e) {
       var country = this;
