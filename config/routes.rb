@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     get "/:country/subdivisions", action: :subdivisions
   end
 
-  devise_for :admins, path: :game_control
+  devise_for :admins, path: :game_control,
+    controllers: { invitations: "game_control/invitations" }
+
   namespace :game_control do
     root 'dashboard#index'
 
