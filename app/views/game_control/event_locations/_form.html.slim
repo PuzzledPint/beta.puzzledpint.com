@@ -18,7 +18,7 @@
 
   .box-footer
     = f.submit 'Save', class: 'btn btn-primary'
-    = link_to 'Cancel', edit_game_control_event_path(@event),
+    = link_to 'Cancel', cancel_path(@event),
       html_options = { class: 'btn btn-default pull-right' }
 
 javascript:
