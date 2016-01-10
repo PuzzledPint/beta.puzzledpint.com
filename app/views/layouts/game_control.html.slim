@@ -21,6 +21,7 @@ html
     script src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js'
     /![endif]
 
+    = javascript_include_tag 'analytics'
 
   / BODY TAG OPTIONS:
     =================
@@ -131,3 +132,14 @@ html
       / ./wrapper
       / REQUIRED JS SCRIPTS
       = javascript_include_tag 'game_control_footer.js'
+
+javascript:
+  analytics.page()
+- if current_admin
+  javascript:
+    analytics.identify('#{current_admin.id}', {
+      name: '#{current_admin.full_name}',
+      email: '#{current_admin.email}',
+      roles: #{current_admin.roles.map(&:name).to_json.html_safe}
+      }
+    );

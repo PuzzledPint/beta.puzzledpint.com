@@ -58,6 +58,7 @@ group :development, :test do
   gem 'rspec-activemodel-mocks', require: false
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
+  gem 'dotenv-rails'
 end
 
 group :development do
