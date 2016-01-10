@@ -7,18 +7,12 @@ Puzzled Pint
 
 The app for [PuzzledPint.com](http://puzzledpint.com).
 
-This is a work in progress and not yet live.
+Contributing
+-------------
 
-Info to Fill In
----------------
+Please see [`CONTRIBUTING.md`](CONTRIBUTING.md) for details.
 
-* Contributing
-* Ruby version
-* System dependencies
-* Configuration
-* Database creation
-* Database initialization
-* How to run the test suite
-* Services (job queues, cache servers, search engines, etc.)
-* Deployment instructions
+Licensing
+---------
 
+Please see ['LICENSING.md'](LICENSING.md) for details.
