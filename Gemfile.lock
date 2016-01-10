@@ -36,6 +36,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    analytics-ruby (2.0.13)
     arel (6.0.3)
     authority (3.1.0)
       activesupport (>= 3.0.0)
@@ -253,6 +254,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  analytics-ruby (~> 2.0.0)
   authority
   byebug
   coffee-rails (~> 4.1.0)
