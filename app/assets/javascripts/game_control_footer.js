@@ -6,3 +6,7 @@
 //= require AdminLTE/plugins/iCheck/icheck.min.js
 //= require AdminLTE/dist/js/app.min.js
 //= require game_control/bootstrap3-wysihtml5.all.min.js
+
+$(document).ready(function() {
+  Turbolinks.enableProgressBar();
+});
