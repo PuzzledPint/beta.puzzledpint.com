@@ -61,7 +61,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
   gem 'dotenv-rails'
-  gem 'rubocop'
+  gem 'rubocop', require: false
 end
 
 group :development do

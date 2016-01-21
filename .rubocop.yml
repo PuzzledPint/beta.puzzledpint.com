@@ -1,13 +1,15 @@
 AllCops:
+  TargetRubyVersion: 2.3
   Include:
     - "**/*.rake"
   Exclude:
     - "vendor/**/*"
     - "db/**/*"
     - "bin/**/*"
-  RunRailsCops: true
   DisplayCopNames: false
   StyleGuideCopsOnly: false
+Rails:
+  Enabled: true
 Style/AccessModifierIndentation:
   Description: Check indentation of private/protected visibility modifiers.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#indent-public-private-protected
@@ -419,7 +421,15 @@ Style/TrailingBlankLines:
   SupportedStyles:
   - final_newline
   - final_blank_line
-Style/TrailingComma:
+Style/TrailingCommaInLiteral:
+  Description: Checks for trailing comma in parameter lists and literals.
+  StyleGuide: https://github.com/bbatsov/ruby-style-guide#no-trailing-array-commas
+  Enabled: false
+  EnforcedStyleForMultiline: comma
+  SupportedStyles:
+  - comma
+  - no_comma
+Style/TrailingCommaInArguments:
   Description: Checks for trailing comma in parameter lists and literals.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#no-trailing-array-commas
   Enabled: false
@@ -547,11 +557,6 @@ Rails/ActionFilter:
   - filter
   Include:
   - app/controllers/**/*.rb
-Rails/DefaultScope:
-  Description: Checks if the argument passed to default_scope is a block.
-  Enabled: true
-  Include:
-  - app/models/**/*.rb
 Rails/HasAndBelongsToMany:
   Description: Prefer has_many :through to has_and_belongs_to_many.
   Enabled: true
@@ -827,7 +832,7 @@ Style/SelfAssignment:
     used.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#self-assignment
   Enabled: false
-Style/SingleSpaceBeforeFirstArg:
+Style/SpaceBeforeFirstArg:
   Description: Checks that exactly one space is used between a method name and the
     first argument for method calls without parentheses.
   Enabled: true
@@ -1006,10 +1011,6 @@ Lint/RescueException:
 Lint/ShadowingOuterLocalVariable:
   Description: Do not use the same name as outer local variable for block arguments
     or block local variables.
-  Enabled: true
-Lint/SpaceBeforeFirstArg:
-  Description: Put a space between a method name and the first argument in a method
-    call without parentheses.
   Enabled: true
 Lint/StringConversionInInterpolation:
   Description: Checks for Object#to_s usage in string interpolation.
