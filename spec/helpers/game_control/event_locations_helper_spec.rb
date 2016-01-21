@@ -2,9 +2,7 @@ require 'rails_helper'
 include ControllerMacros
 
 RSpec.describe GameControl::EventLocationsHelper do
-
   describe '#cancel_path' do
-
     context 'can edit location' do
       it 'returns the edit path' do
         user = create(:admin_user)

@@ -86,8 +86,8 @@ RSpec.describe GameControl::EventLocationsController, type: :controller do
           post_data = { bar_name: 'bar name' }
 
           patch :update, event_id: location.event.id,
-            id: location.id,
-            event_location: post_data
+                         id: location.id,
+                         event_location: post_data
 
           expect(response).to redirect_to game_control_event_path location.event
           expect(flash[:notice]).to match(/successful/i)

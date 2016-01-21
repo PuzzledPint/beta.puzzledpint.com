@@ -1,16 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe ApplicationHelper, type: :helper  do
+RSpec.describe ApplicationHelper, type: :helper do
   describe '#display_state' do
     context 'state is string' do
       it 'returns the string' do
-        expect(display_state('US','OR')).to eq('OR')
+        expect(display_state('US', 'OR')).to eq('OR')
       end
     end
 
     context 'state is a code' do
       it 'returns full name' do
-        expect(display_state('AT','9')).to eq('Wien')
+        expect(display_state('AT', '9')).to eq('Wien')
       end
     end
 

@@ -7,7 +7,7 @@ class GameControl::EventsController < GameControlController
 
   def show
     @event = Event.find(params[:id])
-    @locations = @event.event_locations.sort { |x, y| x.city.display_name <=> y.city.display_name }
+    @locations = buld_locations
   end
 
   def new
@@ -31,7 +31,7 @@ class GameControl::EventsController < GameControlController
 
   def edit
     @event = Event.find(params[:id])
-    @locations = @event.event_locations.sort { |x, y| x.city.display_name <=> y.city.display_name }
+    @locations = build_locations
   end
 
   def update
@@ -41,7 +41,7 @@ class GameControl::EventsController < GameControlController
       redirect_to game_control_events_path,
                   notice: "Event was successfully updated"
     else
-      @locations = @event.event_locations.sort { |x, y| x.city.display_name <=> y.city.display_name }
+      @locations = build_locations
       render :edit
     end
   end
@@ -56,5 +56,9 @@ class GameControl::EventsController < GameControlController
 
   def event_params
     params.require(:event).permit(:event_at, :theme)
+  end
+
+  def build_locations
+    @event.event_locations.sort { |x, y| x.city.display_name <=> y.city.display_name }
   end
 end

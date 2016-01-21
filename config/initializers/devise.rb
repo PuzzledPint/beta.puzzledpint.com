@@ -4,7 +4,8 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '3f46ed00ce74288d7d2675cee56e838da442da30440b9eb7aa7acff5bc9cfc873bf3dcb672661d37730477d881f3882ae97a8c18bd4e38315ea8814fc46aa477'
+  # config.secret_key = '3f46ed00ce74288d7d2675cee56e838da442da30440b9eb7aa7acff
+  # 5bc9cfc873bf3dcb672661d37730477d881f3882ae97a8c18bd4e38315ea8814fc46aa477'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -97,13 +98,14 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = 'dd9a6ba65f5acfe536d24f71f53523f4bcc55b512a9d7e85ec11151185221a70e59e833fd7ae3bc77184afe35c2166651201c6652487585d7e86262e5055d00e'
+  # config.pepper = 'dd9a6ba65f5acfe536d24f71f53523f4bcc55b512a9d7e85ec11151185
+  # 221a70e59e833fd7ae3bc77184afe35c2166651201c6652487585d7e86262e5055d00e'
 
   # ==> Configuration for :invitable
   # The period the generated invitation token is valid, after
   # this period, the invited resource won't be able to accept the invitation.
   # When invite_for is 0 (the default), the invitation won't expire.
-  config.invite_for = 1.weeks
+  config.invite_for = 1.week
 
   # Number of invitations users can send.
   # - If invitation_limit is nil, there is no limit for invitations, users can

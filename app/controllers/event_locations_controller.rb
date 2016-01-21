@@ -4,21 +4,29 @@ class EventLocationsController < ApplicationController
     headers['Access-Control-Request-Method'] = '*'
     event = Event.find(params[:event_id])
     @locations = event.locations_tree
-    track_index(event)
+    analytics(event)
   end
 
   private
 
-  def track_index(event)
+  def analytics(event)
     session_id = session.id || 'anonymous_user'
-    Analytics.identify(
-      anonymous_id: session_id,
-      context: { ip: request.ip }
-    )
+    track_index(event, session_id)
+    id_index(session_id)
+  end
+
+  def track_index(event, session_id)
     Analytics.track(
       anonymous_id: session_id,
       event: 'Viewed Location Info',
       properties: { event_id: event.id, date: event.event_at, theme: event.theme },
+      context: { ip: request.ip }
+    )
+  end
+
+  def id_index(session_id)
+    Analytics.identify(
+      anonymous_id: session_id,
       context: { ip: request.ip }
     )
   end
