@@ -40,7 +40,9 @@ RSpec.describe GameControl::EventsController, type: :controller do
       it 'adds a new event and event_locations' do
         expect do
           expect(EventLocation.count).to eq(0)
-          post_data = { event_at: Time.zone.today,
+          post_data = { "event_at(1i)"=>"2016",
+                        "event_at(2i)"=>"1",
+                        "event_at(3i)"=>"21",
                         theme: 'theme' }
           post :create, event: post_data, city_ids: [city.id]
           expect(EventLocation.count).to eq(1)
@@ -70,8 +72,10 @@ RSpec.describe GameControl::EventsController, type: :controller do
       before { @event = create(:event) }
 
       it 'updates the event' do
-        event_at = Time.zone.now
-        post_data = { event_at: event_at, theme: 'theme name' }
+        post_data = { "event_at(1i)"=>"2016",
+                      "event_at(2i)"=>"1",
+                      "event_at(3i)"=>"21",
+                      theme: 'theme name' }
 
         patch :update, id: @event.id, event: post_data
 
