@@ -1,6 +1,8 @@
 class GameControl::EventsController < GameControlController
   authorize_actions_for Event
 
+  add_breadcrumb "<i class='fa fa-calendar'></i> Events".html_safe, :game_control_events_path
+
   def index
     @events = Event.all.order(event_at: :desc)
   end

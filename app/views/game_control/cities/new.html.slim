@@ -1,4 +1,6 @@
 - content_for :page_header, 'New City'
 - content_for :page_description, 'add a new city'
+- add_breadcrumb "New", :new_game_control_city_path
+
 
 = render partial: "form", locals: { city: @city, states: @states, parents: @parents }

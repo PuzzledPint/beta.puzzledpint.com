@@ -1,6 +1,8 @@
 class GameControl::AdminsController < GameControlController
   authorize_actions_for Admin
 
+  add_breadcrumb "<i class='fa fa-users'></i> Users".html_safe, :game_control_admins_path
+
   def index
     @admins = Admin.all
   end

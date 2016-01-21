@@ -1,4 +1,5 @@
 - content_for :page_header, "Edit #{@admin.full_name}"
 - content_for :page_description, 'edit user information'
+- add_breadcrumb 'Edit', edit_game_control_admin_path(@admin)
 
 = render "form"

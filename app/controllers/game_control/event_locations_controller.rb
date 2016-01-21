@@ -1,7 +1,7 @@
 class GameControl::EventLocationsController < GameControlController
   authorize_actions_for EventLocation, except: [:edit, :update]
 
-  before_action :load_event
+  before_action :load_event, :add_breadcrumbs
 
   def new
     @location = @event.event_locations.build
@@ -84,5 +84,10 @@ class GameControl::EventLocationsController < GameControlController
     params.require(:event_location).permit(:bar_name, :bar_url, :start_time, :notes,
                                            :addr_street_1, :addr_street_2, :addr_postal_code,
                                            :addr_city, :addr_state, :addr_country)
+  end
+
+  def add_breadcrumbs
+    add_breadcrumb "<i class='fa fa-calendar'></i> Events".html_safe, :game_control_events_path
+    add_breadcrumb @event.theme, game_control_event_path(@event)
   end
 end

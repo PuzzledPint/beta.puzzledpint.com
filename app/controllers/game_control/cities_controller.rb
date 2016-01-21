@@ -1,6 +1,8 @@
 class GameControl::CitiesController < GameControlController
   authorize_actions_for City
 
+  add_breadcrumb "<i class='fa fa-building'></i> Cities".html_safe, :game_control_cities_path
+
   def index
     @cities = City.parent_cities.order(:name)
   end

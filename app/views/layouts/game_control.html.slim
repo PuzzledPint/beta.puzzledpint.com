@@ -96,6 +96,8 @@ html
               == yield :page_header
               -if content_for? :page_description
                 small == yield :page_description
+          ol.breadcrumb
+            = render_breadcrumbs tag: :li, separator: ''
         /! Main content
         section.content
           /! Alert flash
