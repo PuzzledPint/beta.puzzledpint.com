@@ -51,7 +51,7 @@ gem 'countries'
 gem 'country_select'
 gem 'breadcrumbs_on_rails'
 
-gem 'analytics-ruby', '~> 2.0.0', :require => 'segment/analytics'
+gem 'analytics-ruby', '~> 2.0.0', require: 'segment/analytics'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -63,6 +63,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'dotenv-rails'
   gem 'rubocop', require: false
+  gem 'parity', require: false
 end
 
 group :development do
