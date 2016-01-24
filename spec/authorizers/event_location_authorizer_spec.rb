@@ -20,7 +20,7 @@ RSpec.describe EventLocationAuthorizer do
 
       it 'can update parent' do
         child_city = create(:city, parent: city)
-        user = create(:location_gc_user, cities: [child_city])
+        user = create(:location_gc_user, cities: [city])
         event_location = create(:event_location, city: child_city)
 
         expect(event_location.authorizer).to be_updatable_by(user)

@@ -10,6 +10,7 @@ class GameControl::AdminsController < GameControlController
   def new
     @admin = Admin.new
     @admin.send_invite = true
+    @cities = cities
   end
 
   def create
@@ -20,12 +21,14 @@ class GameControl::AdminsController < GameControlController
       @admin.invite! if create_params[:send_invite] == '1'
       redirect_to game_control_admins_path, notice: 'User successfully created.'
     else
+      @cities = cities
       render :new
     end
   end
 
   def edit
     @admin = Admin.find params[:id]
+    @cities = cities
   end
 
   def update
@@ -35,6 +38,7 @@ class GameControl::AdminsController < GameControlController
       redirect_to game_control_admins_path,
                   notice: "User <strong>#{@admin.full_name}</strong> was successfully updated"
     else
+      @cities = cities
       render :edit
     end
   end
@@ -49,6 +53,10 @@ class GameControl::AdminsController < GameControlController
 
   def temp_password
     Devise.friendly_token
+  end
+
+  def cities
+    City.all.sort { |x, y| x.display_name <=> y.display_name }
   end
 
   def create_params
