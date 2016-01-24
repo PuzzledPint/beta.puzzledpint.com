@@ -27,6 +27,27 @@ RSpec.describe GameControl::EventsController, type: :controller do
       end
     end
 
+    describe 'GET show' do
+      context 'admin' do
+        it 'renders' do
+          get :show, id: create(:event).id
+
+          expect(response).to be_successful
+          expect(response).to render_template(:show)
+        end
+      end
+
+      context 'location_gc' do
+        login_location_gc
+
+        it 'renders' do
+          get :show, id: create(:event).id
+
+          expect(response).to be_successful
+          expect(response).to render_template(:show)
+        end
+      end
+    end
     describe 'GET new' do
       it 'renders' do
         get :new

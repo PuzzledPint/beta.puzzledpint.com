@@ -9,7 +9,7 @@ class GameControl::EventsController < GameControlController
 
   def show
     @event = Event.find(params[:id])
-    @locations = buld_locations
+    @locations = build_locations
   end
 
   def new
