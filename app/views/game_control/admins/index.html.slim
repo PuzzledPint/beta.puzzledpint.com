@@ -28,7 +28,7 @@
               tr
                 td = admin.email
                 td = admin.full_name
-                td = admin.cities.map(&:name).join(',')
+                td = admin.cities.map(&:display_name).join(',')
                 td = admin.roles.map(&:name).join(',')
                 td
                   = link_to edit_game_control_admin_path(admin)
