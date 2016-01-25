@@ -20,10 +20,7 @@ class GameControl::EventsController < GameControlController
   def create
     @event = Event.new(event_params)
     if @event.save
-      params[:city_ids].each do |city|
-        @event.event_locations.create(city_id: city)
-      end
-
+      EventService.new.add_event_locations(@event, params[:city_ids])
       redirect_to edit_game_control_event_path(@event), notice: 'Event successfully created.'
     else
       @cities = City.parent_cities.order(:name)
