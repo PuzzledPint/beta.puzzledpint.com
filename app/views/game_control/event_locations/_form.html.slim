@@ -8,11 +8,14 @@
     = f.input :start_time, as: :time
     = f.input :addr_street_1
     = f.input :addr_street_2
-    = f.input :addr_country
-    = f.input :addr_state, collection: @states, class: 'state',
-                      label_method: :name, value_method: :code,
-                      input_html: { class: :state }
     = f.input :addr_city
+    .row
+      .col-md-6.col-sm-12
+        = f.input :addr_country
+      .col-md-6.col-sm-12
+        = f.input :addr_state, collection: @states, class: 'state',
+                          label_method: :name, value_method: :code,
+                          input_html: { class: :state }
     = f.input :addr_postal_code
     = f.input :notes
 
