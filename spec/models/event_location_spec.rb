@@ -12,14 +12,26 @@ RSpec.describe EventLocation, type: :model do
       expect(location.complete?).to be true
     end
 
-    it 'is true if a note is present byt address is not' do
+    it 'is false if a note is present by address is not' do
       location = EventLocation.new(notes: 'notes')
-      expect(location.complete?).to be true
+      expect(location.complete?).to be false
     end
 
     it 'it returns false with no note or bar info' do
       location = EventLocation.new
       expect(location.complete?).to be false
+    end
+  end
+
+  describe '#note_only?' do
+    it 'is true if a note is present by address is not' do
+      location = EventLocation.new(notes: 'notes')
+      expect(location.notes_only?).to be true
+    end
+
+    it 'it returns false with no note or bar info' do
+      location = EventLocation.new
+      expect(location.notes_only?).to be false
     end
   end
 end

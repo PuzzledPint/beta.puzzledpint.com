@@ -8,7 +8,10 @@ class EventLocation < ActiveRecord::Base
   validates :event, presence: true
 
   def complete?
-    (bar_name.present? && addr_street_1.present? && addr_city.present?) ||
-      notes.present? && !(bar_name.present? && addr_street_1.present?)
+    bar_name.present? && addr_street_1.present? && addr_city.present?
+  end
+
+  def notes_only?
+    notes.present? && !(bar_name.present? && addr_street_1.present?)
   end
 end
