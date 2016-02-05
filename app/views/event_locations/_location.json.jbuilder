@@ -14,3 +14,8 @@ if location.complete?
   end
   json.notes location.notes.html_safe
 end
+
+if location.notes_only?
+  json.city location.city.name
+  json.notes location.notes.html_safe
+end
