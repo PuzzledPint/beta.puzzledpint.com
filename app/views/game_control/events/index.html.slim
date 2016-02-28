@@ -28,18 +28,19 @@
                 td = event.event_at.to_s(:date)
                 td = event.theme
                 td
-                  - if current_admin.can_manage?(Event)
-                    = link_to edit_game_control_event_path(event)
-                      i.fa.fa-pencil
-                      span<> edit
-                    = link_to game_control_event_path(event, :authenticity_token => form_authenticity_token()),
-                      method: :delete, data: { confirm: 'Are you sure?'}
-                      i.fa.fa-trash<
-                      span< delete
-                  - elsif current_admin.can_read?(Event)
+                  - if current_admin.can_read?(event)
                     = link_to game_control_event_path(event)
                       i.fa.fa-eye
                       span<> view
+                  - if current_admin.can_manage?(event)
+                    = link_to edit_game_control_event_path(event)
+                      i.fa.fa-pencil
+                      span<> edit
+                    - unless event.past?
+                      = link_to game_control_event_path(event, :authenticity_token => form_authenticity_token()),
+                        method: :delete, data: { confirm: 'Are you sure?'}
+                        i.fa.fa-trash<
+                        span< delete
 
 javascript:
   $(document).ready(function() {

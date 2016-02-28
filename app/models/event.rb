@@ -15,6 +15,10 @@ class Event < ActiveRecord::Base
     build_tree locations
   end
 
+  def past?
+    event_at < Time.zone.today
+  end
+
   private
 
   # TODO clean this up some
@@ -35,6 +39,6 @@ class Event < ActiveRecord::Base
   end
 
   def prevent_destroy
-    raise 'Cannot destroy past events.' if event_at < Time.zone.today
+    raise 'Cannot destroy past events.' if past?
   end
 end

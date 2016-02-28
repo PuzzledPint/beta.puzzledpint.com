@@ -18,6 +18,18 @@ RSpec.describe Event, type: :model do
     expect { event.destroy }.to raise_error 'Cannot destroy past events.'
   end
 
+  describe '#past?' do
+    it 'returns true when event is in the past' do
+      event = build(:event, event_at: 1.day.ago)
+      expect(event.past?).to be true
+    end
+
+    it 'returns false when event is in the past' do
+      event = build(:event, event_at: 1.day.from_now)
+      expect(event.past?).to be false
+    end
+  end
+
   describe '#locations_tree' do
     let(:city_1) { create(:city, name: 'City 1') }
     let(:city_2) { create(:city, name: 'City 2') }
