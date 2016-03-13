@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'welcome#index'
+  root 'pages#home'
 
   get '/events/:event_id/locations', controller: :event_locations,
                                      action: :index, defaults: { format: :json }

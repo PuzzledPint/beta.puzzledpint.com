@@ -12,3 +12,252 @@
  *
  *= require_self
  */
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.clearfix { display: inline-block; }
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+body {
+  color: #ffffff;
+  background-color: #363636;
+  margin-top: 25px;
+  font-family: helvettica, Verdana, sans-serif;
+  font-size: 14px;
+}
+a {
+  color: #2380b6;
+  border: none;
+  border: 0;
+  text-decoration: none;
+}
+a img {
+  color: #2380b6;
+  border: none;
+  border: 0;
+  text-decoration: none;
+}
+a imagemap {
+  color: #2380b6;
+  border: none;
+  border: 0;
+  text-decoration: none;
+}
+img {
+  color: #2380b6;
+  border: none;
+  border: 0;
+  text-decoration: none;
+}
+h1 {
+  font-size: 30px;
+  font-weight: normal;
+}
+h2 {
+  font-size: 20px;
+  font-weight: normal;
+}
+#navigation a {
+  color: #ffffff;
+  font-size: 16px;
+}
+#home_section #nav_home a { color: #2380b6; }
+#about_section #nav_about a { color: #2380b6; }
+#puzzles_section #nav_puzzles a { color: #2380b6; }
+#faq_section #nav_faq a { color: #2380b6; }
+#standings_section #nav_standings a { color: #2380b6; }
+.logo_dimensions {
+  width: 185px;
+  height: 95px;
+}
+#standings_section table {
+  border-collapse: collapse;
+  margin-bottom: 40px;
+}
+#team_standings_table td { border: 1px solid; }
+#team_standings_table tr { border: 1px solid; }
+#team_standings_table th { border: 1px solid; }
+#team_standings_table td { padding: 3px; }
+#team_standings_table th { padding: 3px; }
+.start_time, .end_time, .puzzles { text-align: center; }
+.hint { color: #363636; }
+#wrapper {
+  width: 900px;
+  margin-right: auto;
+  margin-left: auto;
+}
+#wrapper #header:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+#wrapper #header #logo {
+  width: 400px;
+  float: left;
+}
+#wrapper #header #logo h1 {
+  background: url("/assets/logo2.png") no-repeat;
+  width: 185px;
+  height: 95px;
+}
+#wrapper #header #logo h1 a {
+  width: 185px;
+  height: 95px;
+  position: absolute;
+}
+#wrapper #header #logo h1 a span { display: none; }
+#wrapper #header #navigation {
+  width: 500px;
+  height: 95px;
+  float: right;
+}
+#wrapper #header #navigation ul {
+  vertical-align: bottom;
+  overflow: visible;
+  float: right;
+  margin-top: 95px;
+}
+#wrapper #header #navigation ul li {
+  display: inline;
+  padding: 5px;
+}
+#wrapper #header #navigation ul li a:hover { color: #2380b6; }
+#wrapper #content {
+  margin-top: 25px;
+  margin-left: 100px;
+}
+#wrapper #content #pdf_link {
+  width: 100%;
+  text-align: right;
+  margin-bottom: 5px;
+}
+#wrapper #content #hint_txt { color: #363636; }
+#wrapper #content #verify_link {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 5px;
+}
+#wrapper #content #verify {
+  width: 700px;
+  margin: auto;
+  margin-bottom: 5px;
+}
+#wrapper #content #verify #message {
+  display: none;
+  color: red;
+}
+#wrapper #content #verify #map_canvas { height: 400px; }
+#wrapper #content #instructions {
+  width: 700px;
+  margin: auto;
+  margin-bottom: 5px;
+}
+#wrapper #content #instructions #message {
+  display: none;
+  color: red;
+}
+#wrapper #content #instructions #map_canvas { height: 400px; }
+#wrapper #content #message {
+  width: 700px;
+  margin: auto;
+  margin-bottom: 5px;
+}
+#wrapper #content #message #message {
+  display: none;
+  color: red;
+}
+#wrapper #content #message #map_canvas { height: 400px; }
+#wrapper #content #map_canvas {
+  width: 700px;
+  margin: auto;
+  margin-bottom: 5px;
+}
+#wrapper #content #map_canvas #message {
+  display: none;
+  color: red;
+}
+#wrapper #content #map_canvas #map_canvas { height: 400px; }
+#wrapper #footer {
+  border-top: solid gray 1px;
+  font-size: 12px;
+  margin-top: 50px;
+  padding-top: 5px;
+}
+#wrapper #footer:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+#wrapper #footer #tp { float: right; }
+#wrapper #footer #license_info {
+  float: right;
+  font-size: 10px;
+}
+#wrapper #footer #license_info img {
+  margin-left: 5px;
+  float: right;
+}
+
+#wrapper #concrete5_footer {
+	font-size: 10px;
+	text-align: center;
+}
+#board {
+	width:770px;
+	background: url('/themes/PuzzledPint/media/board_bottom_feathered.png') repeat-y bottom left;
+}
+#board_content {
+	font-family: 'Nothing You Could Do', cursive;
+	background: url('/themes/PuzzledPint/media/board_top_feathered.png') no-repeat top left;
+	padding: 30px 30px 0px 50px;
+}
+#board_content h1 {
+	margin: 0px;
+	padding: 0px;
+	font-size: 2.3em;
+	
+}
+#board_content h2 {
+	margin: 0px;
+	padding: 0px;
+	font-size: 1.8em;				
+}
+#board_content p {
+	margin: 0px;
+	padding: 0px;
+	padding-bottom: 10px;
+	font-size: 1.8em;
+}
+#lead, #social, #info {
+	padding-bottom: 10px;
+}
+#polaroid {
+	position:relative;
+	bottom: 775px;
+	left: 225px;
+}
+.puzzle_list li {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display:inline-table;
+}
+.puzzle_list img {
+	width: 150px;
+	height: 150px;
+}					
+.puzzle_list p {
+	text-align: center;
+	widows: 100%;
+}
