@@ -15,17 +15,18 @@
           =< link_to "Manage Events", game_control_events_path
           | .
 
-        p
-          | There is a
-          =<> link_to "User Guide", "https://goo.gl/7nSWof"
-          | available
-          =< link_to "here", "https://goo.gl/7nSWof"
-          |.
-        p
-          | Please provide any feedback that you may have at the
-          =<> link_to "#web-site", "https://puzzledpint.slack.com/messages/web-site/"
-          | slack channel. Any and all feedback is greatly appreciated, we want to make this site as useable
-          | as possible.
+        h3 Helpful Links
 
+        ul
+          li
+            = link_to "User Guide", "https://goo.gl/7nSWof"
+            | - A guide on how to use this site to manager your city's information.
+          li
+            = link_to "#web-site Slack Channel", "https://puzzledpint.slack.com/messages/web-site/"
+            | - A channel to provide feedback and get help.
+          li
+            = link_to "Puzzled Pint GC Resources Google Drive",
+              "https://drive.google.com/folderview?id=0Bz84p6-RxYgWRjU2ZHZUdm1iclU&usp=drive_web"
+            | - A Google Drive Folder containing resources to make the event in your city successful.
         p
           | - Thanks for your continued support.
