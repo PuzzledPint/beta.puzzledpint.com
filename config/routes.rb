@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   root 'pages#home'
 
+  # error pages
+  %w( 403 404 500 ).each do |code|
+    get code, :to => "errors#show", :code => code
+  end
+
   get '/events/:event_id/locations', controller: :event_locations,
                                      action: :index, defaults: { format: :json }
 
