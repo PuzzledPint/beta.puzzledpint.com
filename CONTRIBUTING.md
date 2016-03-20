@@ -34,7 +34,8 @@ Write tests.  Make the tests pass:
 
     ./bin/rspec
 
-Write a [good commit message][commit].
+Write a [good commit message][commit]. 
+Include the git hub issue number(s) that this branch resolves. [More Info](https://help.github.com/articles/closing-issues-via-commit-messages/)
 
 Push to your fork.
 
