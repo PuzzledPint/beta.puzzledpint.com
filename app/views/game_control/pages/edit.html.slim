@@ -1,0 +1,5 @@
+- content_for :page_header, "Edit #{@page.title}"
+- content_for :page_description, 'edit page'
+- add_breadcrumb 'Edit', edit_game_control_page_path(@page)
+
+= render "form"

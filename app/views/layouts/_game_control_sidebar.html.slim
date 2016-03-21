@@ -47,6 +47,24 @@ aside.main-sidebar
                 i.fa.fa-plus
                 span Add
 
+      // Page Management
+      // ===============
+      - if current_admin.can_manage?(Page)
+        li#pages.treeview
+          a href="#"
+            i.fa.fa-files-o
+            span Pages
+            i.fa.fa-angle-left.pull-right
+          ul.treeview-menu
+            li#pages-index
+              = link_to :game_control_pages
+                i.fa.fa-list
+                span List
+            li#files-new
+              = link_to :new_game_control_page
+                i.fa.fa-plus
+                span Add
+
       // User Management
       // ===============
       - if current_admin.can_manage?(Admin)

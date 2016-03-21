@@ -29,5 +29,8 @@ Rails.application.routes.draw do
     resources 'events' do
       resources 'event_locations'
     end
+    resources 'pages'
   end
+
+  get '*slug', to: 'pages#show', constraints: { slug: /(?!game_control).*/ }
 end

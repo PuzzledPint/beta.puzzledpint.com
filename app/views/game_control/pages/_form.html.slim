@@ -1,0 +1,18 @@
+= simple_form_for [:game_control, @page] do |f|
+  .row
+    .col-sm-12
+      .box.box-primary
+        .box-header.with-border
+          .box-title
+            i.fa.fa-file-text-o
+            |  Page Info
+        .box-body
+          .form-group
+            = f.input :active
+            = f.input :title
+            = f.input :slug
+            = f.input :body
+        .box-footer
+          = f.submit 'Save', class: 'btn btn-primary'
+          = link_to 'Cancel', game_control_pages_path,
+            html_options = { class: 'btn btn-default pull-right' }

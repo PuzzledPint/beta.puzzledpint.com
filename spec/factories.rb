@@ -1,4 +1,11 @@
 FactoryGirl.define do
+  factory :page do
+    title "Page Title"
+    slug "page"
+    body "Page Body"
+    active true
+  end
+
   factory :admin, class: Admin do
     sequence :email do |n|
       "admin#{n}@admin.com"

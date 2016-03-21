@@ -22,18 +22,18 @@
           .box-title
             i.fa.fa-lock>
             |  Access
-          .box-body
-            .row
-              .col-sm-12.col-md-6
-                .form-group
-                    = f.association :roles
-              .col-sm-12.col-md-6
-                .form-group
-                    = f.association :cities, collection: @cities, label_method: :display_name
-          .box-footer
-            = f.submit 'Save', class: 'btn btn-primary'
-            = link_to 'Cancel', game_control_admins_path,
-              html_options = { class: 'btn btn-default pull-right' }
+        .box-body
+          .row
+            .col-sm-12.col-md-6
+              .form-group
+                  = f.association :roles
+            .col-sm-12.col-md-6
+              .form-group
+                  = f.association :cities, collection: @cities, label_method: :display_name
+        .box-footer
+          = f.submit 'Save', class: 'btn btn-primary'
+          = link_to 'Cancel', game_control_admins_path,
+            html_options = { class: 'btn btn-default pull-right' }
 javascript:
   $(function() {
     $('select').select2();
