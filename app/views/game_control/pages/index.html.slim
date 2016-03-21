@@ -19,6 +19,7 @@
             tr
               th Name
               th Slug
+              th Active
               th
                 i.fa.fa-gear
           tbody
@@ -26,6 +27,7 @@
               tr
                 td = page.title
                 td = page.slug
+                td = page.active
                 td
                   = link_to edit_game_control_page_path(page)
                     i.fa.fa-pencil
