@@ -10,4 +10,11 @@ RSpec.describe Page, type: :model do
 
     it { should validate_uniqueness_of(:slug) }
   end
+
+  context 'slug' do
+    it 'parameterizes slugs' do
+      page = Page.create!(title: 'title', slug: 'some ^^ slug&', body: 'body')
+      expect(page.slug).to eq('some-slug')
+    end
+  end
 end

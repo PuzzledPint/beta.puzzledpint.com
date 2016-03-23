@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(version: 20160201010708) do
     t.datetime "updated_at",                 null: false
   end
 
-  add_index "pages", ["slug"], name: "index_pages_on_slug", using: :btree
+  add_index "pages", ["slug"], name: "index_pages_on_slug", unique: true, using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"

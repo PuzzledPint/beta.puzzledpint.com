@@ -45,7 +45,7 @@ RSpec.describe GameControl::PagesController, type: :controller do
           post :create, page: params
         end.to change(Page, :count).by(1)
 
-        expect(response).to redirect_to edit_game_control_page_path(Page.last.id)
+        expect(response).to redirect_to edit_game_control_page_path(Page.last)
       end
 
       it 'handles errors' do
@@ -63,7 +63,7 @@ RSpec.describe GameControl::PagesController, type: :controller do
       let(:page) { create(:page) }
 
       it 'renders a form' do
-        get :edit, id: page.id
+        get :edit, id: page
         expect(response).to be_successful
         expect(response).to render_template :edit
       end
@@ -77,19 +77,18 @@ RSpec.describe GameControl::PagesController, type: :controller do
                    title: 'New Page',
                    slug: 'New slug',
                    body: 'New Body' }
-
-        patch :update, id: page.id, page: params
-        expect(response).to redirect_to edit_game_control_page_path(page.id)
+        patch :update, id: page, page: params
 
         page.reload
+        expect(response).to redirect_to edit_game_control_page_path(page)
         expect(page.active).to be false
         expect(page.title).to eq params[:title]
-        expect(page.slug).to eq params[:slug]
+        expect(page.slug).to eq 'new-slug'
         expect(page.body).to eq params[:body]
       end
 
       it 'handles errors' do
-        patch :update, id: page.id, page: { title: '' }
+        patch :update, id: page, page: { title: '' }
 
         expect(response).to be_successful
         expect(response).to render_template(:edit)
@@ -100,7 +99,7 @@ RSpec.describe GameControl::PagesController, type: :controller do
     describe 'DELETE destroy' do
       it 'destroys the page' do
         page = create(:page)
-        expect { delete :destroy, id: page.id }.to change(Page, :count).by(-1)
+        expect { delete :destroy, id: page }.to change(Page, :count).by(-1)
       end
     end
   end
