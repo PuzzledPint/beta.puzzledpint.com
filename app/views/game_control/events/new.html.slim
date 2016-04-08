@@ -33,7 +33,7 @@
                         => check_box_tag 'city_ids[]', child.id, true, id: "city-#{child.id}"
                         =< label_tag "city-#{child.id}", child.display_name
           .box-footer
-            = f.submit 'Save', class: 'btn btn-primary'
-            = link_to 'Cancel', game_control_cities_path,
-              html_options = { class: 'btn btn-default pull-right' }
-
+            .pull-right
+              =<> link_to 'Cancel', game_control_cities_path,
+                html_options = { class: 'btn btn-default' }
+              =<> f.submit 'Save', class: 'btn btn-primary'

@@ -14,8 +14,9 @@
             = f.input :event_at
             = f.input :theme
           .box-footer
-            = f.submit 'Save', class: 'btn btn-primary'
-            = link_to 'Cancel', game_control_events_path,
-              html_options = { class: 'btn btn-default pull-right' }
+            .pull-right
+              =<> link_to 'Cancel', game_control_events_path,
+                html_options = { class: 'btn btn-default' }
+              =<> f.submit 'Save', class: 'btn btn-primary'
 
 = render "locations_table"

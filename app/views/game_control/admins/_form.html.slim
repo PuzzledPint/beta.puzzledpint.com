@@ -31,9 +31,10 @@
               .form-group
                   = f.association :cities, collection: @cities, label_method: :display_name
         .box-footer
-          = f.submit 'Save', class: 'btn btn-primary'
-          = link_to 'Cancel', game_control_admins_path,
-            html_options = { class: 'btn btn-default pull-right' }
+          .pull-right
+            =<> link_to 'Cancel', game_control_admins_path,
+              html_options = { class: 'btn btn-default'}
+            =<> f.submit 'Save', class: 'btn btn-primary'
 javascript:
   $(function() {
     $('select').select2();
