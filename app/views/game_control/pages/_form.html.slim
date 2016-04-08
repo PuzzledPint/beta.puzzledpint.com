@@ -13,9 +13,9 @@
             = f.input :slug
             = f.input :body
         .box-footer
-          = f.submit 'Save', class: 'btn btn-primary'
-          = link_to 'Cancel', game_control_pages_path,
-            html_options = { class: 'btn btn-default pull-right' }
+          .pull-right
+            =<> link_to 'Cancel', game_control_pages_path, class: 'btn btn-default'
+            =<> f.submit 'Save', class: 'btn btn-primary'
 
 - content_for :js_header, javascript_include_tag('//cdn.ckeditor.com/4.5.7/standard-all/ckeditor.js')
 javascript:
