@@ -10,7 +10,7 @@
       p.login-box-msg.text-red = alert
     - if notice
       p.login-box-msg.text-yellow = noitce
-    h3 Forgot your passowrd?
+    h3 Forgot your password?
     = form_for resource, as: resource_name, url: admin_password_path(resource),
       html: { method: :post } do |f| %
 
