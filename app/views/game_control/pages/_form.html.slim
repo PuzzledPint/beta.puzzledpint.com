@@ -13,6 +13,13 @@
                 span<> visit
 
         .box-body
+          -if @page.errors[:full_path].present?
+            .callout.callout-danger
+              button type='button' class='close' data-dismiss='alert' aria-hidden='true' &times;
+              h4
+                i> class='icon fa fa-warning'
+                | You cannot use '#{@page.slug}' as the slug because its parent
+                |  has a child with that slug already.
           .form-group
             = f.input :active
             = f.input :title
