@@ -18,7 +18,8 @@
             = f.input :title
             .row
               .col-md-6.col-sm-12
-                = f.input :parent_id, collection: @parents
+                = f.input :parent_id, collection: @parents,
+                  label_method: ->(p) { "#{p.title} - /#{p.full_path}" }
               .col-md-6.col-sm-12
                 = f.input :slug
             = f.input :content
@@ -30,6 +31,7 @@
 - content_for :js_header, javascript_include_tag('//cdn.ckeditor.com/4.5.6/standard-all/ckeditor.js')
 javascript:
   $(document).ready(function(){
+    $('select').select2();
     CKEDITOR.replace('page_content', {
       extraPlugins: 'autogrow',
       autoGrow_minHeight: 300,

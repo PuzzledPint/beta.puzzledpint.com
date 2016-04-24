@@ -9,7 +9,7 @@ class GameControl::PagesController < GameControlController
 
   def new
     @page = Page.new
-    @parents = Page.all
+    new_parents
   end
 
   def create
@@ -18,13 +18,14 @@ class GameControl::PagesController < GameControlController
       redirect_to edit_game_control_page_path(@page),
                   notice: 'Page successfully created.'
     else
+      new_parents
       render :new
     end
   end
 
   def edit
     @page = Page.find params[:id]
-    @parents = Page.all
+    update_parents
   end
 
   def update
@@ -34,6 +35,7 @@ class GameControl::PagesController < GameControlController
       redirect_to edit_game_control_page_path(@page),
                   notice: 'Page successfully updated.'
     else
+      update_parents
       render :edit
     end
   end
@@ -45,6 +47,14 @@ class GameControl::PagesController < GameControlController
   end
 
   private
+
+  def new_parents
+    @parents = Page.order(:full_path)
+  end
+
+  def update_parents
+    @parents = Page.where.not(id: @page.id).order(:full_path)
+  end
 
   def parameters
     params.require(:page).
