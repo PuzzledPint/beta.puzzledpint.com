@@ -23,24 +23,4 @@
               th style="width: 105%;"
                 i.fa.fa-gear
           tbody
-            - @pages.each do |page|
-              tr
-                td = page.title
-                td = page.full_path
-                td = page.active
-                td
-                  = link_to edit_game_control_page_path(page)
-                    i.fa.fa-pencil
-                    span<> edit
-                  = link_to game_control_page_path(page, :authenticity_token => form_authenticity_token()),
-                    method: :delete, data: { confirm: 'Are you sure?'}
-                    i.fa.fa-trash<
-                    span<> delete
-                  - if page.active?
-                    = link_to page_path(page), target: :preview
-                      i.fa.fa-eye
-                      span<> visit
-                  - else
-                    = link_to page_path(page, preview: true), target: :preview
-                      i.fa.fa-eye
-                      span<> preview
+            = render partial: "row", collection: @pages

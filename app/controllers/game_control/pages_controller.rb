@@ -4,7 +4,7 @@ class GameControl::PagesController < GameControlController
   add_breadcrumb "<i class='fa fa-files-o'></i> Pages".html_safe, :game_control_pages_path
 
   def index
-    @pages = Page.all.order(:full_path)
+    @pages = Page.where(parent: nil).order(:full_path)
   end
 
   def new

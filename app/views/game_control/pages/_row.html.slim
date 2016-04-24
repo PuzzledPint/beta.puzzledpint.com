@@ -1,0 +1,24 @@
+- prefix ||= ''
+tr
+  td = "#{prefix} #{row.title}"
+  td = row.full_path
+  td = row.active
+  td
+    = link_to edit_game_control_page_path(row)
+      i.fa.fa-pencil
+      span<> edit
+    = link_to game_control_page_path(row, :authenticity_token => form_authenticity_token()),
+      method: :delete, data: { confirm: 'Are you sure?'}
+      i.fa.fa-trash<
+      span<> delete
+    - if row.active?
+      = link_to page_path(row), target: :preview
+        i.fa.fa-eye
+        span<> visit
+    - else
+      = link_to page_path(row, preview: true), target: :preview
+        i.fa.fa-eye
+        span<> preview
+
+- if row.children
+  = render partial: "row", collection: row.children, locals: { prefix: "#{prefix} — " }
