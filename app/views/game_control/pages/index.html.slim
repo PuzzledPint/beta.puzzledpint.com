@@ -14,19 +14,19 @@
             | Add Page
 
       .box-body
-        table#admin_table.table.table-bordered.table-hover
+        table#admin_table.table.table-striped.table-hover
           thead
             tr
-              th Name
-              th Slug
-              th Active
-              th
+              th style="width: 40%;" Name
+              th style="width: 40%;" Path
+              th style="width: 5%;" Active
+              th style="width: 105%;"
                 i.fa.fa-gear
           tbody
             - @pages.each do |page|
               tr
                 td = page.title
-                td = page.slug
+                td = page.full_path
                 td = page.active
                 td
                   = link_to edit_game_control_page_path(page)
@@ -36,7 +36,11 @@
                     method: :delete, data: { confirm: 'Are you sure?'}
                     i.fa.fa-trash<
                     span<> delete
-                  - unless page.active?
+                  - if page.active?
+                    = link_to page_path(page), target: :preview
+                      i.fa.fa-eye
+                      span<> visit
+                  - else
                     = link_to page_path(page, preview: true), target: :preview
                       i.fa.fa-eye
                       span<> preview

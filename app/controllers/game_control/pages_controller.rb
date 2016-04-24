@@ -4,11 +4,12 @@ class GameControl::PagesController < GameControlController
   add_breadcrumb "<i class='fa fa-files-o'></i> Pages".html_safe, :game_control_pages_path
 
   def index
-    @pages = Page.all
+    @pages = Page.all.order(:full_path)
   end
 
   def new
     @page = Page.new
+    @parents = Page.all
   end
 
   def create
@@ -23,6 +24,7 @@ class GameControl::PagesController < GameControlController
 
   def edit
     @page = Page.find params[:id]
+    @parents = Page.all
   end
 
   def update
@@ -46,6 +48,6 @@ class GameControl::PagesController < GameControlController
 
   def parameters
     params.require(:page).
-      permit(:active, :title, :slug, :body)
+      permit(:active, :title, :slug, :content, :parent_id)
   end
 end

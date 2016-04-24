@@ -104,14 +104,17 @@ ActiveRecord::Schema.define(version: 20160201010708) do
   create_table "pages", force: :cascade do |t|
     t.string   "title",                      null: false
     t.string   "slug",                       null: false
-    t.text     "body",                       null: false
+    t.string   "full_path",                  null: false
+    t.text     "content",                    null: false
     t.integer  "parent_id"
     t.boolean  "active",     default: false, null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
 
-  add_index "pages", ["slug"], name: "index_pages_on_slug", unique: true, using: :btree
+  add_index "pages", ["full_path"], name: "index_pages_on_full_path", unique: true, using: :btree
+  add_index "pages", ["parent_id"], name: "index_pages_on_parent_id", using: :btree
+  add_index "pages", ["slug"], name: "index_pages_on_slug", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"

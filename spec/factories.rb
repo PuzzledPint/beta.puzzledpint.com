@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :page do
     title "Page Title"
     slug "page"
-    body "Page Body"
+    content "Page Content"
     active true
   end
 

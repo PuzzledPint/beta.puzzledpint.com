@@ -32,6 +32,6 @@ Rails.application.routes.draw do
     resources 'pages'
   end
 
-  get '*slug', to: 'pages#show', as: :page,
-    constraints: { slug: /(?!game_control).*/ }
+  get '*path', to: 'pages#show', as: :page,
+    constraints: { path: /(?!game_control).*/ }
 end

@@ -40,12 +40,12 @@ RSpec.describe GameControl::PagesController, type: :controller do
         params = { active: '1',
                    title: 'New Page',
                    slug: 'slug',
-                   body: 'Body' }
+                   content: 'Body' }
         expect do
           post :create, page: params
         end.to change(Page, :count).by(1)
 
-        expect(response).to redirect_to edit_game_control_page_path(Page.last)
+        expect(response).to redirect_to edit_game_control_page_path(Page.last.id)
       end
 
       it 'handles errors' do
@@ -76,7 +76,7 @@ RSpec.describe GameControl::PagesController, type: :controller do
         params = { active: '0',
                    title: 'New Page',
                    slug: 'New slug',
-                   body: 'New Body' }
+                   content: 'New Body' }
         patch :update, id: page, page: params
 
         page.reload
@@ -84,7 +84,7 @@ RSpec.describe GameControl::PagesController, type: :controller do
         expect(page.active).to be false
         expect(page.title).to eq params[:title]
         expect(page.slug).to eq 'new-slug'
-        expect(page.body).to eq params[:body]
+        expect(page.content).to eq params[:content]
       end
 
       it 'handles errors' do
