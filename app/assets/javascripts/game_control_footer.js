@@ -6,6 +6,7 @@
 //= require AdminLTE/plugins/iCheck/icheck.min.js
 //= require AdminLTE/dist/js/app.min.js
 
-$(document).ready(function() {
-  Turbolinks.enableProgressBar();
-});
+// TODO renable if we get turbolinks to play nice with bootstrap
+// $(document).ready(function() {
+//   Turbolinks.enableProgressBar();
+// });
