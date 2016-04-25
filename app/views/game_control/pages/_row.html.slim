@@ -4,21 +4,30 @@ tr
   td = row.full_path
   td = row.active
   td
-    = link_to edit_game_control_page_path(row)
-      i.fa.fa-pencil
-      span<> edit
-    = link_to game_control_page_path(row, :authenticity_token => form_authenticity_token()),
-      method: :delete, data: { confirm: 'Are you sure?'}
-      i.fa.fa-trash<
-      span<> delete
-    - if row.active?
-      = link_to page_path(row.full_path), target: :preview
-        i.fa.fa-eye
-        span<> visit
-    - else
-      = link_to page_path(row.full_path, preview: true), target: :preview
-        i.fa.fa-eye
-        span<> preview
+    .btn-group
+      button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+        | Action
+        span.caret<
+      ul class="dropdown-menu"
+        li
+          = link_to edit_game_control_page_path(row)
+            i.fa.fa-pencil
+            span< edit
+        li
+          = link_to game_control_page_path(row, :authenticity_token => form_authenticity_token()),
+            method: :delete, data: { confirm: 'Are you sure?'}
+            i.fa.fa-trash
+            span< delete
+        - if row.active?
+          li
+            = link_to page_path(row.full_path), target: :preview
+              i.fa.fa-eye
+              span< visit
+        - else
+          li
+            = link_to page_path(row.full_path, preview: true), target: :preview
+              i.fa.fa-eye
+              span< preview
 
 - if row.children
   = render partial: "row", collection: row.children, locals: { prefix: "#{prefix}—" }
