@@ -50,6 +50,7 @@ gem 'simple_form'
 gem 'countries'
 gem 'country_select'
 gem 'breadcrumbs_on_rails'
+gem 'inline_svg'
 
 gem 'analytics-ruby', '~> 2.0.0', require: 'segment/analytics'
 
