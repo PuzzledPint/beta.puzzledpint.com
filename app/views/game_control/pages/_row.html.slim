@@ -12,11 +12,11 @@ tr
       i.fa.fa-trash<
       span<> delete
     - if row.active?
-      = link_to page_path(row), target: :preview
+      = link_to page_path(row.full_path), target: :preview
         i.fa.fa-eye
         span<> visit
     - else
-      = link_to page_path(row, preview: true), target: :preview
+      = link_to page_path(row.full_path, preview: true), target: :preview
         i.fa.fa-eye
         span<> preview
 
