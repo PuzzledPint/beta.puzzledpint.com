@@ -10,7 +10,7 @@ to abide by the [code of conduct].
 1. Fork the repo.
 2. Make your change.
 3. Test your change. Make sure all of the tests pass by running `./bin/rspec`
-4. Make sure your change matches our style guide by running `bundle exec rubocop`
+4. Make sure your change matches our [slightly modified version] of the [Ruby Style Guide] style guide by running [rubocop]. `bundle exec rubocop`
 5. Write a [good commit message][commit].
 6. Include the github issue number(s) that this branch resolves. [More Info](https://help.github.com/articles/closing-issues-via-commit-messages/)
 7. Push to your fork.
@@ -20,9 +20,12 @@ to abide by the [code of conduct].
 Wait for us.  We are also volunteers. We will get back to you as soon as possible.
 We may suggest changes.
 
+[slightly modified version]: https://github.com/PuzzledPint/puzzledpint.com/blob/master/.rubocop.yml
+[Ruby Style Guide]: https://github.com/bbatsov/ruby-style-guide
+[rubocop]: https://github.com/bbatsov/rubocop
 [commit]: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
 [pr]: https://github.com/PuzzledPint/puzzledpint.com/compare/
-[hound]: https://houndci.com
+[Hound]: https://houndci.com
 
 
 ## Setting up local development
