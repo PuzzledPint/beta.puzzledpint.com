@@ -13,6 +13,9 @@ RSpec.describe Admin, type: :model do
   end
 
   describe '#avatar' do
-    it { expect(subject.avatar).to eq("https://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(subject.email.strip.downcase)}?s=180") }
+    it do
+      hash = Digest::MD5.hexdigest(subject.email.strip.downcase)
+      expect(subject.avatar).to eq("https://www.gravatar.com/avatar/#{hash}?s=180")
+    end
   end
 end
