@@ -18,9 +18,10 @@
                               label_method: :name, value_method: :code,
                               input_html: { class: :state }, disabled: true
           .box-footer
-            = f.submit 'Save', class: 'btn btn-primary'
-            = link_to 'Cancel', game_control_cities_path,
-              html_options = { class: 'btn btn-default pull-right' }
+            .pull-right
+              =<> link_to 'Cancel', game_control_cities_path,
+                html_options = { class: 'btn btn-default' }
+              =<> f.submit 'Save', class: 'btn btn-primary'
 
 javascript:
   $(function() {

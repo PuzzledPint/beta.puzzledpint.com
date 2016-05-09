@@ -10,7 +10,7 @@
           |  Events
         - if current_admin.can_create?(Event)
           .box-tools.pull-left
-            = link_to :new_game_control_event, class: 'btn btn-default'
+            = link_to :new_game_control_event, class: 'btn btn-sm btn-default'
               i.fa.fa-user-plus>
               | Add New Event
 
@@ -28,19 +28,27 @@
                 td = event.event_at.to_s(:date)
                 td = event.theme
                 td
-                  - if current_admin.can_read?(event)
-                    = link_to game_control_event_path(event)
-                      i.fa.fa-eye
-                      span<> view
-                  - if current_admin.can_manage?(event)
-                    = link_to edit_game_control_event_path(event)
-                      i.fa.fa-pencil
-                      span<> edit
-                    - unless event.past?
-                      = link_to game_control_event_path(event, :authenticity_token => form_authenticity_token()),
-                        method: :delete, data: { confirm: 'Are you sure?'}
-                        i.fa.fa-trash<
-                        span< delete
+                  .btn-group
+                    button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                      | Action
+                      span.caret<
+                    ul class="dropdown-menu"
+                      li
+                        - if current_admin.can_read?(event)
+                          = link_to game_control_event_path(event)
+                            i.fa.fa-eye
+                            span<> view
+                      li
+                        - if current_admin.can_manage?(event)
+                          = link_to edit_game_control_event_path(event)
+                            i.fa.fa-pencil
+                            span<> edit
+                      li
+                        - unless event.past?
+                          = link_to game_control_event_path(event, :authenticity_token => form_authenticity_token()),
+                            method: :delete, data: { confirm: 'Are you sure?'}
+                            i.fa.fa-trash<
+                            span< delete
 
 javascript:
   $(document).ready(function() {

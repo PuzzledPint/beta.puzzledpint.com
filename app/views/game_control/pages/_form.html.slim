@@ -1,0 +1,47 @@
+= simple_form_for [:game_control, @page] do |f|
+  .row
+    .col-sm-12
+      .box.box-primary
+        .box-header.with-border
+          .box-title
+            i.fa.fa-file-text-o
+            |  Page Info
+          - if @page.active?
+            .box-tools.pull-right
+              = link_to page_path(@page), target: :preview, class: 'btn btn-default'
+                i.fa.fa-eye
+                span<> visit
+
+        .box-body
+          -if @page.errors[:full_path].present?
+            .callout.callout-danger
+              button type='button' class='close' data-dismiss='alert' aria-hidden='true' &times;
+              h4
+                i> class='icon fa fa-warning'
+                | You cannot use '#{@page.slug}' as the slug because its parent
+                |  has a child with that slug already.
+          .form-group
+            = f.input :active
+            = f.input :title
+            .row
+              .col-md-6.col-sm-12
+                = f.input :parent_id, collection: @parents,
+                  label_method: ->(p) { "#{p.title} - /#{p.full_path}" }
+              .col-md-6.col-sm-12
+                = f.input :slug
+            = f.input :content
+        .box-footer
+          .pull-right
+            =<> link_to 'Cancel', game_control_pages_path, class: 'btn btn-default'
+            =<> f.submit 'Save', class: 'btn btn-primary'
+
+- content_for :js_header, javascript_include_tag('//cdn.ckeditor.com/4.5.6/standard-all/ckeditor.js')
+javascript:
+  $(document).ready(function(){
+    $('select').select2();
+    CKEDITOR.replace('page_content', {
+      extraPlugins: 'autogrow',
+      autoGrow_minHeight: 300,
+      autoGrow_maxHeight: 500
+    });
+  });

@@ -8,7 +8,7 @@
         - if current_admin.can_create?(EventLocation)
           .box-tools.pull-left
             = link_to new_game_control_event_event_location_path(@event),
-              class: 'btn btn-default'
+              class: 'btn btn-sm btn-default'
               i.fa.fa-plus>
               | Add New Location
       .box-body
@@ -48,15 +48,22 @@
                       dl
                         = location.notes.html_safe if location.notes
                     td
-                      - if current_admin.can_update?(location)
-                        = link_to edit_game_control_event_event_location_path(@event, location)
-                          i.fa.fa-pencil
-                          span<> edit
-                      - if current_admin.can_delete?(location)
-                        = link_to game_control_event_event_location_path(@event, location, :authenticity_token => form_authenticity_token()),
-                          method: :delete, data: { confirm: 'Are you sure?'}
-                          i.fa.fa-trash<
-                          span< delete
+                      .btn-group
+                        button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                          | Action
+                          span.caret<
+                        ul class="dropdown-menu"
+                          - if current_admin.can_update?(location)
+                            li
+                              = link_to edit_game_control_event_event_location_path(@event, location)
+                                i.fa.fa-pencil
+                                span< edit
+                          - if current_admin.can_delete?(location)
+                            li
+                              = link_to game_control_event_event_location_path(@event, location, :authenticity_token => form_authenticity_token()),
+                                method: :delete, data: { confirm: 'Are you sure?'}
+                                i.fa.fa-trash
+                                span< delete
 
 javascript:
   $(document).ready(function() {

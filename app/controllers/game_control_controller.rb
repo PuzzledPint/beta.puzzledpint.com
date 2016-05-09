@@ -7,4 +7,9 @@ class GameControlController < ActionController::Base
   before_action :authenticate_admin!
 
   add_breadcrumb "<i class='fa fa-dashboard'></i>Dashboard".html_safe, :game_control_root_path
+
+  def authority_forbidden(error)
+    Authority.logger.warn(error.message)
+    render 'errors/403_game_control', status: :forbidden
+  end
 end

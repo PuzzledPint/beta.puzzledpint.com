@@ -9,7 +9,7 @@
           i.fa.fa-users>
           |  Cities
         .box-tools.pull-left
-          = link_to :new_game_control_city, class: 'btn btn-default'
+          = link_to :new_game_control_city, class: 'btn btn-sm btn-default'
             i.fa.fa-plus>
             | Add New City
 
@@ -29,13 +29,20 @@
                 td = display_state(city.country, city.state)
                 td = city.country
                 td
-                  = link_to edit_game_control_city_path(city)
-                    i.fa.fa-pencil
-                    span<> edit
-                  = link_to game_control_city_path(city, :authenticity_token => form_authenticity_token()),
-                    method: :delete, data: { confirm: 'Are you sure?'}
-                    i.fa.fa-trash<
-                    span< delete
+                  .btn-group
+                    button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                      | Action
+                      span.caret<
+                    ul class="dropdown-menu"
+                      li
+                        = link_to edit_game_control_city_path(city)
+                          i.fa.fa-pencil
+                          span< edit
+                      li
+                        = link_to game_control_city_path(city, :authenticity_token => form_authenticity_token()),
+                          method: :delete, data: { confirm: 'Are you sure?'}
+                          i.fa.fa-trash
+                          span< delete
               - city.children.each do |child|
                 tr
                   td
@@ -44,13 +51,20 @@
                   td = child.state
                   td = child.country
                   td
-                    = link_to edit_game_control_city_path(child)
-                      i.fa.fa-pencil
-                      span<> edit
-                    = link_to game_control_city_path(child, :authenticity_token => form_authenticity_token()),
-                      method: :delete, data: { confirm: 'Are you sure?'}
-                      i.fa.fa-trash<
-                      span< delete
+                    .btn-group
+                      button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        | Action
+                        span.caret<
+                      ul class="dropdown-menu"
+                        li
+                          = link_to edit_game_control_city_path(child)
+                            i.fa.fa-pencil
+                            span< edit
+                        li
+                          = link_to game_control_city_path(child, :authenticity_token => form_authenticity_token()),
+                            method: :delete, data: { confirm: 'Are you sure?'}
+                            i.fa.fa-trash
+                            span< delete
 
 javascript:
   $(document).ready(function() {

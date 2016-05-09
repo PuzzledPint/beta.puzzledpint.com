@@ -1,0 +1,40 @@
+doctype html
+html
+  head
+    meta charset='utf-8'
+    title Puzzled Pint
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    #wrapper
+      #header
+       #logo
+          h1
+            a href="/"
+              span Puzzled Pint
+       #navigation
+          ul.nav-header
+            li.nav-selected.nav-path-selected.first
+              a.nav-selected.nav-path-selected.first href="/"
+                | home
+            li
+              a href="/about/" about
+            li
+              a href="/puzzles/" puzzles
+            li
+              a href="/standings/" standings
+            li
+              a href="/faq/" faq
+            li
+              a href="/resources/" resources
+            li
+              a href="http://blog.puzzledpint.com/" blog
+      .clear:both
+
+      #content
+        == yield
+
+      #footer
+        #license_info
+          | Unless otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.

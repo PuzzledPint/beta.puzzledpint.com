@@ -1,0 +1,26 @@
+- content_for :page_header, 'Manage Pages'
+- content_for :page_description, 'content management system for the site'
+
+.row
+  .col-sm-12
+    .box.box-primary
+      .box-header.with-border
+        .box-title
+          i.fa.fa-files-o>
+          |  Pages
+        .box-tools.pull-left
+          = link_to new_game_control_page_path, class: 'btn btn-sm btn-default'
+            i.fa.fa-plus>
+            | Add Page
+
+      .box-body
+        table#admin_table.table.table-striped.table-hover
+          thead
+            tr
+              th style="width: 40%;" Name
+              th style="width: 40%;" Path
+              th style="width: 5%;" Active
+              th style="width: 105%;"
+                i.fa.fa-gear
+          tbody
+            = render partial: "row", collection: @pages

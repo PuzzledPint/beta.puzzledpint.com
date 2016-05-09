@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  root 'welcome#index'
+  root 'pages#home'
+
+  # error pages
+  %w( 403 404 500 ).each do |code|
+    get code, :to => "errors#show", :code => code
+  end
 
   get '/events/:event_id/locations', controller: :event_locations,
                                      action: :index, defaults: { format: :json }
@@ -24,5 +29,9 @@ Rails.application.routes.draw do
     resources 'events' do
       resources 'event_locations'
     end
+    resources 'pages'
   end
+
+  get '*path', to: 'pages#show', as: :page,
+    constraints: { path: /(?!game_control).*/ }
 end
