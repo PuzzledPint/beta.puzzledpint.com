@@ -1,3 +1,5 @@
+require 'digest/md5'
+
 class Admin < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :lockable, :timeoutable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -13,6 +15,10 @@ class Admin < ActiveRecord::Base
   validates :email, :full_name, :roles, presence: true
 
   def avatar
-    "https://robohash.org/#{email}.png?set=set3&bgset=bg2"
+    # Following the instructions from here for creating a gravatar hash.
+    # http://en.gravatar.com/site/implement/hash/
+    gravatar_hash = Digest::MD5.hexdigest(email.strip.downcase)
+    image_size = 180
+    "https://www.gravatar.com/avatar/#{gravatar_hash}?s=#{image_size}"
   end
 end
