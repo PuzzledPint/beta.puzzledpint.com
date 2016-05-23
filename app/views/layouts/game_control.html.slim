@@ -131,6 +131,7 @@ html
       / ./wrapper
       / REQUIRED JS SCRIPTS
       = javascript_include_tag 'game_control_footer.js'
+      = yield(:js_footer).presence
 
 javascript:
   analytics.page()

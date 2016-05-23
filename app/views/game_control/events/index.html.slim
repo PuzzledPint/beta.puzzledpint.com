@@ -25,7 +25,7 @@
             tbody
               - @events.each do |event|
                 tr
-                  td = event.event_at.to_s(:date)
+                  td = event.event_at
                   td = event.theme
                   td.text-right
                     - if current_admin.can_manage?(event)

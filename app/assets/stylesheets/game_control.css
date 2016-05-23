@@ -4,6 +4,7 @@
  *= require AdminLTE/dist/css/skins/skin-yellow.min.css
  *= require AdminLTE/plugins/datatables/dataTables.bootstrap.css
  *= require AdminLTE/plugins/select2/select2.min.css
+ *= require AdminLTE/plugins/datepicker/datepicker3.css
  *= require AdminLTE/dist/css/AdminLTE.min.css
  *= require game_control/iCheck_square_yellow
  */

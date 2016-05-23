@@ -12,7 +12,13 @@
         - if current_admin.can_manage?(@event)
           = simple_form_for [:game_control, @event]  do |f|
             .box-body
-              = f.input :event_at
+              .form-group.string.required
+                = f.label :event_at
+                .input-group.date
+                  .input-group-addon
+                    i.fa.fa-calendar
+                  = f.input :event_at, as: :string, label: false,
+                    input_html: { class: 'js-datepicker' }
               = f.input :theme
             .box-footer
               .pull-right
@@ -23,7 +29,7 @@
           .box-body
               dl
                 dt Event Date
-                dd = @event.event_at.to_s(:date)
+                dd = @event.event_at
                 dt Theme
                 dd = @event.theme
 
@@ -51,14 +57,22 @@
           .col-sm-12
             = render partial: "locations_table", locals: {event: @event, locations: @locations}
 
-javascript:
-  $(document).ready(function() {
-    $('.js-location_table').DataTable({
-      "order": [[ 0, "asc" ]],
-      "columns": [{"orderable": true},
-                  {"orderable": true},
-                  {"orderable": false},
-                  {"orderable": false}
-                 ]
+- content_for :js_footer
+  javascript:
+    $(document).ready(function() {
+      $('.js-datepicker').datepicker({
+        autoclose: true,
+        format: 'dd M yyyy',
+        disableTouchKeyboard: true,
+        toggleActive: false
+      });
+
+      $('.js-location_table').DataTable({
+        "order": [[ 0, "asc" ]],
+        "columns": [{"orderable": true},
+                    {"orderable": true},
+                    {"orderable": false},
+                    {"orderable": false}
+                   ]
+      });
     });
-  });

@@ -40,7 +40,7 @@
             i.fa.fa-building>
             = "Your #{"Location".pluralize(@locations.count)}"
             = " for upcoming event - #{@upcoming_event.theme}"
-            = " - #{@upcoming_event.event_at.to_s(:date)}"
+            = " - #{@upcoming_event.event_at}"
         .box-body
           .row
             .col-sm-12

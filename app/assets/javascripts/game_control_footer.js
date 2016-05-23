@@ -4,6 +4,7 @@
 //= require AdminLTE/plugins/select2/select2.min.js
 //= require country_state_select
 //= require AdminLTE/plugins/iCheck/icheck.min.js
+//= require AdminLTE/plugins/datepicker/bootstrap-datepicker.js
 //= require AdminLTE/dist/js/app.min.js
 
 // TODO renable if we get turbolinks to play nice with bootstrap
