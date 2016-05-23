@@ -30,3 +30,18 @@
             | - A Google Drive Folder containing resources to make the event in your city successful.
         p
           | - Thanks for your continued support.
+
+- if @locations.present?
+  .row
+    .col-sm-12
+      .box.box-primary
+        .box-header.with-border
+          .box-title
+            i.fa.fa-building>
+            = "Your #{"Location".pluralize(@locations.count)}"
+            = " for upcoming event - #{@upcoming_event.theme}"
+            = " - #{@upcoming_event.event_at.to_s(:date)}"
+        .box-body
+          .row
+            .col-sm-12
+              = render partial: "game_control/events/locations_table", locals: {event: @upcoming_event, locations: @locations}

@@ -14,6 +14,11 @@ RSpec.describe GameControl::DashboardController do
       before { get :index }
 
       it { should render_template :index }
+
+      context 'with events' do
+        before { create(:event, event_at: Time.zone.now) }
+        it { should render_template :index }
+      end
     end
   end
 end

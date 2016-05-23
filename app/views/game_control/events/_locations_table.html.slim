@@ -13,10 +13,12 @@
             strong = location.city.display_name
           td
             address
-              = location.bar_name
-              br
-              = location.addr_street_1
-              br
+              - if location.bar_name.present?
+                = location.bar_name
+                br
+              - if location.addr_street_1.present?
+                = location.addr_street_1
+                br
               - if location.addr_street_2.present?
                 = location.addr_street_2
                 br
