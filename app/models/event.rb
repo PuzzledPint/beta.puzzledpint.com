@@ -8,6 +8,10 @@ class Event < ActiveRecord::Base
 
   before_destroy :prevent_destroy
 
+  def self.upcoming
+    where('event_at >= ?', Time.zone.now).order(:event_at).first
+  end
+
   def locations_tree
     locations = event_locations.includes(:city)
     locations.to_a.sort! { |x, y| x.city.display_name <=> y.city.display_name }

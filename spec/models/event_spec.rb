@@ -18,6 +18,17 @@ RSpec.describe Event, type: :model do
     expect { event.destroy }.to raise_error 'Cannot destroy past events.'
   end
 
+  describe '.upcoming' do
+    before do
+      create(:event, event_at: 1.month.ago)
+      create(:event, event_at: 1.month.from_now)
+    end
+
+    let!(:expected_event) { create(:event, event_at: Time.zone.now) }
+
+    specify { expect(described_class.upcoming).to eq(expected_event) }
+  end
+
   describe '#past?' do
     it 'returns true when event is in the past' do
       event = build(:event, event_at: 1.day.ago)
