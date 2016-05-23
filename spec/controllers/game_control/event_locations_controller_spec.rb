@@ -34,7 +34,7 @@ RSpec.describe GameControl::EventLocationsController, type: :controller do
                         event_id: event.id,
                         city_id: create(:city).id }
           post :create, event_id: event.id, event_location: post_data
-          expect(response).to redirect_to(edit_game_control_event_path(event))
+          expect(response).to redirect_to(game_control_event_path(event))
         end.to change(EventLocation, :count).by(1)
       end
 
@@ -67,7 +67,7 @@ RSpec.describe GameControl::EventLocationsController, type: :controller do
                        id: location.id,
                        event_location: post_data
 
-        expect(response).to redirect_to edit_game_control_event_path location.event
+        expect(response).to redirect_to game_control_event_path location.event
         expect(flash[:notice]).to match(/successful/i)
 
         location.reload

@@ -1,5 +1,5 @@
-- content_for :page_header, 'Events'
-- content_for :page_description, 'view event info'
+- content_for :page_header, @event.theme
+- content_for :page_description, 'update event details'
 - add_breadcrumb @event.theme, game_control_event_path(@event)
 
 .row
@@ -9,12 +9,23 @@
         .box-title
           i.fa.fa-calendar>
           |  Event Info
-      .box-body
-          dl
-            dt Event Date
-            dd = @event.event_at.to_s(:date)
-            dt Theme
-            dd = @event.theme
+        - if current_admin.can_manage?(@event)
+          = simple_form_for [:game_control, @event]  do |f|
+            .box-body
+              = f.input :event_at
+              = f.input :theme
+            .box-footer
+              .pull-right
+                =<> link_to 'Cancel', game_control_events_path,
+                  html_options = { class: 'btn btn-default' }
+                =<> f.submit 'Save', class: 'btn btn-primary'
+        - else
+          .box-body
+              dl
+                dt Event Date
+                dd = @event.event_at.to_s(:date)
+                dt Theme
+                dd = @event.theme
 
 .row
   .col-sm-12

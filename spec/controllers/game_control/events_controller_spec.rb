@@ -78,17 +78,6 @@ RSpec.describe GameControl::EventsController, type: :controller do
       end
     end
 
-    describe 'GET edit' do
-      it 'renders' do
-        event = create(:event)
-
-        get :edit, id: event.id
-
-        expect(response).to be_successful
-        expect(response).to render_template(:edit)
-      end
-    end
-
     describe 'PATCH update' do
       before { @event = create(:event) }
 
@@ -100,7 +89,7 @@ RSpec.describe GameControl::EventsController, type: :controller do
 
         patch :update, id: @event.id, event: post_data
 
-        expect(response).to redirect_to game_control_events_path
+        expect(response).to redirect_to game_control_event_path(@event)
         expect(flash[:notice]).to match(/successful/i)
 
         @event.reload
@@ -111,7 +100,7 @@ RSpec.describe GameControl::EventsController, type: :controller do
         patch :update, id: @event.id, event: { theme: '' }
 
         expect(response).to be_successful
-        expect(response).to render_template(:edit)
+        expect(response).to render_template(:show)
         expect(assigns(:event).errors).not_to be_empty
       end
     end

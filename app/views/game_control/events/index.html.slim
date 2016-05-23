@@ -28,29 +28,29 @@
                   td = event.event_at.to_s(:date)
                   td = event.theme
                   td.text-right
-                    .btn-group
-                      button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                        span.caret<
-                      ul class="dropdown-menu dropdown-menu-right"
-                        - if current_admin.can_read?(event) && !current_admin.can_manage?(event)
-                          li
-                            = link_to game_control_event_path(event)
-                              span.text-nowrap
-                                i.fa.fa-eye<
-                                span< view
-                        - if current_admin.can_manage?(event)
-                          li
-                            = link_to edit_game_control_event_path(event)
-                              span.text-nowrap
-                                i.fa.fa-pencil<
-                                span<> view&nbsp;/&nbsp;edit
-                          - unless event.past?
+                    - if current_admin.can_manage?(event)
+                      .btn-group
+                        button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                          span.caret<
+                        ul class="dropdown-menu dropdown-menu-right"
+                          - if current_admin.can_manage?(event)
                             li
-                              = link_to game_control_event_path(event, :authenticity_token => form_authenticity_token()),
-                                method: :delete, data: { confirm: 'Are you sure?'}
+                              = link_to game_control_event_path(event)
                                 span.text-nowrap
-                                  i.fa.fa-trash<
-                                  span< delete
+                                  i.fa.fa-pencil<
+                                  span<> view&nbsp;/&nbsp;edit
+                            - unless event.past?
+                              li
+                                = link_to game_control_event_path(event, :authenticity_token => form_authenticity_token()),
+                                  method: :delete, data: { confirm: 'Are you sure?'}
+                                  span.text-nowrap
+                                    i.fa.fa-trash<
+                                    span< delete
+                    - elsif current_admin.can_read?(event)
+                      = link_to game_control_event_path(event)
+                        span.text-nowrap
+                          i.fa.fa-eye<
+                          span< view
 
 javascript:
   $(document).ready(function() {

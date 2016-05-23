@@ -7,11 +7,6 @@ class GameControl::EventsController < GameControlController
     @events = Event.all.order(event_at: :desc)
   end
 
-  def show
-    @event = Event.find(params[:id])
-    load_location_data
-  end
-
   def new
     @event = Event.new
     @cities = City.parent_cities.order(:name)
@@ -21,14 +16,14 @@ class GameControl::EventsController < GameControlController
     @event = Event.new(event_params)
     if @event.save
       EventService.new.add_event_locations(@event, params[:city_ids])
-      redirect_to edit_game_control_event_path(@event), notice: 'Event successfully created.'
+      redirect_to game_control_event_path(@event), notice: 'Event successfully created.'
     else
       @cities = City.parent_cities.order(:name)
       render :new
     end
   end
 
-  def edit
+  def show
     @event = Event.find(params[:id])
     load_location_data
   end
@@ -37,11 +32,11 @@ class GameControl::EventsController < GameControlController
     @event = Event.find params[:id]
 
     if @event.update_attributes(event_params)
-      redirect_to game_control_events_path,
+      redirect_to game_control_event_path(@event),
                   notice: "Event was successfully updated"
     else
       load_location_data
-      render :edit
+      render :show
     end
   end
 

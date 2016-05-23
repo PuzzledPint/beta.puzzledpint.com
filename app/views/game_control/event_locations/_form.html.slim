@@ -21,7 +21,7 @@
 
   .box-footer
     .pull-right
-      =<> link_to 'Cancel', cancel_path(@event),
+      =<> link_to 'Cancel', game_control_event_path(@event),
         html_options = { class: 'btn btn-default' }
       =<> f.submit 'Save', class: 'btn btn-primary'
 
