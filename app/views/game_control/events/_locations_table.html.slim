@@ -1,78 +1,59 @@
-.row
-  .col-sm-12
-    .box.box-primary
-      .box-header.with-border
-        .box-title
-          i.fa.fa-building>
-          | Locations
-        - if current_admin.can_create?(EventLocation)
-          .box-tools.pull-left
-            = link_to new_game_control_event_event_location_path(@event),
-              class: 'btn btn-sm btn-default'
-              i.fa.fa-plus>
-              | Add New Location
-      .box-body
-        .row
-          .col-sm-12
-            table#location_table.table.table-bordered.table-hover
-              thead
-                tr
-                  th Location
-                  th Bar
-                  th Notes
-                  th
-                    i.fa.fa-gear
-              tbody
-                - @locations.each do |location|
-                  tr
-                    td
-                      strong = location.city.display_name
-                    td
-                      address
-                        = location.bar_name
-                        br
-                        = location.addr_street_1
-                        br
-                        - if location.addr_street_2.present?
-                          = location.addr_street_2
-                          br
-                        - state = display_state(location.addr_country, location.addr_state)
-                        = [location.addr_city, state].compact.reject(&:empty?).join(',')
-                        =< location.addr_postal_code
-                        br
-                        = location.addr_country
-                        br
-                        strong Start Time
-                        =< location.start_time.to_s(:time)
-                    td
-                      dl
-                        = location.notes.html_safe if location.notes
-                    td
-                      .btn-group
-                        button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                          | Action
-                          span.caret<
-                        ul class="dropdown-menu"
-                          - if current_admin.can_update?(location)
-                            li
-                              = link_to edit_game_control_event_event_location_path(@event, location)
-                                i.fa.fa-pencil
-                                span< edit
-                          - if current_admin.can_delete?(location)
-                            li
-                              = link_to game_control_event_event_location_path(@event, location, :authenticity_token => form_authenticity_token()),
-                                method: :delete, data: { confirm: 'Are you sure?'}
-                                i.fa.fa-trash
-                                span< delete
+.table-responsive
+  table.js-location_table.table.table-bordered.table-hover
+    thead
+      tr
+        th Location
+        th Bar
+        th.hidden-xs Notes
+        th
+    tbody
+      - locations.each do |location|
+        tr
+          td
+            strong = location.city.display_name
+          td
+            address
+              = location.bar_name
+              br
+              = location.addr_street_1
+              br
+              - if location.addr_street_2.present?
+                = location.addr_street_2
+                br
+              - state = display_state(location.addr_country, location.addr_state)
+              = [location.addr_city, state].compact.reject(&:empty?).join(',')
+              =< location.addr_postal_code
+              br
+              = location.addr_country
+              br
+              strong Start Time
+              =< location.start_time.to_s(:time)
+          td.hidden-xs
+            dl
+              = location.notes.html_safe if location.notes
+          td
+            -if current_admin.can_manage?(location)
+              .btn-group
+                button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                  span.caret<
+                ul class="dropdown-menu dropdown-menu-right"
+                  - if current_admin.can_update?(location)
+                    li
+                      = link_to edit_game_control_event_event_location_path(event, location)
+                        span.text-nowrap
+                          i.fa.fa-pencil
+                          span< edit
+                  - if current_admin.can_delete?(location)
+                    li
+                      = link_to game_control_event_event_location_path(event, location, :authenticity_token => form_authenticity_token()),
+                        method: :delete, data: { confirm: 'Are you sure?'}
+                        span.text-nowrap
+                          i.fa.fa-trash
+                          span< delete
+            - elsif current_admin.can_update?(location)
+              = link_to edit_game_control_event_event_location_path(event, location)
+                span.text-nowrap
+                  i.fa.fa-pencil
+                  span< edit
 
-javascript:
-  $(document).ready(function() {
-    $('#location_table').DataTable({
-      "order": [[ 0, "asc" ]],
-      "columns": [{"orderable": true},
-                  {"orderable": true},
-                  {"orderable": false},
-                  {"orderable": false}
-                 ]
-    });
-  });
+

@@ -9,12 +9,45 @@
         .box-title
           i.fa.fa-calendar>
           |  Event Info
-        .box-body
-            dl
-              dt Event Date
-              dd = @event.event_at.to_s(:date)
-              dt Theme
-              dd = @event.theme
+      .box-body
+          dl
+            dt Event Date
+            dd = @event.event_at.to_s(:date)
+            dt Theme
+            dd = @event.theme
 
-= render "locations_table"
+.row
+  .col-sm-12
+    .box.box-primary
+      .box-header.with-border
+        .box-title
+          i.fa.fa-building>
+          = "Your Location".pluralize(@admin_locations.count)
+      .box-body
+        .row
+          .col-sm-12
+            = render partial: "locations_table", locals: {event: @event, locations: @admin_locations}
 
+.row
+  .col-sm-12
+    .box.box-primary
+      .box-header.with-border
+        .box-title
+          i.fa.fa-building>
+          | All Locations
+      .box-body
+        .row
+          .col-sm-12
+            = render partial: "locations_table", locals: {event: @event, locations: @locations}
+
+javascript:
+  $(document).ready(function() {
+    $('.js-location_table').DataTable({
+      "order": [[ 0, "asc" ]],
+      "columns": [{"orderable": true},
+                  {"orderable": true},
+                  {"orderable": false},
+                  {"orderable": false}
+                 ]
+    });
+  });

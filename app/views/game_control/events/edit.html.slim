@@ -10,13 +10,53 @@
           .box-title
             i.fa.fa-calendar>
             | Event Info
-          .box-body
-            = f.input :event_at
-            = f.input :theme
-          .box-footer
-            .pull-right
-              =<> link_to 'Cancel', game_control_events_path,
-                html_options = { class: 'btn btn-default' }
-              =<> f.submit 'Save', class: 'btn btn-primary'
+        .box-body
+          = f.input :event_at
+          = f.input :theme
+        .box-footer
+          .pull-right
+            =<> link_to 'Cancel', game_control_events_path,
+              html_options = { class: 'btn btn-default' }
+            =<> f.submit 'Save', class: 'btn btn-primary'
 
-= render "locations_table"
+.row
+  .col-sm-12
+    .box.box-primary
+      .box-header.with-border
+        .box-title
+          i.fa.fa-building>
+          = "Your Location".pluralize(@admin_locations.count)
+      .box-body
+        .row
+          .col-sm-12
+            = render partial: "locations_table", locals: {event: @event, locations: @admin_locations}
+
+.row
+  .col-sm-12
+    .box.box-primary
+      .box-header.with-border
+        .box-title
+          i.fa.fa-building>
+          | All Locations
+        .box-tools.pull-left
+          = link_to new_game_control_event_event_location_path(@event),
+            class: 'btn btn-sm btn-default'
+            span.text-nowrap
+              i.fa.fa-plus>
+              | Add New Location
+      .box-body
+        .row
+          .col-sm-12
+            = render partial: "locations_table", locals: {event: @event, locations: @locations}
+
+javascript:
+  $(document).ready(function() {
+    $('.js-location_table').DataTable({
+      "order": [[ 0, "asc" ]],
+      "columns": [{"orderable": true},
+                  {"orderable": true},
+                  {"orderable": false},
+                  {"orderable": false}
+                 ]
+    });
+  });

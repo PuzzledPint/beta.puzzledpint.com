@@ -9,7 +9,7 @@ class GameControl::EventsController < GameControlController
 
   def show
     @event = Event.find(params[:id])
-    @locations = build_locations
+    load_location_data
   end
 
   def new
@@ -30,7 +30,7 @@ class GameControl::EventsController < GameControlController
 
   def edit
     @event = Event.find(params[:id])
-    @locations = build_locations
+    load_location_data
   end
 
   def update
@@ -40,7 +40,7 @@ class GameControl::EventsController < GameControlController
       redirect_to game_control_events_path,
                   notice: "Event was successfully updated"
     else
-      @locations = build_locations
+      load_location_data
       render :edit
     end
   end
@@ -55,6 +55,13 @@ class GameControl::EventsController < GameControlController
 
   def event_params
     params.require(:event).permit(:event_at, :theme)
+  end
+
+  def load_location_data
+    @locations = build_locations
+    @admin_locations = @locations.select do |l|
+      current_admin.cities.map(&:id).include?(l.city_id)
+    end
   end
 
   def build_locations
