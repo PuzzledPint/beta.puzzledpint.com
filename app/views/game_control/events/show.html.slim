@@ -52,6 +52,12 @@
         .box-title
           i.fa.fa-building>
           | All Locations
+        .box-tools.pull-left
+          = link_to new_game_control_event_event_location_path(@event),
+            class: 'btn btn-sm btn-default'
+            span.text-nowrap
+              i.fa.fa-plus>
+              | Add New Location
       .box-body
         .row
           .col-sm-12
