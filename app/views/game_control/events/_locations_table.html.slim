@@ -5,7 +5,7 @@
         th Location
         th Bar
         th.hidden-xs Notes
-        th
+        th.col-sm-1
     tbody
       - locations.each do |location|
         tr
@@ -33,11 +33,11 @@
           td.hidden-xs
             dl
               = location.notes.html_safe if location.notes
-          td
+          td.text-right
             -if current_admin.can_manage?(location)
               .btn-group
                 button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                  span.caret<
+                  span.caret
                 ul class="dropdown-menu dropdown-menu-right"
                   - if current_admin.can_update?(location)
                     li
@@ -57,5 +57,3 @@
                 span.text-nowrap
                   i.fa.fa-pencil
                   span< edit
-
-

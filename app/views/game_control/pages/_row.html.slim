@@ -3,12 +3,11 @@ tr
   td = "#{prefix} #{row.title}"
   td = row.full_path
   td = row.active
-  td
+  td.text-right
     .btn-group
-      button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-        | Action
+      button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
         span.caret<
-      ul class="dropdown-menu"
+      ul class="dropdown-menu dropdown-menu-right"
         li
           = link_to edit_game_control_page_path(row)
             i.fa.fa-pencil

@@ -14,13 +14,18 @@
             | Add Page
 
       .box-body
-        table#admin_table.table.table-striped.table-hover
-          thead
-            tr
-              th style="width: 40%;" Name
-              th style="width: 40%;" Path
-              th style="width: 5%;" Active
-              th style="width: 105%;"
-                i.fa.fa-gear
-          tbody
-            = render partial: "row", collection: @pages
+        .table-responsive
+          table#pages_table.table.table-bordered.table-striped.table-hover.table-condensed
+            thead
+              tr
+                th Name
+                th Path
+                th Active
+                th.col-sm-1
+            tbody
+              = render partial: "row", collection: @pages
+
+javascript:
+  $(document).ready(function() {
+    $('#pages_table').DataTable();
+  });

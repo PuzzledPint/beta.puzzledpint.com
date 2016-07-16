@@ -14,57 +14,55 @@
             | Add New City
 
       .box-body
-        table#city_table.table.table-bordered.table-hover
-          thead
-            tr
-              th Display Name
-              th State
-              th Country
-              th
-                i.fa.fa-gear
-          tbody
-            - @cities.each do |city|
+        .table-responsive
+          table#city_table.table.table-bordered.table-hover
+            thead
               tr
-                td = city.display_name
-                td = display_state(city.country, city.state)
-                td = city.country
-                td
-                  .btn-group
-                    button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                      | Action
-                      span.caret<
-                    ul class="dropdown-menu"
-                      li
-                        = link_to edit_game_control_city_path(city)
-                          i.fa.fa-pencil
-                          span< edit
-                      li
-                        = link_to game_control_city_path(city, :authenticity_token => form_authenticity_token()),
-                          method: :delete, data: { confirm: 'Are you sure?'}
-                          i.fa.fa-trash
-                          span< delete
-              - city.children.each do |child|
+                th Display Name
+                th State
+                th Country
+                th.col-sm-1
+            tbody
+              - @cities.each do |city|
                 tr
-                  td
-                    span data-toggle='tooltip' title="Child of #{city.display_name}"
-                      = child.display_name
-                  td = child.state
-                  td = child.country
-                  td
+                  td = city.display_name
+                  td = display_state(city.country, city.state)
+                  td = city.country
+                  td.text-right
                     .btn-group
-                      button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                        | Action
-                        span.caret<
-                      ul class="dropdown-menu"
+                      button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        span.caret
+                      ul class="dropdown-menu dropdown-menu-right"
                         li
-                          = link_to edit_game_control_city_path(child)
+                          = link_to edit_game_control_city_path(city)
                             i.fa.fa-pencil
                             span< edit
                         li
-                          = link_to game_control_city_path(child, :authenticity_token => form_authenticity_token()),
+                          = link_to game_control_city_path(city, :authenticity_token => form_authenticity_token()),
                             method: :delete, data: { confirm: 'Are you sure?'}
                             i.fa.fa-trash
                             span< delete
+                - city.children.each do |child|
+                  tr
+                    td
+                      span data-toggle='tooltip' title="Child of #{city.display_name}"
+                        = child.display_name
+                    td = child.state
+                    td = child.country
+                    td.text-right
+                      .btn-group
+                        button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                          span.caret
+                        ul class="dropdown-menu dropdown-menu-right"
+                          li
+                            = link_to edit_game_control_city_path(child)
+                              i.fa.fa-pencil
+                              span< edit
+                          li
+                            = link_to game_control_city_path(child, :authenticity_token => form_authenticity_token()),
+                              method: :delete, data: { confirm: 'Are you sure?'}
+                              i.fa.fa-trash
+                              span< delete
 
 javascript:
   $(document).ready(function() {
