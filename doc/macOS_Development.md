@@ -50,7 +50,7 @@ Clone the repository: `git clone https://github.com/PuzzledPint/puzzledpint.com.
     - `psql postgres`
     - You should see a `postgres=#` prompt.
     - Ctrl-D to exit
-- `rake db:create`
+- `./bin/rake db:create`
 
 ## Test the Webapp
 
@@ -62,6 +62,12 @@ Clone the repository: `git clone https://github.com/PuzzledPint/puzzledpint.com.
 You might have been given access to a snapshot of production code. If so, you can load that into your database, substituting your specific database dump filename:
 
 `pg_restore --verbose --no-acl --no-owner -h localhost -d puzzled_pint_development pp_prod_dump_20161204`
+
+It is likely that your snapshot is older than the beta code and will require migrations. To be safe, run
+
+```
+./bin/rake db:migrate
+```
 
 ## Launch the Webapp
 
