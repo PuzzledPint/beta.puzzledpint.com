@@ -17,3 +17,7 @@
 /tmp
 
 spec/examples.txt
+
+# Ignore macOS turd files.
+**/.DS_Store
+
