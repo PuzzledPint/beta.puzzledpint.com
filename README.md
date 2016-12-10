@@ -39,8 +39,9 @@ There are many ways you can help with this project, from writing code to writing
 - S3 integration.
 - Puzzle asset management for playtesting and release.
 
-Please see [`CONTRIBUTING.md`](doc/CONTRIBUTING.md) for details. All are welcome, but please be sure to check the [code of conduct](doc/CODE_OF_CONDUCT.md).
+The `doc/` subfolder contains several useful resources:
 
-If you are developing on a Mac, consult [macOS_Development.md](doc/macOS_Development.md) for instructions on setting up your environment.
-
-
+- [`CONTRIBUTING.md`](doc/CONTRIBUTING.md) has details about contributing. All are welcome, but please be sure to check the [code of conduct](doc/CODE_OF_CONDUCT.md).
+- [`macOS_Development.md`](doc/macOS_Development.md) describes how to boostrap a macOS development environment.
+- [`doc/first_login.md`](doc/first_login.md) shows what you should do the first time you log in to the site.
+- [`doc/data_model.md`](doc/data_model.md) describes the security and data models.
