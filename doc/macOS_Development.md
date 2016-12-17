@@ -73,6 +73,10 @@ It is likely that your snapshot is older than the beta code and will require mig
 ./bin/rake db:migrate
 ```
 
+## Otherwise, Create a Default User
+
+If you do not have a snapshot of production code, you will need to create an initial user. This is a rake task described in [`first_login.md`](first_login.md).
+
 ## Launch the Webapp
 
 - `./bin/rails.s` and leave that running

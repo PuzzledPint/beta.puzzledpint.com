@@ -6,10 +6,4 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-role_admin = Role.create({ name: 'admin' })
-role_location = Role.create({ name: 'location_gc' })
-
-city_portland = City.create({name: 'Portland', country: 'US'})
-
-Admin.create({email: 'root@localhost', full_name: 'Root Admin', password: 'rootpassword', roles: [role_admin], cities: [city_portland]})
-
+Role.create([{ name: 'admin' }, { name: 'location_gc' }])
