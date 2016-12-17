@@ -7,8 +7,12 @@ namespace :db do
       PASSWORD = 'rootpassword'.freeze
       puts 'Creating default admin user'
       role_admin = Role.find_by(name: 'admin')
-      city_portland = City.create({name: 'Portland', country: 'US'})
-      Admin.create({email: EMAIL, full_name: 'Root Admin', password: PASSWORD, roles: [role_admin], cities: [city_portland]})
+      city_portland = City.create(name: 'Portland', country: 'US')
+      Admin.create(email: EMAIL,
+                   full_name: 'Root Admin',
+                   password: PASSWORD,
+                   roles: [role_admin],
+                   cities: [city_portland])
       puts "Created initial admin user:"
       puts "  email:    #{EMAIL}"
       puts "  password: #{PASSWORD}"
