@@ -27,7 +27,9 @@ Rails.application.routes.draw do
     resources 'cities'
     resources 'admins'
     resources 'events', except: :edit do
-      resources 'event_locations'
+      resources 'event_locations' do
+        get 'copy'
+      end
     end
     resources 'pages'
   end

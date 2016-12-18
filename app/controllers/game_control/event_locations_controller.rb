@@ -1,5 +1,5 @@
 class GameControl::EventLocationsController < GameControlController
-  authorize_actions_for EventLocation, except: [:edit, :update]
+  authorize_actions_for EventLocation, except: [:edit, :update, :copy]
 
   before_action :load_event, :add_breadcrumbs
 
@@ -20,8 +20,26 @@ class GameControl::EventLocationsController < GameControlController
     end
   end
 
+  def copy
+    event = Event.find params[:event_id];
+    @location = (EventLocation.find params[:event_location_id]).dup
+    @location.event = event
+    # Delete any existing location record for this month/event
+    event.event_locations.where(city: @location.city).each { |current_location|
+      current_location.destroy
+    }
+    if @location.save
+      redirect_to game_control_event_path(@event),
+                  notice: 'Location successfully created.'
+    else
+      @cities = available_cities
+      render :new
+    end
+  end
+
   def edit
     @location = EventLocation.find params[:id]
+    @recent_locations = @location.city.recent_locations(@location.event.event_at, 3)
     authorize_action_for(@location)
     generate_states
   end
