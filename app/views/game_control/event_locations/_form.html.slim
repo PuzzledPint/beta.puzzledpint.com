@@ -18,6 +18,16 @@
                           input_html: { class: :state }
     = f.input :addr_postal_code
     = f.input :notes
+  - unless nil == @recent_locations || @recent_locations.empty?
+    .box-body
+      h3 Copy a Previous Location...
+      - @recent_locations.each do |recent_location|
+        table#previousLocations
+          tr
+            td.col-md-1
+              <input type="button" name="Copy" value="Copy" />
+            td.col-md-11
+              <a href="#{recent_location.bar_url}">#{recent_location.bar_name}</a>, #{recent_location.addr_street_1}, #{recent_location.addr_city}
 
   .box-footer
     .pull-right

@@ -22,6 +22,7 @@ class GameControl::EventLocationsController < GameControlController
 
   def edit
     @location = EventLocation.find params[:id]
+    @recent_locations = @location.city.recent_locations(@location.event.event_at, 3)
     authorize_action_for(@location)
     generate_states
   end

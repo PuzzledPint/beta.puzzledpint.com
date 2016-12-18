@@ -23,4 +23,8 @@ class City < ActiveRecord::Base
     return "#{parent.name} - #{name}" if parent
     name
   end
+
+  def recent_locations(cutoff_date, limit)
+    EventLocation.joins(:event).where(city: id).where('event_at < ?', cutoff_date).where("bar_name != ''").order('events.event_at desc').take(limit)
+  end
 end
