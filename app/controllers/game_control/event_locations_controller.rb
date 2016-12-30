@@ -21,13 +21,11 @@ class GameControl::EventLocationsController < GameControlController
   end
 
   def copy
-    event = Event.find params[:event_id];
+    event = Event.find params[:event_id]
     @location = (EventLocation.find params[:event_location_id]).dup
     @location.event = event
     # Delete any existing location record for this month/event
-    event.event_locations.where(city: @location.city).each { |current_location|
-      current_location.destroy
-    }
+    event.event_locations.where(city: @location.city).destroy_all
     if @location.save
       redirect_to game_control_event_path(@event),
                   notice: 'Location successfully created.'
