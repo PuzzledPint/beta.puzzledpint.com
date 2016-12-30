@@ -20,6 +20,12 @@ class GameControl::EventLocationsController < GameControlController
     end
   end
 
+  def copy
+    @location = EventLocation.find params[:id].dup
+    @cities = available_cities
+    render :new
+  end
+
   def edit
     @location = EventLocation.find params[:id]
     @recent_locations = @location.city.recent_locations(@location.event.event_at, 3)
