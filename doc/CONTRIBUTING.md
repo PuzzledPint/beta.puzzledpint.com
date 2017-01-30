@@ -7,6 +7,8 @@ to abide by the [code of conduct].
 
 [code of conduct]: CODE_OF_CONDUCT.md
 
+For Mac-specific instructions, be sure to read [`macOS_Development.md`](macOS_Development.md).
+
 Fork the repo.
 
 Set up your machine:

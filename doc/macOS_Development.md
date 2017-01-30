@@ -59,9 +59,13 @@ Clone the repository: `git clone https://github.com/PuzzledPint/puzzledpint.com.
 
 ## Load Sample Data
 
-You might have been given access to a snapshot of production code. If so, you can load that into your database, substituting your specific database dump filename:
+You might have been given access to a snapshot of production code. If so, you can load that into your database, substituting your specific database dump filename. You'll first want to drop and recreate the database, to get rid of the sample user that `setup` gave you:
 
-`pg_restore --verbose --no-acl --no-owner -h localhost -d puzzled_pint_development pp_prod_dump_20161204`
+```
+./bin/rake db:drop
+./bin/rake db:create
+pg_restore --verbose --no-acl --no-owner -h localhost -d puzzled_pint_development pp_prod_dump_20161204
+```
 
 It is likely that your snapshot is older than the beta code and will require migrations. To be safe, run
 
@@ -69,13 +73,17 @@ It is likely that your snapshot is older than the beta code and will require mig
 ./bin/rake db:migrate
 ```
 
+## Otherwise, Create a Default User
+
+If you do not have a snapshot of production code, you will need to create an initial user. This is a rake task described in [`first_login.md`](first_login.md).
+
 ## Launch the Webapp
 
 - `./bin/rails.s` and leave that running
 - Open a browser to <http://localhost:3000> and look for the pintglass logo
 - Open a browser to <http://localhost:3000/game_control> and log in
 
-TODO: If you do not have a database dump, is there a default username/password?
+If you do not have a database dump, you may log in using the user created during setup (in `db/seeds.rb`). See [`first_login.md`](first_login.md) for more information.
 
 ![Hello World](macdev8.png)
 
