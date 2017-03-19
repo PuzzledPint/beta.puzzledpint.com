@@ -25,6 +25,10 @@ class City < ActiveRecord::Base
     name
   end
 
+  # cutoff_date : Fetch events occurring BEFORE this date. For example,
+  #               don't include the current month in the results if one
+  #               has already been entered for the city.
+  # limit       : Limit results to this many events.
   def recent_locations(cutoff_date, limit)
     event_locations.joins(:event).
       where.not(bar_name: '').
