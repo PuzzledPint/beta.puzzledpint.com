@@ -21,3 +21,5 @@ spec/examples.txt
 # Ignore macOS turd files.
 **/.DS_Store
 
+# Ignore IDE files
+/.idea/
