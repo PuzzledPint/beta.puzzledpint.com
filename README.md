@@ -43,5 +43,6 @@ The `doc/` subfolder contains several useful resources:
 
 - [`CONTRIBUTING.md`](doc/CONTRIBUTING.md) has details about contributing. All are welcome, but please be sure to check the [code of conduct](doc/CODE_OF_CONDUCT.md).
 - [`macOS_Development.md`](doc/macOS_Development.md) describes how to boostrap a macOS development environment.
+- [`winOS_Development.md`](doc/winOS_Development.md) describes how to boostrap a windows development environment.
 - [`doc/first_login.md`](doc/first_login.md) shows what you should do the first time you log in to the site.
 - [`doc/data_model.md`](doc/data_model.md) describes the security and data models.
