@@ -1,5 +1,5 @@
 if location.complete?
-  json.city location.city.name
+  json.city location.city.display_name.present? ? location.city.display_name : location.city.name
   json.bar location.bar_name
   json.bar_url location.bar_url
   json.start_time location.start_time.to_s(:time)

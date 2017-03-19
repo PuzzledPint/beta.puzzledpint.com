@@ -25,5 +25,21 @@ RSpec.describe City, type: :model do
         expect(city.full_display_name).to eq expected_str
       end
     end
+
+    context 'has no parent' do
+      it 'returns city full_display_name using display_name' do
+        city = build(:city, name: 'abc', display_name: 'def')
+        expect(city.full_display_name).to eq 'def'
+      end
+    end
+
+    context 'has parent' do
+      it 'returns city full_display_name with parent using display_name' do
+        parent = build(:city, name: 'abc', display_name: 'def')
+        city = build(:city, parent: parent, name: 'ghi', display_name: 'jkl')
+        expected_str = "def - jkl"
+        expect(city.full_display_name).to eq expected_str
+      end
+    end
   end
 end

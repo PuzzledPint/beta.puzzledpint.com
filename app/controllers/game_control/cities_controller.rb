@@ -62,6 +62,6 @@ class GameControl::CitiesController < GameControlController
   end
 
   def city_params
-    params.require(:city).permit(:name, :state, :country, :parent_id)
+    params.require(:city).permit(:name, :display_name, :state, :country, :parent_id)
   end
 end

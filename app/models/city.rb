@@ -20,7 +20,8 @@ class City < ActiveRecord::Base
   end
 
   def full_display_name
-    return "#{parent.name} - #{name}" if parent
-    name
+    result = ''
+    result << (parent.display_name.present? ? parent.display_name : parent.name) + " - " + result if parent
+    result << (display_name.present? ? display_name : name)
   end
 end

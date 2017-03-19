@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201010708) do
+ActiveRecord::Schema.define(version: 20170319230653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,12 +64,13 @@ ActiveRecord::Schema.define(version: 20160201010708) do
   add_index "admins_roles", ["admin_id", "role_id"], name: "index_admins_roles_on_admin_id_and_role_id", using: :btree
 
   create_table "cities", force: :cascade do |t|
-    t.string   "name",       null: false
+    t.string   "name",         null: false
     t.string   "state"
-    t.string   "country",    null: false
+    t.string   "country",      null: false
     t.integer  "parent_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "display_name"
   end
 
   add_index "cities", ["parent_id"], name: "index_cities_on_parent_id", using: :btree
