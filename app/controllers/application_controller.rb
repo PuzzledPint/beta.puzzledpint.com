@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     return unless request.get?
     if (request.path.end_with?("/sign_in") &&
         !request.xhr?) # don't store ajax calls
-      store_location_for(:user, game_control_root_path)
+      store_location_for(:admin, game_control_root_path)
     end
   end
 end
