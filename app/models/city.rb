@@ -19,7 +19,7 @@ class City < ActiveRecord::Base
     not child?
   end
 
-  def display_name
+  def full_display_name
     return "#{parent.name} - #{name}" if parent
     name
   end

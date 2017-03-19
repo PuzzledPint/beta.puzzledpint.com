@@ -60,6 +60,6 @@ class GameControl::EventsController < GameControlController
   end
 
   def build_locations
-    @event.event_locations.sort { |x, y| x.city.display_name <=> y.city.display_name }
+    @event.event_locations.sort { |x, y| x.city.full_display_name <=> y.city.full_display_name }
   end
 end

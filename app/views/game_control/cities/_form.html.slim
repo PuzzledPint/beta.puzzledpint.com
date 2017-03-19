@@ -9,7 +9,7 @@
           .box-body
             = f.input :name, autofocus: true, placeholder: 'Stumptown'
             = f.input :parent_id, collection: parents,
-              label_method: :display_name,
+              label_method: :full_display_name,
               value_method: :id
             p.help-block
               | Either a parent or name is required.

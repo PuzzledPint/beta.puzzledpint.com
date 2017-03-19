@@ -10,7 +10,7 @@
       - locations.each do |location|
         tr
           td
-            strong = location.city.display_name
+            strong = location.city.full_display_name
           td
             address
               - if location.bar_name.present?

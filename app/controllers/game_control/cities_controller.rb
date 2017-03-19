@@ -35,7 +35,7 @@ class GameControl::CitiesController < GameControlController
 
     if @city.update_attributes(city_params)
       redirect_to :game_control_cities,
-                  notice: "City <strong>#{@city.display_name}</strong> was successfully updated"
+                  notice: "City <strong>#{@city.full_display_name}</strong> was successfully updated"
     else
       generate_states
       generate_parents
