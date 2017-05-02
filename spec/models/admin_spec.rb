@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'digest/md5'
 
 RSpec.describe Admin, type: :model do
   subject { create(:admin) }
@@ -12,6 +13,9 @@ RSpec.describe Admin, type: :model do
   end
 
   describe '#avatar' do
-    it { expect(subject.avatar).to eq("https://robohash.org/#{subject.email}.png?set=set3&bgset=bg2") }
+    it do
+      hash = Digest::MD5.hexdigest(subject.email.strip.downcase)
+      expect(subject.avatar).to eq("https://www.gravatar.com/avatar/#{hash}?s=180")
+    end
   end
 end
