@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   end
 
   devise_for :admins, path: :game_control,
-                      controllers: { invitations: "game_control/invitations" }
+                      controllers: { sessions: 'game_control/sessions',
+                                     invitations: 'game_control/invitations' }
 
   namespace :game_control do
     root 'dashboard#index'
