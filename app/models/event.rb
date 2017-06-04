@@ -2,6 +2,8 @@ class Event < ActiveRecord::Base
   include Authority::Abilities
 
   has_many :event_locations, dependent: :destroy
+  belongs_to :puzzle_set
+  delegate :theme, to: :puzzle_set
 
   validates :theme, presence: true
   validates :event_at, presence: true
