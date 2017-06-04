@@ -33,6 +33,26 @@
                 dt Theme
                 dd = @event.theme
 
+- if current_admin.can_manage?(@event) && !@naughty.empty?
+  .row
+    .col-sm-12
+      .box.box-primary
+        .box-header.with-border
+          .box-title
+            i.fa.fa-calendar>
+            |  Naughty List — Cities Missing Locations
+          <div style="margin-top:20px; columns:150px 4;">
+            ul
+              - for item in @naughty
+                li 
+                  a href="#{@event.id}/event_locations/#{item.id}/edit" #{item.city.full_display_name}
+                  / Fix these when we get a hiatus/canceled flag. This string stuff is inefficient.
+                  - if nil != item.notes.to_s.downcase.index("hiatus")
+                    |  (on hiatus)
+                  - elsif nil != item.notes.to_s.downcase.index("canceled") || nil != item.notes.to_s.downcase.index("cancelled")
+                    |  (canceled)
+          </div>
+
 .row
   .col-sm-12
     .box.box-primary

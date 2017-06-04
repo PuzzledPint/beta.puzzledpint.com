@@ -25,6 +25,7 @@ class GameControl::EventsController < GameControlController
 
   def show
     @event = Event.find(params[:id])
+    @naughty = @event.cities_missing_locations
     load_location_data
   end
 

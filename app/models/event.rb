@@ -19,6 +19,14 @@ class Event < ActiveRecord::Base
     build_tree locations
   end
 
+  def cities_missing_locations
+    result = []
+    event_locations.each do |event_location|
+      result << event_location if !event_location.complete?
+    end
+    result.sort!
+  end
+
   def past?
     event_at < Time.zone.today
   end
