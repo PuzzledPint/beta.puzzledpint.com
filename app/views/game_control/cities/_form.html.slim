@@ -8,8 +8,11 @@
             | City Info
           .box-body
             = f.input :name, autofocus: true, placeholder: 'Stumptown'
+            = f.input :display_name, placeholder: 'Stumptown, OR'
+            p.help-block
+              | When present, this name is displayed to the user for disambiguation. For example “Paris, TX” versus “Paris, France”.
             = f.input :parent_id, collection: parents,
-              label_method: :display_name,
+              label_method: :full_display_name,
               value_method: :id
             p.help-block
               | Either a parent or name is required.

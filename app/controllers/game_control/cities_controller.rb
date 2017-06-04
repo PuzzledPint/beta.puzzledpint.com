@@ -35,7 +35,7 @@ class GameControl::CitiesController < GameControlController
 
     if @city.update_attributes(city_params)
       redirect_to :game_control_cities,
-                  notice: "City <strong>#{@city.display_name}</strong> was successfully updated"
+                  notice: "City <strong>#{@city.full_display_name}</strong> was successfully updated"
     else
       generate_states
       generate_parents
@@ -62,6 +62,6 @@ class GameControl::CitiesController < GameControlController
   end
 
   def city_params
-    params.require(:city).permit(:name, :state, :country, :parent_id)
+    params.require(:city).permit(:name, :display_name, :state, :country, :parent_id)
   end
 end

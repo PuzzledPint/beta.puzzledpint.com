@@ -14,7 +14,7 @@ class Event < ActiveRecord::Base
 
   def locations_tree
     locations = event_locations.includes(:city)
-    locations.to_a.sort! { |x, y| x.city.display_name <=> y.city.display_name }
+    locations.to_a.sort! { |x, y| x.city.full_display_name <=> y.city.full_display_name }
 
     build_tree locations
   end

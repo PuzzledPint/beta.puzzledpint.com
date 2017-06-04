@@ -56,7 +56,7 @@ class GameControl::AdminsController < GameControlController
   end
 
   def cities
-    City.all.sort { |x, y| x.display_name <=> y.display_name }
+    City.all.sort { |x, y| x.full_display_name <=> y.full_display_name }
   end
 
   def create_params

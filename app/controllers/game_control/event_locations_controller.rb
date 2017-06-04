@@ -71,7 +71,7 @@ class GameControl::EventLocationsController < GameControlController
   end
 
   def available_cities
-    all_cities = City.all.sort { |x, y| x.display_name <=> y.display_name }
+    all_cities = City.all.sort { |x, y| x.full_display_name <=> y.full_display_name }
     event_cities = @event.event_locations.map(&:city)
     all_cities - event_cities
   end

@@ -25,7 +25,7 @@
             tbody
               - @cities.each do |city|
                 tr
-                  td = city.display_name
+                  td = city.full_display_name
                   td = display_state(city.country, city.state)
                   td = city.country
                   td.text-right
@@ -45,8 +45,8 @@
                 - city.children.each do |child|
                   tr
                     td
-                      span data-toggle='tooltip' title="Child of #{city.display_name}"
-                        = child.display_name
+                      span data-toggle='tooltip' title="Child of #{city.full_display_name}"
+                        = child.full_display_name
                     td = child.state
                     td = child.country
                     td.text-right

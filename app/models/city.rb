@@ -20,9 +20,10 @@ class City < ActiveRecord::Base
     not child?
   end
 
-  def display_name
-    return "#{parent.name} - #{name}" if parent
-    name
+  def full_display_name
+    result = ''
+    result << (parent.display_name.present? ? parent.display_name : parent.name) + " - " + result if parent
+    result << (display_name.present? ? display_name : name)
   end
 
   # cutoff_date : Fetch events occurring BEFORE this date. For example,

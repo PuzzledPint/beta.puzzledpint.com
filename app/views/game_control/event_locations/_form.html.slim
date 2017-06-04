@@ -14,7 +14,7 @@
     h3 Enter New Location...
     = f.input :event_id, as: :hidden
     - unless @location.persisted?
-      = f.input :city_id, collection: @cities, label_method: :display_name
+      = f.input :city_id, collection: @cities, label_method: :full_display_name
     = f.input :bar_name
     = f.input :bar_url, as: :url
     = f.input :start_time, as: :time
