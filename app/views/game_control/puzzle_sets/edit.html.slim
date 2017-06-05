@@ -1,21 +1,19 @@
 - content_for :page_header, "Edit Puzzle Set"
 - content_for :page_description, 'edit puzzle set'
-- add_breadcrumb 'Edit', edit_game_control_puzzle_set_path(@puzzle_set)
+- add_breadcrumb @puzzle_set.theme, edit_game_control_puzzle_set_path(:id)
 .row
   .col-sm-12
     .box.box-primary
       .box-header.with-border
         .box-title
-          i.fa.fa-calendar>
-          | Edit
+          i.fa.fa-list>
+          = @puzzle_set.theme
           = simple_form_for [:game_control, @puzzle_set] do |f|
             .box-body
-            h3 Theme
-            = f.input :puzzle_set_id, as: :hidden
             = f.input :theme
 
             .box-footer
             .pull-right
-            =<> link_to 'Cancel', game_control_event_path(@puzzle_set),
+            =<> link_to 'Cancel', game_control_puzzle_set_path(:id),
                html_options = {class: 'btn btn-default'}
             =<> f.submit 'Save', class: 'btn btn-primary'

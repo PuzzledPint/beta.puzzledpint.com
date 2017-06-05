@@ -1,0 +1,18 @@
+- content_for :page_header, "New Puzzle"
+- content_for :page_description, 'create a new Puzzle'
+- add_breadcrumb 'New', new_game_control_puzzle_path
+
+= simple_form_for @puzzle, url: game_control_puzzle_path(:id) do |f|
+  .row
+    .col-sm-12
+      .box.box-primary
+        .box-header.with-border
+          .box-title
+            | Puzzle Details
+          .box-body
+            = f.hidden :puzzle_set_id
+            = f.input :title
+
+            =<> link_to 'Cancel', game_control_puzzle_sets_path(:puzzle_set_id),
+              html_options = { class: 'btn btn-default' }
+            =<> f.submit 'Save', class: 'btn btn-primary'

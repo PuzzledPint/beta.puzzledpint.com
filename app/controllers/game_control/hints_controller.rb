@@ -1,7 +1,8 @@
 class GameControl::HintsController < ApplicationController
     authorize_actions_for Hint
     before_action :set_game_control_hint, only: [:show, :edit, :update, :destroy]
-    add_breadcrumb "<i class='fa fa-calendar'></i> Hint".html_safe, :game_control_hint_path
+    before_action :set_game_control_puzzle_set_and_puzzle
+    add_breadcrumb "<i class='fa fa-question-sign'></i> Hint".html_safe, :game_control_hint_path
 
   # GET /game_control/hints
   # GET /game_control/hints.json
@@ -64,6 +65,11 @@ class GameControl::HintsController < ApplicationController
   end
 
   private
+    def set_game_control_puzzle_set_and_puzzle
+      @puzzle_set = PuzzleSet.find(params[:puzzle_set_id])
+      @puzzle = PuzzleSet.find(params[:puzzle_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_game_control_hint
       @game_control_hint = Hint.find(params[:id])

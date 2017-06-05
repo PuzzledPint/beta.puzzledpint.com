@@ -1,6 +1,7 @@
 class GameControl::PuzzleSetsController < GameControlController
+  before_action :set_game_control_puzzle_set, only: [:show, :edit, :update, :destroy]
   authorize_actions_for PuzzleSet
-  add_breadcrumb "<i class='fa fa-calendar'></i> Puzzle Sets".html_safe, :game_control_puzzle_sets_path
+  add_breadcrumb "<i class='fa fa-list'></i> Puzzle Sets".html_safe, :game_control_puzzle_sets_path
 
   # GET /game_control/puzzle_sets
   # GET /game_control/puzzle_sets.json
@@ -11,7 +12,6 @@ class GameControl::PuzzleSetsController < GameControlController
   # GET /game_control/puzzle_sets/1
   # GET /game_control/puzzle_sets/1.json
   def show
-    @puzzle_set = PuzzleSet.find(params[:id])
   end
 
   # GET /game_control/puzzle_sets/new
@@ -44,8 +44,8 @@ class GameControl::PuzzleSetsController < GameControlController
   def update
     respond_to do |format|
       if @puzzle_set.update(game_control_puzzle_set_params)
-        format.html { redirect_to @puzzle_set, notice: 'Puzzle set was successfully updated.' }
-        format.json { render :show, status: :ok, location: @puzzle_set }
+        format.html { redirect_to game_control_puzzle_set_path(@puzzle_set), notice: 'Puzzle set was successfully updated.' }
+        format.json { render :show, status: :ok, location: game_control_puzzle_set_path(:id) }
       else
         format.html { render :edit }
         format.json { render json: @puzzle_set.errors, status: :unprocessable_entity }

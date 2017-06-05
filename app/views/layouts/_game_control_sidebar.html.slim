@@ -83,6 +83,24 @@ aside.main-sidebar
                 i.fa.fa-plus
                 span Add
 
+      // Puzzle Set Management
+      // ===============
+      - if current_admin.can_manage?(PuzzleSet)
+        li#puzzleSets.treeview
+          a href="#"
+            i.fa.fa-list
+            span Puzzle Sets
+            i.fa.fa-angle-left.pull-right
+          ul.treeview-menu
+            li#puzzle-sets-index
+              = link_to :game_control_puzzle_sets
+                i.fa.fa-list
+                span List
+            - if current_admin.can_create?(PuzzleSet)
+              li#puzzle-sets-new
+                = link_to :new_game_control_puzzle_set
+                  i.fa.fa-plus
+                  span Add
     /! /.sidebar-menu
   /! /.sidebar
 /! /.main-sidebar

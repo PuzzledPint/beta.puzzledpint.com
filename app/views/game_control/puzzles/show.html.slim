@@ -1,6 +1,6 @@
-- content_for :page_header, 'Edit Puzzle Set'
-- content_for :page_description, 'change name or add/remove puzzles'
-- add_breadcrumb @puzzle_set.theme, game_control_puzzle_set_path(@puzzle_set)
+- content_for :page_header, 'Edit Puzzle'
+- content_for :page_description, 'change name or add/remove hints'
+- add_breadcrumb @puzzle.title, game_control_puzzle_path(@puzzle)
 
 .row
   .col-sm-12
@@ -8,7 +8,7 @@
       .box-header.with-border
         .box-title
           i.fa.fa-building>
-          = "Puzzles for #{@puzzle_set.theme} "
+          = "Title: #{@puzzle.title} "
           button type="button" class="btn btn-default" aria-expanded="false"
             = link_to edit_game_control_puzzle_set_path(@puzzle_set.id)
               = 'Edit'
@@ -16,32 +16,29 @@
         .row
           .col-sm-12
 .table-responsive
-  table#puzzle_set_table.table.table-bordered.table-hover
+  table#hint_table.table.table-bordered.table-hover
     thead
       tr
-        th Puzzle Title
+        th Hints
         th.col-sm-1
     tbody
-      - @puzzle_set.puzzles.each do |puzzle|
+      - @puzzle.hints.each do |hint|
         tr
           td
-            = link_to puzzle.title edit_game_control_puzzle_path(puzzle)
+            = link_to puzzle.title edit_game_control_puzzle_set_puzzle_hint_path(hint)
           td.text-right
             button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-              = link_to game_control_puzzle_path(set, :authenticity_token => form_authenticity_token()),
+              = link_to edit_game_control_puzzle_set_puzzle_hint_path(hint, :authenticity_token => form_authenticity_token()),
                   method: :delete, data: {confirm: 'Are you sure?'}
               span.text-nowrap
               i.fa.fa-trash
               span< delete
-button type="button" class="btn btn-default" aria-expanded="false"
-  = link_to new_game_control_puzzle_path(:authenticity_token => form_authenticity_token(), :id)
-  = 'Add new puzzle to set'
 
 javascript:
     $(document).ready(function () {
-        $('#puzzle_set_table').DataTable({
+        $('#hint_table').DataTable({
             "order": [[0, "desc"]],
-            "columns": [{"orderable": true},
+            "columns": [{"orderable": false},
                 {"orderable": false}
             ]
         });

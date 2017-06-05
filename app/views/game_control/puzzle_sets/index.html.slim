@@ -6,7 +6,7 @@
     .box.box-primary
       .box-header.with-border
         .box-title
-          i.fa.fa-calendar>
+          i.fa.fa-list>
           |  Puzzle Sets
 
       .box-body
@@ -29,8 +29,7 @@
                       span< delete
     button type="button" class="btn btn-default" aria-expanded="false"
       = link_to new_game_control_puzzle_set_path(:authenticity_token => form_authenticity_token())
-        = 'Add New Puzzle Set'
-
+      = 'Add New Puzzle Set'
 javascript:
   $(document).ready(function() {
     $('#puzzle_set_table').DataTable({

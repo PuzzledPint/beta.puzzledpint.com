@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "game_control/puzzles/show", type: :view do
   before(:each) do
-    @game_control_puzzle = assign(:game_control_puzzle, GameControl::Puzzle.create!(
+    @puzzle = assign(:puzzle, GameControl::Puzzle.create!(
       :title => "Title"
     ))
   end

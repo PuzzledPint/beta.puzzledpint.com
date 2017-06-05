@@ -40,7 +40,7 @@ RSpec.describe GameControl::PuzzlesController, type: :controller do
     it "assigns all game_control_puzzles as @game_control_puzzles" do
       puzzle = GameControl::Puzzle.create! valid_attributes
       get :index, params: {}, session: valid_session
-      expect(assigns(:game_control_puzzles)).to eq([puzzle])
+      expect(assigns(:puzzles)).to eq([puzzle])
     end
   end
 
@@ -48,14 +48,14 @@ RSpec.describe GameControl::PuzzlesController, type: :controller do
     it "assigns the requested game_control_puzzle as @game_control_puzzle" do
       puzzle = GameControl::Puzzle.create! valid_attributes
       get :show, params: {id: puzzle.to_param}, session: valid_session
-      expect(assigns(:game_control_puzzle)).to eq(puzzle)
+      expect(assigns(:puzzle)).to eq(puzzle)
     end
   end
 
   describe "GET #new" do
     it "assigns a new game_control_puzzle as @game_control_puzzle" do
       get :new, params: {}, session: valid_session
-      expect(assigns(:game_control_puzzle)).to be_a_new(GameControl::Puzzle)
+      expect(assigns(:puzzle)).to be_a_new(GameControl::Puzzle)
     end
   end
 
@@ -63,7 +63,7 @@ RSpec.describe GameControl::PuzzlesController, type: :controller do
     it "assigns the requested game_control_puzzle as @game_control_puzzle" do
       puzzle = GameControl::Puzzle.create! valid_attributes
       get :edit, params: {id: puzzle.to_param}, session: valid_session
-      expect(assigns(:game_control_puzzle)).to eq(puzzle)
+      expect(assigns(:puzzle)).to eq(puzzle)
     end
   end
 
@@ -71,30 +71,30 @@ RSpec.describe GameControl::PuzzlesController, type: :controller do
     context "with valid params" do
       it "creates a new GameControl::Puzzle" do
         expect {
-          post :create, params: {game_control_puzzle: valid_attributes}, session: valid_session
+          post :create, params: {puzzle: valid_attributes}, session: valid_session
         }.to change(GameControl::Puzzle, :count).by(1)
       end
 
       it "assigns a newly created game_control_puzzle as @game_control_puzzle" do
-        post :create, params: {game_control_puzzle: valid_attributes}, session: valid_session
-        expect(assigns(:game_control_puzzle)).to be_a(GameControl::Puzzle)
-        expect(assigns(:game_control_puzzle)).to be_persisted
+        post :create, params: {puzzle: valid_attributes}, session: valid_session
+        expect(assigns(:puzzle)).to be_a(GameControl::Puzzle)
+        expect(assigns(:puzzle)).to be_persisted
       end
 
       it "redirects to the created game_control_puzzle" do
-        post :create, params: {game_control_puzzle: valid_attributes}, session: valid_session
+        post :create, params: {puzzle: valid_attributes}, session: valid_session
         expect(response).to redirect_to(GameControl::Puzzle.last)
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved game_control_puzzle as @game_control_puzzle" do
-        post :create, params: {game_control_puzzle: invalid_attributes}, session: valid_session
-        expect(assigns(:game_control_puzzle)).to be_a_new(GameControl::Puzzle)
+        post :create, params: {puzzle: invalid_attributes}, session: valid_session
+        expect(assigns(:puzzle)).to be_a_new(GameControl::Puzzle)
       end
 
       it "re-renders the 'new' template" do
-        post :create, params: {game_control_puzzle: invalid_attributes}, session: valid_session
+        post :create, params: {puzzle: invalid_attributes}, session: valid_session
         expect(response).to render_template("new")
       end
     end
@@ -108,20 +108,20 @@ RSpec.describe GameControl::PuzzlesController, type: :controller do
 
       it "updates the requested game_control_puzzle" do
         puzzle = GameControl::Puzzle.create! valid_attributes
-        put :update, params: {id: puzzle.to_param, game_control_puzzle: new_attributes}, session: valid_session
+        put :update, params: {id: puzzle.to_param, puzzle: new_attributes}, session: valid_session
         puzzle.reload
         skip("Add assertions for updated state")
       end
 
       it "assigns the requested game_control_puzzle as @game_control_puzzle" do
         puzzle = GameControl::Puzzle.create! valid_attributes
-        put :update, params: {id: puzzle.to_param, game_control_puzzle: valid_attributes}, session: valid_session
-        expect(assigns(:game_control_puzzle)).to eq(puzzle)
+        put :update, params: {id: puzzle.to_param, puzzle: valid_attributes}, session: valid_session
+        expect(assigns(:puzzle)).to eq(puzzle)
       end
 
       it "redirects to the game_control_puzzle" do
         puzzle = GameControl::Puzzle.create! valid_attributes
-        put :update, params: {id: puzzle.to_param, game_control_puzzle: valid_attributes}, session: valid_session
+        put :update, params: {id: puzzle.to_param, puzzle: valid_attributes}, session: valid_session
         expect(response).to redirect_to(puzzle)
       end
     end
@@ -129,13 +129,13 @@ RSpec.describe GameControl::PuzzlesController, type: :controller do
     context "with invalid params" do
       it "assigns the game_control_puzzle as @game_control_puzzle" do
         puzzle = GameControl::Puzzle.create! valid_attributes
-        put :update, params: {id: puzzle.to_param, game_control_puzzle: invalid_attributes}, session: valid_session
-        expect(assigns(:game_control_puzzle)).to eq(puzzle)
+        put :update, params: {id: puzzle.to_param, puzzle: invalid_attributes}, session: valid_session
+        expect(assigns(:puzzle)).to eq(puzzle)
       end
 
       it "re-renders the 'edit' template" do
         puzzle = GameControl::Puzzle.create! valid_attributes
-        put :update, params: {id: puzzle.to_param, game_control_puzzle: invalid_attributes}, session: valid_session
+        put :update, params: {id: puzzle.to_param, puzzle: invalid_attributes}, session: valid_session
         expect(response).to render_template("edit")
       end
     end
