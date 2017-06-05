@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "game_control/puzzle_sets/index", type: :view do
   before(:each) do
-    assign(:game_control_puzzle_sets, [
+    assign(:puzzle_sets, [
       GameControl::PuzzleSet.create!(
         :Puzzles => nil,
         :theme => "Theme"

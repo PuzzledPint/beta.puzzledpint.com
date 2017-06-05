@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  namespace :game_control do
-    resources :puzzle_sets
-  end
-  namespace :game_control do
-    resources :puzzles
-  end
   root 'pages#home'
 
   # error pages
@@ -38,6 +32,12 @@ Rails.application.routes.draw do
       end
     end
     resources 'pages'
+
+    resources 'puzzle_sets' do
+      resources 'puzzles' do
+        resources 'hints'
+      end
+    end
   end
 
   get '*path', to: 'pages#show', as: :page,

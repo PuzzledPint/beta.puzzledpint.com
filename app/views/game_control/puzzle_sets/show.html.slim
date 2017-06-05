@@ -1,6 +1,6 @@
-- content_for :page_header, @game_control_puzzle_set.theme
+- content_for :page_header, @puzzle_set.theme
 - content_for :page_description, 'update puzzle set contents'
-- add_breadcrumb @game_control_puzzle_set.theme, game_control_puzzle_set_path(@game_control_puzzle_set)
+- add_breadcrumb @puzzle_set.theme, game_control_puzzle_set_path(@puzzle_set)
 
 .row
   .col-sm-12
@@ -8,7 +8,7 @@
       .box-header.with-border
         .box-title
           i.fa.fa-building>
-          = Puzzles for @game_control_puzzle_set.theme
+          = Puzzles for @puzzle_set.theme
       .box-body
         .row
           .col-sm-12
@@ -19,18 +19,17 @@
         th Puzzle Name
         th.col-sm-1
     tbody
-      - @game_control_puzzle_set.puzzles.each do |puzzle|
+      - @puzzle_set.puzzles.each do |puzzle|
         tr
           td
             = link_to puzzle.title edit_game_control_puzzle_path(puzzle)
-          - if current_admin.can_delete?(puzzle)
-            td.text-right
+          td.text-right
             button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-            = link_to edit_game_control_puzzle_path(set, :authenticity_token => form_authenticity_token()),
-                            method: :delete, data: {confirm: 'Are you sure?'}
-                    span.text-nowrap
-                      i.fa.fa-trash
-                      span< delete
+              = link_to edit_game_control_puzzle_path(set, :authenticity_token => form_authenticity_token()),
+                  method: :delete, data: {confirm: 'Are you sure?'}
+              span.text-nowrap
+              i.fa.fa-trash
+              span< delete
 
 javascript:
     $(document).ready(function () {

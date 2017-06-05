@@ -10,6 +10,7 @@ class GameControl::EventsController < GameControlController
   def new
     @event = Event.new
     @cities = City.parent_cities.order(:name)
+    @event.puzzle_set = params[:puzzle_set_id]
   end
 
   def create

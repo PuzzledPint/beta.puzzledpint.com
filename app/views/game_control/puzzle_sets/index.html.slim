@@ -17,23 +17,19 @@
                 th Theme
                 th.col-sm-1
             tbody
-              - @game_control_puzzle_sets.each do |set|
+              - @puzzle_sets.each do |set|
                 tr
-                  - if current_admin.can_read?(set)
-                    = link_to set.theme game_control_puzzle_set_path(set)
-                  - else
-                    td = set.theme
-                  - if current_admin.can_manage?(set)
-                    td.text-right
+                  td = link_to game_control_puzzle_set_path(set)
+                    = set.theme
+                  td.text-right
                     = link_to game_control_puzzle_set_path(set, :authenticity_token => form_authenticity_token()),
                               method: :delete, data: { confirm: 'Are you sure?'}
-                              span.text-nowrap
-                              i.fa.fa-trash<
-                              span< delete
-
-              = simple_form_for @game_control_puzzle_set, url: new_game_control_puzzle_set_path do |f|
-                = f.input :theme
-                =<> f.submit 'Add', class: 'btn btn-primary'
+                      span.text-nowrap
+                      i.fa.fa-trash<
+                      span< delete
+    button type="button" class="btn btn-default" aria-expanded="false"
+      = link_to new_game_control_puzzle_set_path(:authenticity_token => form_authenticity_token())
+        = 'Add New Puzzle Set'
 
 javascript:
   $(document).ready(function() {

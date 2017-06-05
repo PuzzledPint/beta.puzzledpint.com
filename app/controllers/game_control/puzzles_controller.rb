@@ -1,4 +1,4 @@
-class GameControl::PuzzlesController < ApplicationController
+class GameControl::PuzzlesController < GameControlController
     authorize_actions_for Puzzle
     before_action :set_game_control_puzzle, only: [:show, :edit, :update, :destroy]
     add_breadcrumb "<i class='fa fa-calendar'></i> Puzzle".html_safe, :game_control_puzzle_path

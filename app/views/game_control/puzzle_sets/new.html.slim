@@ -1,0 +1,17 @@
+- content_for :page_header, "New Puzzle Set"
+- content_for :page_description, 'create a new Puzzle Set'
+- add_breadcrumb 'New', new_game_control_puzzle_set_path
+
+= simple_form_for @puzzle_set, url: game_control_puzzle_set_path(:id) do |f|
+  .row
+    .col-sm-12
+      .box.box-primary
+        .box-header.with-border
+          .box-title
+            | Puzzle Set Details
+          .box-body
+            = f.input :theme
+
+            =<> link_to 'Cancel', game_control_puzzle_sets_path,
+              html_options = { class: 'btn btn-default' }
+            =<> f.submit 'Save', class: 'btn btn-primary'

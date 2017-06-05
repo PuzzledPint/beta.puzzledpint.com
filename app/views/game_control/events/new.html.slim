@@ -9,10 +9,10 @@
         .box-header.with-border
           .box-title
             i.fa.fa-calendar>
-            | Event Info
+            | Event Info for
+            = @event.theme
           .box-body
             = f.input :event_at
-            = f.input :theme
 
   .row
     .col-sm-12
