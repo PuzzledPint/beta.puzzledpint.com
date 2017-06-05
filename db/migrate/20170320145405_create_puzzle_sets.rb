@@ -5,15 +5,15 @@ class CreatePuzzleSets < ActiveRecord::Migration
       t.string :theme
       t.timestamps null: false
     end
-    execute "INSERT INTO puzzle_sets(theme) VALUES select theme from event"
+    execute "INSERT INTO puzzle_sets(theme, created_at, updated_at) select theme, created_at, updated_at FROM events"
     add_reference :events, :puzzle_set
-    execute "UPDATE events e, puzzle_sets ps SET e.puzzle_set_id = ps.id where e.theme = ps.theme"
+    execute "UPDATE events SET puzzle_set_id = puzzle_sets.id FROM puzzle_sets WHERE events.theme = puzzle_sets.theme"
     remove_column :events, :theme
   end
 
   def self.down
     add_column :events, :theme, :string
-    execute "UPDATE events e, puzzle_sets ps SET e.theme = ps.theme where e.puzzle_set_id = e.id"
+    execute "UPDATE events SET theme = puzzle_sets.theme FROM puzzle_sets WHERE events.puzzle_set_id = puzzle_sets.id"
     remove_reference :events, :puzzle_set
     drop_table :puzzle_sets
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201010708) do
+ActiveRecord::Schema.define(version: 20170604213153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,11 +95,21 @@ ActiveRecord::Schema.define(version: 20160201010708) do
   add_index "event_locations", ["event_id"], name: "index_event_locations_on_event_id", using: :btree
 
   create_table "events", force: :cascade do |t|
-    t.date     "event_at",   null: false
-    t.string   "theme",      null: false
+    t.date     "event_at",      null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "puzzle_set_id"
+  end
+
+  create_table "hints", force: :cascade do |t|
+    t.string   "note"
+    t.string   "text"
+    t.integer  "puzzle_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "hints", ["puzzle_id"], name: "index_hints_on_puzzle_id", using: :btree
 
   create_table "pages", force: :cascade do |t|
     t.string   "title",                      null: false
@@ -116,6 +126,21 @@ ActiveRecord::Schema.define(version: 20160201010708) do
   add_index "pages", ["parent_id"], name: "index_pages_on_parent_id", using: :btree
   add_index "pages", ["slug"], name: "index_pages_on_slug", using: :btree
 
+  create_table "puzzle_sets", force: :cascade do |t|
+    t.string   "theme"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "puzzles", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "puzzle_set_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "puzzles", ["puzzle_set_id"], name: "index_puzzles_on_puzzle_set_id", using: :btree
+
   create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.integer  "resource_id"
@@ -127,4 +152,6 @@ ActiveRecord::Schema.define(version: 20160201010708) do
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
+  add_foreign_key "hints", "puzzles"
+  add_foreign_key "puzzles", "puzzle_sets"
 end
