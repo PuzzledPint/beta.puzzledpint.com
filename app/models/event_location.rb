@@ -7,7 +7,7 @@ class EventLocation < ActiveRecord::Base
   validates :city, presence: true
   validates :event, presence: true
 
-  validates :bar_url, format: { with: /\A(https?\:\/\/)?/, message: "please enter a valid URL starting with http" }
+  validates :bar_url, url: true
 
   def complete?
     bar_name.present? && addr_street_1.present? && addr_city.present?
