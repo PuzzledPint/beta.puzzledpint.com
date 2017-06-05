@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  namespace :game_control do
+    resources :puzzle_sets
+  end
+  namespace :game_control do
+    resources :puzzles
+  end
   root 'pages#home'
 
   # error pages
