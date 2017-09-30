@@ -1,4 +1,4 @@
-Puzzled Pint
+Puzzled Pint - Test
 ============
 
 [![Circle CI](https://img.shields.io/circleci/project/PuzzledPint/puzzledpint.com.svg?style=plastic)](https://circleci.com/gh/PuzzledPint/puzzledpint.com)
