@@ -1,2 +1,3 @@
 dependencies:
-  post: `rm -r`
+  cache_directories:
+    - 'custom_cache'
