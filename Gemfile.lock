@@ -126,7 +126,6 @@ GEM
       mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
     parallel (1.11.2)
-    parity (2.0.1)
     parser (2.4.0.0)
       ast (~> 2.2)
     pg (0.20.0)
@@ -298,7 +297,6 @@ DEPENDENCIES
   inline_svg
   jbuilder (~> 2.0)
   jquery-rails
-  parity
   pg
   pry-byebug
   pry-rails

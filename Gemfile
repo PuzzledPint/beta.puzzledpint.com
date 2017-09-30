@@ -66,7 +66,6 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'dotenv-rails'
   gem 'rubocop', require: false
-  gem 'parity', require: false
 end
 
 group :development do
