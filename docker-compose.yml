@@ -12,5 +12,6 @@ services:
     # comment it out if you see errors about mounting or folder linking.
     volumes:
       - ".:/puzzledpint"
+
   postgres:
     image: postgres
