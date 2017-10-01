@@ -1,0 +1,16 @@
+version: "2"
+services:
+  pint:
+    image: "puzzledpint/web"
+    build: .
+    tty: True
+    environment:
+      - DATABASE_URL=postgres://postgres@postgres:5432/puzzled_pint_development?pool=5
+    ports:
+      - "3000:3000"
+    # This volume mounts source into the container, but is an optimization -
+    # comment it out if you see errors about mounting or folder linking.
+    volumes:
+      - ".:/puzzledpint"
+  postgres:
+    image: postgres

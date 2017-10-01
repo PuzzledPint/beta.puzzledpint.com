@@ -44,4 +44,7 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { address: "localhost", port: 1025 }
+
+  # Allow loading on a local network
+  config.web_console.whitelisted_ips = '192.168.0.0/16'
 end
