@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require File.join(File.dirname(__FILE__), '..', 'lib', 'parity')
+
+if ARGV.empty?
+  puts Parity::Usage.new
+else
+  exit Parity::Environment.new('production', ARGV).run
+end
