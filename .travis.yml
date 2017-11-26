@@ -1,2 +1,6 @@
 language: ruby
+
+before_script:
+  - ./bin/setup
+
 script: ./bin/rake
