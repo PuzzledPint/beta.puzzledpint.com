@@ -6,8 +6,3 @@
 //= require AdminLTE/plugins/iCheck/icheck.min.js
 //= require AdminLTE/plugins/datepicker/bootstrap-datepicker.js
 //= require AdminLTE/dist/js/app.min.js
-
-// TODO renable if we get turbolinks to play nice with bootstrap
-// $(document).ready(function() {
-//   Turbolinks.enableProgressBar();
-// });
