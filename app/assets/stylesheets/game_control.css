@@ -9,3 +9,7 @@
  *= require game_control/iCheck_square_yellow
  */
 
+html.turbolinks-progress-bar::before {
+  background-color: #3c8dbc !important;
+  height: 5px !important;
+}

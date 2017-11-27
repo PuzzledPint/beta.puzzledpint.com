@@ -11,8 +11,8 @@ html
     / Ionicons --
     link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'
 
-    = stylesheet_link_tag 'game_control'
-    = javascript_include_tag 'game_control'
+    = stylesheet_link_tag 'game_control', 'data-turbolinks-track' => true
+    = javascript_include_tag 'game_control', 'data-turbolinks-track' => true
     = javascript_include_tag 'analytics'
     = yield(:js_header).presence
 
