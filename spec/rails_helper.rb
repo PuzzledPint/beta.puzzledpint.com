@@ -8,6 +8,7 @@ require 'rspec/rails'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'devise'
+require 'support/devise'
 require 'support/controller_macros'
 
 require 'rspec/active_model/mocks'
@@ -57,7 +58,6 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 
-  config.include Devise::TestHelpers, type: :controller
   config.extend ControllerMacros, type: :controller
   config.include FactoryGirl::Syntax::Methods
 end

@@ -6,7 +6,7 @@ class GameControl::ProfileController < GameControlController
   def update
     @admin = current_admin
     if @admin.update(update_params)
-      sign_in @admin, bypass: true
+      sign_in @admin, bypass_sign_in: true
       redirect_to game_control_profile_path,
                   notice: 'Your profile as been update successfully'
     else
@@ -17,7 +17,7 @@ class GameControl::ProfileController < GameControlController
   def update_password
     @admin = current_admin
     if @admin.update_with_password(password_params)
-      sign_in @admin, bypass: true
+      sign_in @admin, bypass_sign_in: true
       redirect_to game_control_profile_path,
                   notice: 'Your password as been update successfully'
     else
