@@ -3,7 +3,7 @@ ruby '2.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.11.1'
-gem 'pg'
+gem 'pg', '~> 0.20' #TODO upgrade
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -62,10 +62,11 @@ group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'rspec-activemodel-mocks', require: false
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails', '~> 4.11' #TODO Update
   gem 'shoulda-matchers'
   gem 'dotenv-rails'
   gem 'rubocop', require: false
+  gem 'rubocop-rspec', require: false
   gem 'parity', require: false
 end
 
