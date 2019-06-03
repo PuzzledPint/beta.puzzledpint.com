@@ -2,7 +2,7 @@ class Page < ApplicationRecord
   include Authority::Abilities
 
   has_many :children, class_name: 'Page', foreign_key: :parent_id
-  belongs_to :parent, class_name: 'Page'
+  belongs_to :parent, class_name: 'Page', optional: true
 
   before_validation :parameterize_slug, :update_path
 

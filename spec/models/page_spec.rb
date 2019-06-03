@@ -5,8 +5,6 @@ RSpec.describe Page, type: :model do
     subject { build(:page) }
 
     it { should have_many(:children).class_name('Page') }
-    it { should belong_to(:parent).class_name('Page') }
-
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:slug) }
     it { should validate_presence_of(:content) }
