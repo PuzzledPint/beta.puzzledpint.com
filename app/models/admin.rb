@@ -1,4 +1,4 @@
-class Admin < ActiveRecord::Base
+class Admin < ApplicationRecord
   devise :invitable, :database_authenticatable, :lockable, :timeoutable,
          :recoverable, :rememberable, :trackable, :validatable
 

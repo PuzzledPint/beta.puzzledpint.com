@@ -1,4 +1,4 @@
-class Event < ActiveRecord::Base
+class Event < ApplicationRecord
   include Authority::Abilities
 
   has_many :event_locations, dependent: :destroy
@@ -14,7 +14,9 @@ class Event < ActiveRecord::Base
 
   def locations_tree
     locations = event_locations.includes(:city)
-    locations.to_a.sort! { |x, y| x.city.display_name <=> y.city.display_name }
+    locations = locations.to_a.sort do |x, y|
+      x.city.display_name <=> y.city.display_name
+    end
 
     build_tree locations
   end

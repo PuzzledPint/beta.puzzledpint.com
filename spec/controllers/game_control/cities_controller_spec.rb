@@ -44,12 +44,12 @@ RSpec.describe GameControl::CitiesController, type: :controller do
           post_data = { name: 'city name',
                         state: 'state',
                         country: 'country' }
-          post :create, city: post_data
+          post :create, params: {  city: post_data }
         end.to change(City, :count).by(1)
       end
 
       it 'displays errors' do
-        post :create, city: { name: 'blah' }
+        post :create, params: { city: { name: 'blah' } }
         expect(response).to be_successful
         expect(response).to render_template(:new)
         expect(assigns(:city).errors).not_to be_empty
@@ -60,7 +60,7 @@ RSpec.describe GameControl::CitiesController, type: :controller do
       it 'renders' do
         city = create(:city)
 
-        get :edit, id: city.id
+        get :edit, params: { id: city.id }
 
         expect(assigns(:city))
         expect(response).to be_successful
@@ -74,7 +74,7 @@ RSpec.describe GameControl::CitiesController, type: :controller do
       it 'updates the city' do
         post_data = { name: 'name', country: 'EEUU' }
 
-        patch :update, id: @city.id, city: post_data
+        patch :update, params: { id: @city.id, city: post_data }
 
         expect(response).to redirect_to game_control_cities_path
         expect(flash[:notice]).to match(/successful/i)
@@ -85,7 +85,7 @@ RSpec.describe GameControl::CitiesController, type: :controller do
       end
 
       it 'displays messages' do
-        patch :update, id: @city.id, city: { name: '' }
+        patch :update, params: { id: @city.id, city: { name: '' } }
 
         expect(response).to be_successful
         expect(response).to render_template(:edit)
@@ -98,7 +98,7 @@ RSpec.describe GameControl::CitiesController, type: :controller do
         city = create(:city)
 
         expect do
-          delete :destroy, id: city.id
+          delete :destroy, params: { id: city.id }
           expect(flash[:notice]).to match(/successful/i)
         end.to change(City, :count).by(-1)
       end

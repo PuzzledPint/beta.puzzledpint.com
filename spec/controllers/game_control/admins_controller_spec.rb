@@ -43,7 +43,7 @@ RSpec.describe GameControl::AdminsController, type: :controller do
         expect do
           role = create(:admin_role)
           post_data = { email: 'e@e.com', full_name: 'name', role_ids: [role.id] }
-          post :create, admin: post_data
+          post :create, params: { admin: post_data }
           expect(response).to redirect_to(:game_control_admins)
         end.to change(Admin, :count).by(1)
       end
@@ -53,7 +53,7 @@ RSpec.describe GameControl::AdminsController, type: :controller do
       it 'renders' do
         admin = create(:admin)
 
-        get :edit, id: admin.id
+        get :edit, params: { id: admin.id }
 
         expect(assigns(:admin))
         expect(response).to be_successful
@@ -67,7 +67,7 @@ RSpec.describe GameControl::AdminsController, type: :controller do
       it 'updates the admin' do
         post_data = { email: 'e@e.com', full_name: 'name', password: '' }
 
-        patch :update, id: @admin.id, admin: post_data
+        patch :update, params: { id: @admin.id, admin: post_data }
 
         expect(response).to redirect_to game_control_admins_path
         expect(flash[:notice]).to match(/successful/i)
@@ -78,7 +78,7 @@ RSpec.describe GameControl::AdminsController, type: :controller do
       end
 
       it 'displays messages' do
-        patch :update, id: @admin.id, admin: { full_name: '' }
+        patch :update, params: { id: @admin.id, admin: { full_name: '' } }
 
         expect(response).to be_successful
         expect(response).to render_template(:edit)
@@ -91,7 +91,7 @@ RSpec.describe GameControl::AdminsController, type: :controller do
         admin = create(:admin)
 
         expect do
-          delete :destroy, id: admin.id
+          delete :destroy, params: { id: admin.id }
           expect(flash[:notice]).to match(/successful/i)
         end.to change(Admin, :count).by(-1)
       end

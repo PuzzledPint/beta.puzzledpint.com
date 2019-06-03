@@ -1,4 +1,4 @@
-class City < ActiveRecord::Base
+class City < ApplicationRecord
   belongs_to :parent, class_name: "City"
   has_many :children, class_name: "City", foreign_key: :parent_id
   has_many :event_locations

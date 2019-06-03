@@ -1,4 +1,4 @@
-class Page < ActiveRecord::Base
+class Page < ApplicationRecord
   include Authority::Abilities
 
   has_many :children, class_name: 'Page', foreign_key: :parent_id

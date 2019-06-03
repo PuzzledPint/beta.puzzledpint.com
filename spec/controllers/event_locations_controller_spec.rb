@@ -18,7 +18,7 @@ RSpec.describe EventLocationsController, type: :controller do
     let!(:loc_4) { create(:event_location, event: event, city: create(:city)) }
 
     it 'returns a JSON message' do
-      get :index, event_id: event.id, format: :json
+      get :index, params: { event_id: event.id, format: :json }
 
       expect(response).to be_successful
 

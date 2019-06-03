@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.11.1'
+gem 'rails', '5.0.0'
 gem 'pg', '~> 0.20' #TODO upgrade
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -61,6 +61,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'rails-controller-testing'
   gem 'rspec-activemodel-mocks', require: false
   gem 'factory_bot_rails', '~> 4.11' #TODO Update
   gem 'shoulda-matchers'

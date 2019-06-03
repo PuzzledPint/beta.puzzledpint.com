@@ -30,7 +30,7 @@ RSpec.describe GameControl::EventsController, type: :controller do
     describe 'GET show' do
       context 'admin' do
         it 'renders' do
-          get :show, id: create(:event).id
+          get :show, params: { id: create(:event).id }
 
           expect(response).to be_successful
           expect(response).to render_template(:show)
@@ -41,7 +41,7 @@ RSpec.describe GameControl::EventsController, type: :controller do
         login_location_gc
 
         it 'renders' do
-          get :show, id: create(:event).id
+          get :show, params: { id: create(:event).id }
 
           expect(response).to be_successful
           expect(response).to render_template(:show)
@@ -65,13 +65,13 @@ RSpec.describe GameControl::EventsController, type: :controller do
                         "event_at(2i)" => "1",
                         "event_at(3i)" => "21",
                         theme: 'theme' }
-          post :create, event: post_data, city_ids: [city.id]
+          post :create, params: { event: post_data, city_ids: [city.id] }
           expect(EventLocation.count).to eq(1)
         end.to change(Event, :count).by(1)
       end
 
       it 'displays errors' do
-        post :create, event: { name: 'blah' }
+        post :create, params: { event: { name: 'blah' } }
         expect(response).to be_successful
         expect(response).to render_template(:new)
         expect(assigns(:event).errors).not_to be_empty
@@ -87,7 +87,7 @@ RSpec.describe GameControl::EventsController, type: :controller do
                       "event_at(3i)" => "21",
                       theme: 'theme name' }
 
-        patch :update, id: @event.id, event: post_data
+        patch :update, params: { id: @event.id, event: post_data }
 
         expect(response).to redirect_to game_control_event_path(@event)
         expect(flash[:notice]).to match(/successful/i)
@@ -97,7 +97,7 @@ RSpec.describe GameControl::EventsController, type: :controller do
       end
 
       it 'displays messages' do
-        patch :update, id: @event.id, event: { theme: '' }
+        patch :update, params: { id: @event.id, event: { theme: '' } }
 
         expect(response).to be_successful
         expect(response).to render_template(:show)
@@ -110,7 +110,7 @@ RSpec.describe GameControl::EventsController, type: :controller do
         event = create(:event)
 
         expect do
-          delete :destroy, id: event.id
+          delete :destroy, params: { id: event.id }
           expect(flash[:notice]).to match(/successful/i)
         end.to change(Event, :count).by(-1)
       end

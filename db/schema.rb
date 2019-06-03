@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -41,27 +40,24 @@ ActiveRecord::Schema.define(version: 20160201010708) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "full_name",                           null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true, using: :btree
+    t.index ["invitation_token"], name: "index_admins_on_invitation_token", unique: true, using: :btree
+    t.index ["invitations_count"], name: "index_admins_on_invitations_count", using: :btree
+    t.index ["invited_by_id"], name: "index_admins_on_invited_by_id", using: :btree
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
   end
-
-  add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
-  add_index "admins", ["invitation_token"], name: "index_admins_on_invitation_token", unique: true, using: :btree
-  add_index "admins", ["invitations_count"], name: "index_admins_on_invitations_count", using: :btree
-  add_index "admins", ["invited_by_id"], name: "index_admins_on_invited_by_id", using: :btree
-  add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
   create_table "admins_cities", force: :cascade do |t|
     t.integer "admin_id"
     t.integer "city_id"
+    t.index ["admin_id", "city_id"], name: "index_admins_cities_on_admin_id_and_city_id", using: :btree
   end
-
-  add_index "admins_cities", ["admin_id", "city_id"], name: "index_admins_cities_on_admin_id_and_city_id", using: :btree
 
   create_table "admins_roles", id: false, force: :cascade do |t|
     t.integer "admin_id"
     t.integer "role_id"
+    t.index ["admin_id", "role_id"], name: "index_admins_roles_on_admin_id_and_role_id", using: :btree
   end
-
-  add_index "admins_roles", ["admin_id", "role_id"], name: "index_admins_roles_on_admin_id_and_role_id", using: :btree
 
   create_table "cities", force: :cascade do |t|
     t.string   "name",       null: false
@@ -70,9 +66,8 @@ ActiveRecord::Schema.define(version: 20160201010708) do
     t.integer  "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_cities_on_parent_id", using: :btree
   end
-
-  add_index "cities", ["parent_id"], name: "index_cities_on_parent_id", using: :btree
 
   create_table "event_locations", force: :cascade do |t|
     t.string   "bar_name"
@@ -89,10 +84,9 @@ ActiveRecord::Schema.define(version: 20160201010708) do
     t.datetime "updated_at",                                       null: false
     t.string   "bar_url"
     t.time     "start_time",       default: '2000-01-01 18:00:00'
+    t.index ["city_id"], name: "index_event_locations_on_city_id", using: :btree
+    t.index ["event_id"], name: "index_event_locations_on_event_id", using: :btree
   end
-
-  add_index "event_locations", ["city_id"], name: "index_event_locations_on_city_id", using: :btree
-  add_index "event_locations", ["event_id"], name: "index_event_locations_on_event_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.date     "event_at",   null: false
@@ -110,11 +104,10 @@ ActiveRecord::Schema.define(version: 20160201010708) do
     t.boolean  "active",     default: false, null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.index ["full_path"], name: "index_pages_on_full_path", unique: true, using: :btree
+    t.index ["parent_id"], name: "index_pages_on_parent_id", using: :btree
+    t.index ["slug"], name: "index_pages_on_slug", using: :btree
   end
-
-  add_index "pages", ["full_path"], name: "index_pages_on_full_path", unique: true, using: :btree
-  add_index "pages", ["parent_id"], name: "index_pages_on_parent_id", using: :btree
-  add_index "pages", ["slug"], name: "index_pages_on_slug", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -122,9 +115,8 @@ ActiveRecord::Schema.define(version: 20160201010708) do
     t.string   "resource_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+    t.index ["name"], name: "index_roles_on_name", using: :btree
   end
-
-  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
-  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
 end

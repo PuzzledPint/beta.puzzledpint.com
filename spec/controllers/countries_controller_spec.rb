@@ -19,14 +19,14 @@ RSpec.describe CountriesController, type: :controller do
       country = ISO3166::Country.new("US")
       expected_response = country.subdivisions.map { |k, v| { code: k, name: v["name"] } }
 
-      get :subdivisions, country: "US"
+      get :subdivisions, params: { country: "US" }
 
       expect(response).to be_successful
       expect(response.body).to eq(expected_response.to_json)
     end
 
     it "returns an empty list" do
-      get :subdivisions, country: "XX"
+      get :subdivisions, params: { country: "XX" }
       expect(response).to be_successful
       expect(response.body).to eq("[]")
     end
