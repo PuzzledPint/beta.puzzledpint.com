@@ -3,7 +3,6 @@ Puzzled Pint
 
 [![Circle CI](https://img.shields.io/circleci/project/PuzzledPint/puzzledpint.com.svg?style=plastic)](https://circleci.com/gh/PuzzledPint/puzzledpint.com)
 [![Code Climate](https://codeclimate.com/github/PuzzledPint/puzzledpint.com/badges/gpa.svg)](https://codeclimate.com/github/PuzzledPint/puzzledpint.com)
-[![Stories in Progress](https://badge.waffle.io/PuzzledPint/puzzledpint.com.svg?label=In%20Progress&title=in%20progress)](http://waffle.io/PuzzledPint/puzzledpint.com)
 
 About
 -----
@@ -19,7 +18,7 @@ The ultimate goal of this project is to build a turn-key website for running [Pu
 Prerequisites
 -------------
 
-This project is written in Ruby 2.3 and Rails 4.2. It requires a PostgreSQL database. Other dependencies are loaded as Ruby gems via Bundler.
+This project is written in Ruby 2.3 and Rails 5.2. It requires a PostgreSQL database. Other dependencies are loaded as Ruby gems via Bundler.
 
 Installation
 ------------
