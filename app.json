@@ -1,6 +1,7 @@
 {
   "name": "puzzledpint.com",
   "scripts": {
+    "postdeploy": "bin/rails db:migrate"
   },
   "stack": "heroku-18",
   "env": {
