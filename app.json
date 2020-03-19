@@ -1,0 +1,9 @@
+{
+  "name": "Puzzled Pint Site",
+  "repository": "https://github.com/PuzzledPint/puzzledpint.com",
+  "env": {
+    "RAILS_ENV": "production",
+    "RACK_ENV": "production",
+    "RAILS_SERVE_STATIC_FILES": "true"
+	}
+}
