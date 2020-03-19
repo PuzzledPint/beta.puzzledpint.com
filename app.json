@@ -1,18 +1,25 @@
 {
+  "name": "puzzledpint.com",
+  "scripts": {
+  },
+  "stack": "heroku-18",
+  "env": {
+    "RACK_ENV": { "required": true },
+    "RAILS_ENV": { "required": true },
+    "RAILS_SERVE_STATIC_FILES": { "required": true },
+    "SEGMENT_IO_KEY": { "required": true }
+  },
   "addons": [
-
+    {
+      "plan": "heroku-postgresql:hobby-dev",
+      "options": {
+        "version": "11.7"
+      }
+    }
   ],
   "buildpacks": [
     {
       "url": "heroku/ruby"
     }
-  ],
-  "env": {
-  },
-  "formation": {
-  },
-  "name": "puzzledpint.com",
-  "scripts": {
-  },
-  "stack": "heroku-18"
+  ]
 }
