@@ -1,4 +1,4 @@
-class CreateAdminsCities < ActiveRecord::Migration
+class CreateAdminsCities < ActiveRecord::Migration[5.2]
   def change
     create_table :admins_cities do |t|
       t.belongs_to :admin

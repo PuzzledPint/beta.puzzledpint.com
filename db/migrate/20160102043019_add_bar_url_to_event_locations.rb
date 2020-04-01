@@ -1,4 +1,4 @@
-class AddBarUrlToEventLocations < ActiveRecord::Migration
+class AddBarUrlToEventLocations < ActiveRecord::Migration[5.2]
   def up
     change_table :event_locations, bulk: true  do |t|
       t.string :bar_url
