@@ -14,8 +14,5 @@ class CreateEventLocations < ActiveRecord::Migration[5.2]
       t.references :event, null: false
       t.timestamps null: false
     end
-
-    add_index :event_locations, :city_id
-    add_index :event_locations, :event_id
   end
 end

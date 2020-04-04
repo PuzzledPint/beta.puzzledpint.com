@@ -7,7 +7,5 @@ class CreateCities < ActiveRecord::Migration[5.2]
       t.references :parent, null: true
       t.timestamps null: false
     end
-
-    add_index :cities, :parent_id
   end
 end
