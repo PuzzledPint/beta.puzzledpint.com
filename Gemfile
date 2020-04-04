@@ -85,7 +85,7 @@ group :development do
   gem 'spring-commands-rspec'
 
   # Windows specific
-  gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
-  gem 'bcrypt', '3.1.11', platforms: [:mingw, :mswin, :x64_mingw], :require => 'bcrypt'
+  # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+  # gem 'bcrypt', '3.1.11', platforms: [:mingw, :mswin, :x64_mingw], :require => 'bcrypt'
 
 end
