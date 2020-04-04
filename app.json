@@ -10,6 +10,12 @@
     "RAILS_SERVE_STATIC_FILES": { "required": true },
     "SEGMENT_IO_KEY": { "required": true }
   },
+  "formation": {
+    "web":{
+      "quantity": 1,
+      "size": "free"
+    }
+  },
   "addons": [
     {
       "plan": "heroku-postgresql:hobby-dev",
