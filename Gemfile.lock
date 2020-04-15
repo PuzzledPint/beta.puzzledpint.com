@@ -47,8 +47,7 @@ GEM
     ast (2.4.0)
     authority (3.3.0)
       activesupport (>= 3.0.0)
-    bcrypt (3.1.11)
-    bcrypt (3.1.11-x64-mingw32)
+    bcrypt (3.1.13)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
     bootsnap (1.4.4)
@@ -74,10 +73,10 @@ GEM
       sort_alphabetical (~> 1.0)
     crass (1.0.6)
     debug_inspector (0.0.3)
-    devise (4.6.2)
+    devise (4.7.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
-      railties (>= 4.1.0, < 6.0)
+      railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
     devise_invitable (2.0.1)
@@ -161,7 +160,8 @@ GEM
     pry-stack_explorer (0.4.9.3)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
-    puma (3.12.1)
+    puma (4.3.3)
+      nio4r (~> 2.0)
     rack (2.2.2)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -209,9 +209,9 @@ GEM
     rb-inotify (0.10.0)
       ffi (~> 1.0)
     rdoc (4.3.0)
-    responders (2.4.1)
-      actionpack (>= 4.2.0, < 6.0)
-      railties (>= 4.2.0, < 6.0)
+    responders (3.0.0)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
     rolify (5.2.0)
     rspec (3.8.0)
       rspec-core (~> 3.8.0)
@@ -268,7 +268,7 @@ GEM
       rdoc (~> 4.0)
     shoulda-matchers (4.0.1)
       activesupport (>= 4.2.0)
-    simple_form (4.1.0)
+    simple_form (5.0.2)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
     sixarm_ruby_unaccent (1.2.0)
@@ -326,7 +326,7 @@ DEPENDENCIES
   coffee-rails
   countries
   country_select
-  devise
+  devise (>= 4.7.1)
   devise_invitable
   dotenv-rails
   factory_bot_rails (~> 4.11)
@@ -339,7 +339,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   pry-stack_explorer
-  puma
+  puma (>= 3.12.4)
   rails (= 5.2.4.2)
   rails-controller-testing
   rails_12factor
@@ -354,7 +354,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   shoulda-matchers
-  simple_form
+  simple_form (>= 5.0.0)
   slim-rails
   spring
   spring-commands-rspec

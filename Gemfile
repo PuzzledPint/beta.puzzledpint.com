@@ -29,7 +29,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Unicorn as the app server
 # gem 'unicorn'
-gem 'puma'
+gem "puma", ">= 3.12.4"
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -41,7 +42,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rails_12factor', group: :production
 gem 'raygun4ruby'
 
-gem 'devise'
+gem "devise", ">= 4.7.1"
 gem 'devise_invitable'
 gem 'authority'
 gem 'rolify'
@@ -51,7 +52,7 @@ gem 'pry-stack_explorer'
 gem 'pry-byebug'
 
 gem 'slim-rails'
-gem 'simple_form'
+gem "simple_form", ">= 5.0.0"
 gem 'countries'
 gem 'country_select'
 gem 'breadcrumbs_on_rails'
