@@ -1,4 +1,4 @@
-class EventLocation < ActiveRecord::Base
+class EventLocation < ApplicationRecord
   include Authority::Abilities
 
   belongs_to :city

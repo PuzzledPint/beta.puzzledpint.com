@@ -1,4 +1,4 @@
-class Admin < ActiveRecord::Base
+class Admin < ApplicationRecord
   devise :invitable, :database_authenticatable, :lockable, :timeoutable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -8,7 +8,7 @@ class Admin < ActiveRecord::Base
 
   attr_accessor :send_invite
 
-  has_and_belongs_to_many :cities
+  has_and_belongs_to_many :cities, optonal: true
 
   validates :email, :full_name, :roles, presence: true
 

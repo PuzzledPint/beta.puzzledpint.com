@@ -1,15 +1,15 @@
 source 'https://rubygems.org'
-ruby '2.3.1'
+ruby '2.6.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.6'
-gem 'pg'
+gem 'rails', '5.2.3'
+gem 'pg', '~> 0.20' #TODO upgrade
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -33,6 +33,9 @@ gem 'puma'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.1.0', require: false
 
 # For running on Heroku
 gem 'rails_12factor', group: :production
@@ -61,11 +64,14 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'rails-controller-testing'
   gem 'rspec-activemodel-mocks', require: false
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails', '~> 4.11' #TODO Update
   gem 'shoulda-matchers'
   gem 'dotenv-rails'
   gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
   gem 'parity', require: false
 end
 
@@ -75,10 +81,11 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'listen'
   gem 'spring-commands-rspec'
 
   # Windows specific
-  gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
-  gem 'bcrypt', '3.1.11', platforms: [:mingw, :mswin, :x64_mingw], :require => 'bcrypt'
+  # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+  # gem 'bcrypt', '3.1.11', platforms: [:mingw, :mswin, :x64_mingw], :require => 'bcrypt'
 
 end

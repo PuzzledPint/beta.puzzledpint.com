@@ -1,4 +1,4 @@
-class Role < ActiveRecord::Base
+class Role < ApplicationRecord
   has_many :admins, through: :admins_roles
   belongs_to :resource, polymorphic: true
 

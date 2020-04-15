@@ -19,7 +19,7 @@ Rails.application.routes.draw do
                                      invitations: 'game_control/invitations' }
 
   namespace :game_control do
-    root 'dashboard#index'
+    root 'dashboard#index', as: 'root'
 
     get 'profile', to: 'profile#edit'
     patch 'profile', to: 'profile#update'

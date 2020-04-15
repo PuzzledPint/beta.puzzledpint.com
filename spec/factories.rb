@@ -1,18 +1,18 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :page do
-    title "Page Title"
-    slug "page"
-    content "Page Content"
-    active true
+    title { 'Page Title' }
+    slug { 'page' }
+    content { 'Page Content' }
+    active { true }
   end
 
   factory :admin, class: Admin do
     sequence :email do |n|
       "admin#{n}@admin.com"
     end
-    password 'password'
-    password_confirmation 'password'
-    full_name 'Frank Smith'
+    password { 'password' }
+    password_confirmation { 'password' }
+    full_name { 'Frank Smith' }
 
     before(:create) do |admin, _|
       admin.roles << create(:role)
@@ -32,36 +32,41 @@ FactoryGirl.define do
   end
 
   factory :location_gc_role, class: Role do
-    name 'location_gc'
+    name  { 'location_gc' }
   end
 
   factory :admin_role, class: Role do
-    name 'admin'
+    name { 'admin' }
   end
 
   factory :city do
-    name 'Shaolin'
-    state 'New York'
-    country 'United States'
+    name { 'Shaolin' }
+    state { 'New York' }
+    country { 'United States' }
   end
 
   factory :event do
-    event_at Time.zone.today
-    theme "MyString"
+    event_at { Time.zone.today }
+    theme { 'MyString' }
   end
 
   factory :event_location do
-    bar_name 'Foo'
-    bar_url 'http://somedomain.com'
+    bar_name { 'Foo' }
+    bar_url { 'http://somedomain.com' }
     event
     city
-    notes 'Some random notes'
-    addr_street_1 '123 Some St'
-    addr_street_2 'Apt 105'
-    addr_city 'Portland'
-    addr_state 'OR'
-    addr_postal_code '97232'
-    addr_country 'US'
+    notes { 'Some random notes' }
+    addr_street_1 { '123 Some St' }
+    addr_street_2 { 'Apt 105' }
+    addr_city { 'Portland' }
+    addr_state { 'OR' }
+    addr_postal_code { '97232' }
+    addr_country { 'US' }
+  end
+
+  factory :event_location_notes_only, class: EventLocation do
+    notes { 'notes notes notes' }
+    city
   end
 
   factory :role do

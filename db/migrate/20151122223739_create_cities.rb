@@ -1,4 +1,4 @@
-class CreateCities < ActiveRecord::Migration
+class CreateCities < ActiveRecord::Migration[5.2]
   def change
     create_table :cities do |t|
       t.string :name, null: false
@@ -7,7 +7,5 @@ class CreateCities < ActiveRecord::Migration
       t.references :parent, null: true
       t.timestamps null: false
     end
-
-    add_index :cities, :parent_id
   end
 end

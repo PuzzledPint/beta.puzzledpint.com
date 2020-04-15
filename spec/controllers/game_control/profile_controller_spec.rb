@@ -19,7 +19,7 @@ RSpec.describe GameControl::ProfileController, type: :controller do
         post_data = { email: 'e@e.com', full_name: 'name', password: '' }
 
         admin = subject.current_admin
-        patch :update, id: admin.id, admin: post_data
+        patch :update, params: { id: admin.id, admin: post_data }
 
         expect(response).to redirect_to game_control_profile_path
         expect(flash[:notice]).to match(/successful/i)
@@ -32,7 +32,7 @@ RSpec.describe GameControl::ProfileController, type: :controller do
 
     context 'validation errors' do
       it 'displays messages' do
-        patch :update, admin: { full_name: '' }
+        patch :update, params: { admin: { full_name: '' } }
 
         expect(response).to render_template(:edit)
         expect(assigns(:admin).errors).not_to be_empty
@@ -47,7 +47,7 @@ RSpec.describe GameControl::ProfileController, type: :controller do
                       password: 'password_new',
                       password_confirmation: 'password_new' }
 
-        patch :update_password, admin: post_data
+        patch :update_password, params: { admin: post_data }
 
         expect(response).to redirect_to game_control_profile_path
         expect(flash[:notice]).to match(/successful/i)
@@ -56,7 +56,7 @@ RSpec.describe GameControl::ProfileController, type: :controller do
 
     context 'validation errors' do
       def validate_message(post_data, field, msg)
-        patch :update_password, admin: post_data
+        patch :update_password, params: { admin: post_data }
 
         expect(response).to render_template(:edit)
         expect(assigns(:admin).errors[field].first).to eq(msg)

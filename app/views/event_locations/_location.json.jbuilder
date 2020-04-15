@@ -12,10 +12,8 @@ if location.complete?
     json.postal_code location.addr_postal_code
     json.country location.addr_country
   end
-  json.notes location.notes.html_safe
-end
-
-if location.notes_only?
+  json.notes location.notes&.html_safe
+elsif location.notes.present?
   json.city location.city.name
-  json.notes location.notes.html_safe
+  json.notes location.notes&.html_safe
 end
