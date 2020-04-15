@@ -64,6 +64,11 @@ FactoryBot.define do
     addr_country { 'US' }
   end
 
+  factory :event_location_notes_only, class: EventLocation do
+    notes { 'notes notes notes' }
+    city
+  end
+
   factory :role do
     sequence :name do |n|
       "role#{n}"
