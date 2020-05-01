@@ -1,7 +1,8 @@
 class City < ApplicationRecord
   belongs_to :parent, class_name: "City", optional: true
-  has_many :children, class_name: "City", foreign_key: :parent_id
-  has_many :event_locations
+  has_many :children, class_name: "City",
+    foreign_key: :parent_id, dependent: :destroy
+  has_many :event_locations, dependent: :destroy
   has_and_belongs_to_many :admins, optional: true
 
   validates :name, :country, presence: true

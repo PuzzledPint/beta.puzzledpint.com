@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe City, type: :model do
+  it { should belong_to(:parent).optional }
+  it { should have_many(:children).dependent(:destroy) }
+  it { should have_many(:event_locations).dependent(:destroy) }
   it { should have_and_belong_to_many(:admins) }
 
   context 'validations' do
