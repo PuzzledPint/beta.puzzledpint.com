@@ -46,6 +46,7 @@ gem "devise", ">= 4.7.1"
 gem 'devise_invitable'
 gem 'authority'
 gem 'rolify'
+gem "doorkeeper"
 
 gem 'pry-rails'
 gem 'pry-stack_explorer'
