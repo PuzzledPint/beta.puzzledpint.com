@@ -10,6 +10,7 @@ Doorkeeper.configure do
     if warden.user
       warden.user.has_role?(:location_gc) ? warden.user : head(:forbidden)
     else
+      flash[:notice] = "Log in to complete the connection"
       store_location_for(:admin, request.url)
       redirect_to(new_admin_session_path)
     end
