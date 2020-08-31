@@ -1,4 +1,16 @@
 class GameControl::ProfileController < GameControlController
+  skip_before_action :authenticate_admin!, only: :show
+  before_action -> { doorkeeper_authorize! :login }, only: :show
+
+  def show
+    admin = Admin.find(doorkeeper_token.resource_owner_id)
+    scopes = doorkeeper_token.scopes
+
+    profile = Profile.new(admin, scopes)
+
+    render json: profile
+  end
+
   def edit
     @admin = current_admin
   end
