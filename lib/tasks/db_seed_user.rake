@@ -1,4 +1,3 @@
-
 namespace :db do
   namespace :seed do
     desc "create admin user"
