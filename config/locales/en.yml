@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+
+  doorkeeper:
+    scopes:
+      login: 'See your login email address'
+      cities: 'See the cities you have access to'

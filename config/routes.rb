@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  use_doorkeeper
   root 'pages#home'
 
   # error pages
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
   namespace :game_control do
     root 'dashboard#index', as: 'root'
 
+    get 'profile.json', to: 'profile#show'
     get 'profile', to: 'profile#edit'
     patch 'profile', to: 'profile#update'
     patch 'profile/password', to: 'profile#update_password'

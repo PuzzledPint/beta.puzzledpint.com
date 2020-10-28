@@ -7,6 +7,7 @@
  *= require AdminLTE/plugins/datepicker/datepicker3.css
  *= require AdminLTE/dist/css/AdminLTE.min.css
  *= require game_control/iCheck_square_yellow
+ *= require game_control/doorkeeper
  */
 
 html.turbolinks-progress-bar::before {
